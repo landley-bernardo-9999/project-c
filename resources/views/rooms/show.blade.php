@@ -123,71 +123,12 @@
         <div class="card">
             <div class="container-fluid" style="padding:3%; height: 600px">
                 <div class="row">
-
-                    {{-- Filter features of the page. --}}
-
-                    <div class="col-md-2">
-                       <div class="card">
-                           <div class="card-header">
-                               Filter rooms
-                           </div>
-                           <div class="card-body">
-
-                           </div>
-                       </div>
-                    </div>
-
-                        {{-- List of all the rooms. --}}
-
-                    <div class="col-md-10">
-                    
-                        {{-- Button for creating a new room. --}}
-
-                        <a  href="#" class="create-room btn btn-warning float-left " role="button"><i class="fas fa-plus-circle"></i>&nbspCREATE ROOM</a>
-
-                        {{-- Search button for finding rooms. --}}
-
-                        <form action="/search/rooms" method="GET">
-                            <input type="text" class="form-control float-right" style="width:200px" aria-label="Text input with dropdown button" name="s" value="{{ Request::query('s') }}" placeholder="Search rooms">
-                        </form>
-
-                    
-                        <div class="card-body" style=" margin-top:10%">
-                            <table class="table">
-                                @foreach($room as $row)
-                                    @if($row->status == 'occupied')
-                                        <a href="/rooms/{{$row->id}}" class="btn btn-outline-danger" role="button">
-                                            <i class="fas fa-home fa-2x"></i>
-                                            <div style="display: flex; width: 30px; justify-content: space-around; margin-bottom:-60%">
-                                                <p style="font-size: 11px">{{$row->roomNo}}</p>
-                                            </div>
-                                        </a>
-                                    @elseif($row->status == 'vacant')
-                                        <a href="/rooms/{{$row->id}}" class="btn btn-outline-success" role="button">
-                                            <i class="fas fa-home fa-2x"></i>
-                                            <div style="display: flex; width: 30px; justify-content: space-around; margin-bottom:-60%">
-                                                <p style="font-size: 11px">{{$row->roomNo}}</p>
-                                            </div>
-                                        </a>
-                                    @elseif($row->status == 'reserved')
-                                        <a href="/rooms/{{$row->id}}" class="btn btn-outline-primary" role="button">
-                                            <i class="fas fa-home fa-2x"></i>
-                                            <div style="display: flex; width: 30px; justify-content: space-around; margin-bottom:-60%">
-                                                <p style="font-size: 11px">{{$row->roomNo}}</p>
-                                            </div>
-                                        </a>
-                                    @endif
-                                @endforeach
-                            </table>
-                        </div>
-                        <div class="card-footer">
-                            <h6 class="text-center">Rooms found: {{ count($room) }}</h6>
-                        </div>
-                    </div>
+                
+                        
+                </div>
             </div>    
         </div>
-        </div>
-    </div>      
+        </div>     
 </div>
 
 @endsection

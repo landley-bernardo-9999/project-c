@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use App\Resident;
 
 class ResidentController extends Controller
 {
@@ -13,7 +15,8 @@ class ResidentController extends Controller
      */
     public function index()
     {
-        //
+        $resident = DB::table('residents')->get();
+        return view ('residents.index', compact('resident'));
     }
 
     /**

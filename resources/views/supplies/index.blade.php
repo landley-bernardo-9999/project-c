@@ -14,6 +14,7 @@
             <a class="nav-link" id="v-pills-repairs-tab" href="/repairs" role="tab" aria-controls="v-pills-repairs" aria-selected="false"><i class="fas fa-hammer"></i>&nbsp&nbsp&nbspRepairs</a>
             <a class="nav-link" id="v-pills-violations-tab" href="/violations" role="tab" aria-controls="v-pills-violations" aria-selected="false"><i class="fas fa-user-times"></i>&nbsp&nbsp&nbspViolations</a>
             <a class="nav-link active" id="v-pills-supplies-tab" href="/supplies" role="tab" aria-controls="v-pills-supplies" aria-selected="false"><i class="fas fa-clipboard-list"></i>&nbsp&nbsp&nbspSupplies</a>
+            <a class="nav-link" id="v-pills-personnels-tab" href="/personnels" role="tab" aria-controls="v-pills-personnels" aria-selected="false"><i class="fas fa-clipboard-list"></i>&nbsp&nbsp&nbspPersonnels</a>
         </div>
     </div>
 
@@ -23,16 +24,9 @@
         <div class="card">
             <div class="container-fluid" style="padding:3%; height: 600px">
                 <div class="row">
-                    <div class="col-md-2">
-                        <div class="card">
-                            <div class="card-header">
-                                <h6>Rooms</h6>
-                            </div>
-                            <div class="card-body">
-                                <h1>213</h1>
-                            </div>
-                    </div>
-                </div>
+                    
+                       <h1>This is for the supplies.</h1>
+                
             </div>    
         </div>
         </div>

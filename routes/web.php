@@ -18,10 +18,13 @@ Auth::routes(['verify'=>true]);
 Route::get('/', 'HomeController@index')->name('home')->middleware('verified');;
 
 Route::resources([
-            'rooms' => 'RoomController',
-            'residents' => 'ResidentController',
-            'owners' => 'OwnerController',
-            'repairs' => 'RepairController',
-            'violation' => 'ViolationController',
-            'supplies' => 'SupplyController'  
-            ]);
+                    'rooms' => 'RoomController',
+                    'residents' => 'ResidentController',
+                    'owners' => 'OwnerController',
+                    'repairs' => 'RepairController',
+                    'violations' => 'ViolationController',
+                    'supplies' => 'SupplyController',
+                    'personnels' => 'PersonnelController',
+                ]);
+
+Route::get('/search/rooms{s?}', 'RoomController@index')->where('s', '[\w\d]+');

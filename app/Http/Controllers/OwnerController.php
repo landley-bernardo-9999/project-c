@@ -3,34 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Room;
 use DB;
+use App\Owner;
 
-class RoomController extends Controller
+class OwnerController extends Controller
 {
-
-     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $s = $request->query('s');
-
-        $room = DB::table('rooms')->where('roomNo', 'like', "%$s%")->get();
-
-        return view('rooms.index', compact('room', 's'));
+        // $owner = DB::table('owners')->get();
+        return view('owners.index');
     }
 
     /**
@@ -51,19 +37,7 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        $validate =  request()->validate([
-                'roomNo' => ['required', 'max:255', 'unique:rooms'],
-                'building' => ['required', 'max:255'],
-                'shortTermRent' => ['required'],
-                'longTermRent' => ['required'],
-                'status' => ['required'],
-                'size' => ['required'],
-                'capacity' => ['required']
-        ]);  
-
-        Room::create($validate);
-
-        return redirect('/rooms')->with('success', 'Room has been added!');
+        //
     }
 
     /**
@@ -74,9 +48,7 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        $room = Room::find($id)->get();
-
-        return view('rooms.show', compact('room'));
+        //
     }
 
     /**
