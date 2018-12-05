@@ -52,18 +52,18 @@ class RoomController extends Controller
     public function store(Request $request)
     {
         $validate =  request()->validate([
-                'roomNo' => ['required', 'max:255', 'unique:rooms'],
-                'building' => ['required', 'max:255'],
-                'shortTermRent' => ['required'],
-                'longTermRent' => ['required'],
-                'status' => ['required'],
-                'size' => ['required'],
-                'capacity' => ['required']
+            'roomNo' => ['required', 'max:255', 'unique:rooms'],
+            'building' => ['required', 'max:255'],
+            'shortTermRent' => ['required'],
+            'longTermRent' => ['required'],
+            'status' => ['required'],
+            'size' => ['required'],
+            'capacity' => ['required']
         ]);  
 
         Room::create($validate);
 
-        return redirect('/rooms')->with('success', 'Room has been added!');
+        return redirect('/rooms')->with('success','Room has been created!');
     }
 
     /**
@@ -74,9 +74,10 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        $room = Room::find($id)->get();
+        $room = Room::findOrFail($id);
+        $rRow = 1;
 
-        return view('rooms.show', compact('room'));
+        return view('rooms.show', compact('room', 'rRow'));
     }
 
     /**
@@ -99,7 +100,19 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $room = Room::find($id);
+
+       $room->roomNo = request('roomNo');
+       $room->building = request('building');
+       $room->shortTermRent = request('shortTermRent');
+       $room->longTermRent = request('longTermRent');
+       $room->status = request('status');
+       $room->capacity = request('capacity');
+       $room->size = request('size');
+
+       $room->save();
+
+        return redirect('/rooms/'.$room->id)->with('success', 'Room has been updated!');
     }
 
     /**
@@ -110,6 +123,9 @@ class RoomController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Room::find($id)->delete();
+        $room = Room::findOrFail($id)->delete();
+
+        return redirect('/rooms')->with('success','Room has been deleted!');
     }
 }

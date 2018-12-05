@@ -16,15 +16,21 @@ class CreateResidentsTable extends Migration
         Schema::create('residents', function (Blueprint $table) {
             $table->increments('id');
             $table->string('firstName');
-            $table->string('middleName');
+            $table->string('middleName')->nullable();
             $table->string('lastName');
             $table->string('birthDate')->nullable();
-            $table->string('emailAddress')->nullable();
-            $table->string('mobileNumber');
+            $table->string('emailAddress')->nullable()->unique();
+            $table->string('mobileNumber')->nullable()->unique();
+            $table->string('roomNo');
+            $table->integer('houseNumber')->nullable();
+            $table->string('barangay')->nullable();
+            $table->string('municipality')->nullable();
+            $table->string('province')->nullable();
+            $table->string('zip')->nullable();
             $table->string('school')->nullable();
             $table->string('course')->nullable();
             $table->integer('yearLevel')->nullable();
-            $table->string('img');
+            $table->string('img')->nullable();
             $table->timestamps();
         });
     }

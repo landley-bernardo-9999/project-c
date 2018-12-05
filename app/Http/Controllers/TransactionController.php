@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-use App\Resident;
 
-class ResidentController extends Controller
+class TransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,7 @@ class ResidentController extends Controller
      */
     public function index()
     {
-        $resident = DB::table('residents')->get();
-        return view ('residents.index', compact('resident'));
+        //
     }
 
     /**
@@ -37,29 +34,7 @@ class ResidentController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = request()->validate([
-            'firstName' => ['max:255'],
-            'middleName' => ['max:255'],
-            'lastName' => ['max:255'],
-            'birthDate' => ['nullable'],
-            'emailAddress' => ['unique:residents', 'nullable'],
-            'mobileNumber' => ['unique:residents', 'nullable'],
-            'mobileNumber' => [],
-            'houseNumber' => ['max:255'],
-            'roomNo' => [],
-            'barangay' => ['max:255'],
-            'municipality' => ['max:255'],
-            'province' => ['max:255'],
-            'zipcode' => ['max:255'],
-            'school' => ['max:255'],
-            'course' => ['max:255'],
-            'yearLevel' => ['integer','nullable'],
-            'img' => ['image','max:1999','nullable'],
-        ]);
-
-        Resident::create($validate);
-
-        return redirect('/rooms')->with('success','Resident has been added!');
+        //
     }
 
     /**

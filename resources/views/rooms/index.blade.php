@@ -2,7 +2,9 @@
 @include('includes.notifications')
 @section('content')
 <div class="row">
+
 {{-- Modal for creating room.  --}}
+
 <div id="create-room" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -102,6 +104,7 @@
             </div>
         </div>
     </div>
+
 {{-- Vertical Navigation bar --}}
 
     <div class="col-md-2">
