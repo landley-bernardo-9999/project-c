@@ -18,11 +18,11 @@ class CreateResidentsTable extends Migration
             $table->string('firstName');
             $table->string('middleName')->nullable();
             $table->string('lastName');
-            $table->string('birthDate')->nullable();
+            $table->date('birthDate')->nullable();
             $table->string('emailAddress')->nullable()->unique();
             $table->string('mobileNumber')->nullable()->unique();
-            $table->string('roomNo');
-            $table->integer('houseNumber')->nullable();
+            $table->unsignedInteger('roomNo');
+            $table->string('houseNumber')->nullable();
             $table->string('barangay')->nullable();
             $table->string('municipality')->nullable();
             $table->string('province')->nullable();
@@ -30,6 +30,8 @@ class CreateResidentsTable extends Migration
             $table->string('school')->nullable();
             $table->string('course')->nullable();
             $table->integer('yearLevel')->nullable();
+            $table->string('guardian')->nullable();
+            $table->string('guardianPhoneNumber')->nullable();
             $table->string('img')->nullable();
             $table->timestamps();
         });

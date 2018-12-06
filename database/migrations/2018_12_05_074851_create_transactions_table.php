@@ -15,17 +15,14 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
-            // $table->date('transDate');
-            // $table->unsignedInteger('roomNoId');
-            // $table->unsignedInteger('residentId');
-            // $table->string('transStatus');
-            // $table->date('moveInDate');
-            // $table->date('moveOutDate');
-            // $table->integer('term');
-            // $table->integer('initialSecDep');
-            // $table->timestamps('moveOutCharges');
-            // $table->integer('finalSecDep');
-            // $table->string('reasonForMovingOut');
+            $table->date('transDate');
+            $table->unsignedInteger('roomNo_id')->nullable();
+            $table->unsignedInteger('resident_id')->nullable();
+            $table->string('transStatus');
+            $table->date('moveInDate');
+            $table->date('moveOutDate');
+            $table->string('term');
+            $table->integer('initialSecDep');
             $table->timestamps();
         });
     }

@@ -20,6 +20,7 @@ Route::get('/', 'HomeController@index')->name('home')->middleware('verified');;
 Route::resources([
                     'rooms' => 'RoomController',
                     'residents' => 'ResidentController',
+                    'transactions' => 'TransactionController',
                     'owners' => 'OwnerController',
                     'repairs' => 'RepairController',
                     'violations' => 'ViolationController',

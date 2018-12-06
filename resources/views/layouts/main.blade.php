@@ -66,6 +66,22 @@
             $('.add-resident-title').text('Add Resident');
         });
 
+         // Modal for editing a resident.
+
+         $(document).on('click','.edit-resident', function(){
+            $('#edit-resident').modal('show');
+            $('.edit-resident-form').show();
+            $('.edit-resident-title').text('Edit Resident');
+        });
+
+         // Modal for adding a resident's transaction.
+
+         $(document).on('click','.add-transaction', function(){
+            $('#add-transaction').modal('show');
+            $('.add-transaction-form').show();
+            $('.add-transaction-title').text('Add Transaction');
+        });
+
          // Delete confirmation dialog
 
         $("#FormDeleteTime").submit(function (event) {

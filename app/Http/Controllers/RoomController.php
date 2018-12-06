@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Room;
+use App\Resident;
 use DB;
 
 class RoomController extends Controller
@@ -63,7 +64,7 @@ class RoomController extends Controller
 
         Room::create($validate);
 
-        return redirect('/rooms')->with('success','Room has been created!');
+        return redirect('/rooms')->with('success','Room '.$request->roomNo.' has been created!');
     }
 
     /**
@@ -75,9 +76,16 @@ class RoomController extends Controller
     public function show($id)
     {
         $room = Room::findOrFail($id);
+        
         $rRow = 1;
 
-        return view('rooms.show', compact('room', 'rRow'));
+        $transaction = DB::table('transactions')
+            ->join('residents', 'transactions.resident_id', '=', 'residents.id')
+            ->select('residents.*','transactions.*')
+            ->where('transactions.roomNo_id', $id)
+            ->get();
+
+        return view('rooms.show', compact('room', 'rRow', 'transaction'));
     }
 
     /**
@@ -100,7 +108,7 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
-       $room = Room::find($id);
+       $room = Room::findOrFail($id);
 
        $room->roomNo = request('roomNo');
        $room->building = request('building');
@@ -112,7 +120,7 @@ class RoomController extends Controller
 
        $room->save();
 
-        return redirect('/rooms/'.$room->id)->with('success', 'Room has been updated!');
+        return redirect('/rooms/'.$room->id)->with('success','Room '.$request->roomNo.' has been updated!');
     }
 
     /**
@@ -123,7 +131,6 @@ class RoomController extends Controller
      */
     public function destroy($id)
     {
-        // Room::find($id)->delete();
         $room = Room::findOrFail($id)->delete();
 
         return redirect('/rooms')->with('success','Room has been deleted!');

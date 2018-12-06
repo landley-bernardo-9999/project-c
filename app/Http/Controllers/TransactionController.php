@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Transaction;
 
 class TransactionController extends Controller
 {
@@ -34,7 +35,20 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate =  request()->validate([
+            'transDate' => ['required'],
+            'transStatus' => ['required'],
+            'roomNo_id' => ['required'],
+            'resident_id' => ['required'],
+            'moveInDate' => ['required'],
+            'moveOutDate' => ['required'],
+            'term' => ['required'],
+            'initialSecDep' => ['required'],
+        ]);  
+
+        Transaction::create($validate);
+
+        return redirect('/residents/'.$request->resident_id)->with('success','Transaction has been created!.');
     }
 
     /**

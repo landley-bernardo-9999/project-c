@@ -136,7 +136,7 @@
                             <h5 class="float-left">Room No <span style="color:red; font-size: 25px;">&nbsp<b>{{ $room->roomNo }}</b></span></h5>  
                         <table class="table">   
                             <thead>
-                                <tr col="2">
+                                <tr>
                                     <th>Building</th>
                                     <td>{{ $room->building }}</td>  
                                 </tr>
@@ -161,7 +161,7 @@
                                     <td>{{ $room->size }}<span style="color:red">&nbspsqm</span></td>  
                                 </tr>
                                 <tr>
-                                    <th>Principal Room Owner</th>
+                                    <th>Principal Owner</th>
                                     <td>Juan Dela Cruz</td>
                                 </tr>
                                 <tr>
@@ -181,7 +181,7 @@
                             <div class="card-body">
                                 <ul class="nav" >
                                     <li class="nav-link">
-                                        <a href="#" style="width:150px"style="width:150px" class="btn btn-warning edit-room text-left"><i class="fas fa-edit"></i>&nbspEDIT ROOM</a>
+                                        <a href="#" style="width:150px" class="btn btn-primary edit-room text-left"><i class="fas fa-edit"></i>&nbspEDIT ROOM</a>
                                     </li>
                                     <li class="nav-link">
                                         <form method="POST" action="/rooms/{{ $room->id }}">
@@ -224,25 +224,34 @@
                             <tr>
                                 <th>#</th>
                                 <th>First Name</th>
+                                <th>Middle Name</th>
                                 <th>Last Name</th>
+                                <th>Status</th>
                                 <th>Email</th>
                                 <th>Mobile</th>
                                 <th>Move-in</th>
                                 <th>Move-out</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($transaction as $row) 
                             <tr>
-                                <th>{{ $rRow }}</th>
-                                <td>Landley</td>
-                                <td>Bernardo</td>
-                                <td>lmbernardo@slu.edu.ph</td>
-                                <td>09752826318</td>
-                                <td>{{Carbon\Carbon::parse(Carbon\Carbon::now())->formatLocalized('%b %d %Y')}}</td>
-                                <td>{{Carbon\Carbon::parse(Carbon\Carbon::now())->formatLocalized('%b %d %Y')}}</td>
+                                <th>{{ $rRow++ }}</th>
+                                <td>{{ $row->firstName }}</td>
+                                <td>{{ $row->middleName }}</td>
+                                <td>{{ $row->lastName }}</td>
+                                <td>{{ $row->transStatus }}</td>
+                                <td>{{ $row->emailAddress }}</td>
+                                <td>{{ $row->mobileNumber }}</td>
+                                <td>{{Carbon\Carbon::parse($row->moveInDate)->formatLocalized('%b %d %Y')}}</td>
+                                <td>{{Carbon\Carbon::parse($row->moveOutDate)->formatLocalized('%b %d %Y')}}</td>
+                                
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
+                    {{-- {{ $row->links() }} --}}
                 </div>
 
                 {{-- Repairs information. --}}
@@ -320,7 +329,7 @@
                     <button class="close" type="button" data-dismiss="modal" >&times;</button>
                 </div>
 
-                <form method="POST" action="/residents/">
+                <form method="POST" action="/residents/" enctype="multipart/form-data">
 
                     {{-- Additional security feature laravel provides. --}}
 
@@ -351,7 +360,7 @@
                         </div>
                     </div>
                     
-                    <label for=""><b style="font-size:20px">Contact Information Information</b></label>
+                    <label for=""><b style="font-size:20px">Contact Information</b></label>
 
                     <div class="form-group row" >
                         <label for="emailAddress" class=" col-form-label text-md-right" style="margin-left:3%">Email Address:<span style="color:red">&nbsp*</span></label>
@@ -370,7 +379,7 @@
                     <div class="form-group row" >
                         <label for="houseNumber" class=" col-form-label text-md-right" style="margin-left:3%">House No:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="houseNumber" id="houseNumber" type="email" class="form-control" value="{{ old('houseNumber') }}" >
+                            <input name="houseNumber" id="houseNumber" type="text" class="form-control" value="{{ old('houseNumber') }}" >
                         </div>     
     
                         <label for="barangay" class=" col-form-label text-md-right">Barangay:<span style="color:red">&nbsp*</span></label>
@@ -397,7 +406,7 @@
 
                             <label for="roomNo" class=" col-form-label text-md-right" style="visibility: hidden">Room No:<span style="color:red">&nbsp*</span></label>
                                 <div class="col-md-2" style="visibility: hidden">
-                                <input name="roomNo" id="roomNo" type="text" class="form-control" value="{{$room->roomNo}}" >
+                                <input name="roomNo" id="roomNo" type="text" class="form-control" value="{{$room->id}}" >
                             </div>  
                 
         
@@ -419,6 +428,21 @@
                             <div class="col-md-2">
                             <input name="yearLevel" id="yearLevel" type="number" min="1" class="form-control" value="{{ old('yearLevel') }}" >
                         </div>
+                    </div>
+
+                    <label for=""><b style="font-size:20px">Guardian Information</b></label>
+
+                    <div class="form-group row" >
+                        <label for="guardian" class=" col-form-label text-md-right" style="margin-left:3%">Guardian's Name:<span style="color:red">&nbsp*</span></label>
+                            <div class="col-md-2">
+                            <input name="guardian" id="guardian" type="text" class="form-control" value="{{ old('guardian') }}" >
+                        </div>
+                        
+                        <label for="guardianPhoneNumber" class=" col-form-label text-md-right" style="margin-left:3%">Contact:<span style="color:red">&nbsp*</span></label>
+                            <div class="col-md-2">
+                            <input name="guardianPhoneNumber" id="guardianPhoneNumber" type="text" class="form-control" value="{{ old('guardianPhoneNumber') }}" >
+                        </div>
+    
                     </div>
 
                     <label for=""><b style="font-size:20px">Upload Image</b></label>

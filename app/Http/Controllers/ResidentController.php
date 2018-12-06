@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Resident;
+use App\Transaction;
+use Illuminate\Support\Facades\Storage;
 
 class ResidentController extends Controller
 {
@@ -15,8 +17,12 @@ class ResidentController extends Controller
      */
     public function index()
     {
+        
         $resident = DB::table('residents')->get();
-        return view ('residents.index', compact('resident'));
+
+        $rRow = 1;
+
+        return view ('residents.index', compact('resident', 'rRow'));
     }
 
     /**
@@ -37,29 +43,67 @@ class ResidentController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = request()->validate([
+        $this->validate($request,[
             'firstName' => ['max:255'],
             'middleName' => ['max:255'],
             'lastName' => ['max:255'],
             'birthDate' => ['nullable'],
             'emailAddress' => ['unique:residents', 'nullable'],
-            'mobileNumber' => ['unique:residents', 'nullable'],
-            'mobileNumber' => [],
-            'houseNumber' => ['max:255'],
+            'mobileNumber' => ['unique:residents', 'nullable'],           
+            'houseNumber' => [],
             'roomNo' => [],
             'barangay' => ['max:255'],
             'municipality' => ['max:255'],
             'province' => ['max:255'],
-            'zipcode' => ['max:255'],
+            'zip' => ['max:255'],
             'school' => ['max:255'],
             'course' => ['max:255'],
             'yearLevel' => ['integer','nullable'],
-            'img' => ['image','max:1999','nullable'],
+            'guardian' => ['nullable','max:255'],
+            'guardianPhoneNumber' => ['nullable','max:255'],
+            'img' => ['nullable','image','mimes:jpeg,png,jpg,gif','max:2048'],
         ]);
 
-        Resident::create($validate);
+                //Handle File Upload
+            if($request->hasFile('img')){
+                //Get filename with the extension 
+                $fileNameWithExt = $request->file('img')->getClientOriginalName();
+                //Get just filename
+                $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                //Get just extension
+                $extension = $request->file('img')->getClientOriginalExtension();
+                //Filename to store
+                $fileNameToStore = $filename.' '.time().' '.$extension; 
+                //Upload Image
+                $path = $request->file('img')->storeAs('public/img/residents',$fileNameToStore);
+            }else{
+                $fileNameToStore = 'noimage.jpg';
+            }
 
-        return redirect('/rooms')->with('success','Resident has been added!');
+            $resident = new Resident();
+
+            $resident->firstName = request('firstName');
+            $resident->middleName = request('middleName');
+            $resident->lastName = request('lastName');
+            $resident->birthDate = request('birthDate');
+            $resident->emailAddress = request('emailAddress');
+            $resident->mobileNumber = request('mobileNumber');
+            $resident->houseNumber = request('houseNumber');
+            $resident->roomNo = request('roomNo');
+            $resident->barangay = request('barangay');
+            $resident->municipality = request('municipality');
+            $resident->province = request('province');
+            $resident->zip = request('zip');
+            $resident->school = request('school');
+            $resident->course = request('course');
+            $resident->yearLevel = request('yearLevel');
+            $resident->guardian = request('guardian');
+            $resident->guardianPhoneNumber = request('guardianPhoneNumber');
+            $resident->img = $fileNameToStore;
+
+            $resident->save();
+
+            return redirect('/residents/'.$resident->id)->with('success',$request->firstName.' '.$request->lastName .' has been added to room'.' '.$request->roomNo. '. Please hit the add transaction button.');
     }
 
     /**
@@ -70,7 +114,11 @@ class ResidentController extends Controller
      */
     public function show($id)
     {
-        //
+        $resident = Resident::find($id);
+
+        $resRow = 1;
+
+        return view('residents.show',compact('resident', 'resRow'));
     }
 
     /**
@@ -93,7 +141,51 @@ class ResidentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+                //Handle File Upload
+            if($request->hasFile('img')){
+                //Get filename with the extension
+                $fileNameWithExt = $request->file('img')->getClientOriginalName();
+                //Get just filename
+                $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                //Get just extension
+                $extension = $request->file('img')->getClientOriginalExtension();
+                //Filename to store
+                $fileNameToStore = $filename.' '.time().' '.$extension;
+                //Upload Image
+                $path = $request->file('img')->storeAs('public/img/residents',$fileNameToStore);
+            }else{
+                $fileNameToStore = 'noimage.jpg';
+            }
+
+        $resident = Resident::findOrFail($id);
+
+        $resident->firstName = request('firstName');
+        $resident->middleName = request('middleName');
+        $resident->lastName = request('lastName');
+        $resident->birthDate = request('birthDate');
+        $resident->emailAddress = request('emailAddress');
+        $resident->mobileNumber = request('mobileNumber');
+        $resident->houseNumber = request('houseNumber');
+        $resident->roomNo = request('roomNo');
+        $resident->barangay = request('barangay');
+        $resident->municipality = request('municipality');
+        $resident->province = request('province');
+        $resident->zip = request('zip');
+        $resident->school = request('school');
+        $resident->course = request('course');
+        $resident->yearLevel = request('yearLevel');
+        $resident->guardian = request('guardian');
+        $resident->guardianPhoneNumber = request('guardianPhoneNumber');
+        if($request->hasFile('img')){
+            $resident->img = $fileNameToStore;
+        }  
+
+        $resident->save();
+
+        return redirect('/residents/'.$resident->id)->with('success',$request->firstName.' '.$request->lastName.'s information has been updated!');
+        
+
     }
 
     /**
@@ -104,6 +196,13 @@ class ResidentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $resident = Resident::findOrFail($id);
+
+        if($resident->img != 'noimage.jpg'){
+            Storage::delete('storage/img/residents'.$resident->img);
+        }
+        $resident->delete();
+
+        return redirect('/rooms/'.$resident->roomNo)->with('success','Resident has been deleted!');
     }
 }
