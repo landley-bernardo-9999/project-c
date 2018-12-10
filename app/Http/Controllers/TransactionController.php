@@ -38,8 +38,8 @@ class TransactionController extends Controller
         $validate =  request()->validate([
             'transDate' => ['required'],
             'transStatus' => ['required'],
-            'roomNo_id' => ['required'],
-            'resident_id' => ['required'],
+            'room_id' => [],
+            'resident_id' => [],
             'moveInDate' => ['required'],
             'moveOutDate' => ['required'],
             'term' => ['required'],
@@ -48,7 +48,7 @@ class TransactionController extends Controller
 
         Transaction::create($validate);
 
-        return redirect('/residents/'.$request->resident_id)->with('success','Transaction has been created!.');
+        return redirect('/rooms/'.$request->room_id)->with('success','Transaction has been created!');
     }
 
     /**

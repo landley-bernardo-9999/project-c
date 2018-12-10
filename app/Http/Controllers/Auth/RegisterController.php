@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -54,8 +54,9 @@ class RegisterController extends Controller
             'mobileNumber' => ['required', 'string', 'max:255', 'unique:users'],
             'position' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required','string','email','max:500','regex:/^[A-Za-z0-9\._]*@(marthaservices)[.](com)$/','unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'img' => ['image','nullable','max:1999']
+            'img' => ['nullable','image','mimes:jpeg,png,jpg,gif','max:2048'],
         ]);
     }
 

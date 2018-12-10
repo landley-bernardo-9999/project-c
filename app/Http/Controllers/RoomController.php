@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Room;
 use App\Resident;
+use App\Owner;
 use DB;
+use Carbon\Carbon;
 
 class RoomController extends Controller
 {
@@ -29,7 +31,9 @@ class RoomController extends Controller
     {
         $s = $request->query('s');
 
-        $room = DB::table('rooms')->where('roomNo', 'like', "%$s%")->get();
+        $room = DB::table('rooms')->where('roomNo', 'like', "%$s%")
+                                  ->orWhere('status', 'like', "%$s%")        
+                                 ->get();
 
         return view('rooms.index', compact('room', 's'));
     }
@@ -76,16 +80,29 @@ class RoomController extends Controller
     public function show($id)
     {
         $room = Room::findOrFail($id);
+
+        $resident = DB::table('residents')->where('room_id',$id)->get();
+
+        $repair = DB::table('repairs')->where('room_id',$id)->get();
         
         $rRow = 1;
+
+        $repairRow = 1;
+
+        $ownerRow = 1;
+
+        $dateToday = Carbon::today()->toDateString();
 
         $transaction = DB::table('transactions')
             ->join('residents', 'transactions.resident_id', '=', 'residents.id')
             ->select('residents.*','transactions.*')
-            ->where('transactions.roomNo_id', $id)
+            ->where('transactions.room_id', $id)
+            ->whereIn('transactions.transStatus',['active','pending','movingIn','movingOut'])
             ->get();
 
-        return view('rooms.show', compact('room', 'rRow', 'transaction'));
+        $room_owner = Owner::where('owners.room_id', $id)->get();
+
+        return view('rooms.show', compact('room', 'rRow', 'transaction', 'resident','repairRow', 'repair', 'room_owner', 'ownerRow'));
     }
 
     /**

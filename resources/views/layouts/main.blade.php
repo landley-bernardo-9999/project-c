@@ -82,6 +82,53 @@
             $('.add-transaction-title').text('Add Transaction');
         });
 
+        // Modal for adding a repair for a room.
+
+        $(document).on('click','.add-repair', function(){
+            $('#add-repair').modal('show');
+            $('.add-repair-form').show();
+            $('.add-repair-title').text('Add Repair');
+        });
+
+        // Modal for editing a repair for a room.
+
+        $(document).on('click','.edit-repair', function(){
+            $('#edit-repair').modal('show');
+            $('.edit-repair-form').show();
+            $('.edit-repair-title').text('Edit Repair');
+        });
+
+        // Modal for creating an owner for a room.
+
+        $(document).on('click','.add-owner', function(){
+            $('#add-owner').modal('show');
+            $('.add-owner-form').show();
+            $('.add-owner-title').text('Add Owner');
+        });
+
+        // Modal for creating an owner for a room.
+
+        $(document).on('click','.edit-owner', function(){
+            $('#edit-owner').modal('show');
+            $('.edit-owner-form').show();
+            $('.edit-owner-title').text('Edit Owner');
+        });
+
+        // Modal for adding a violation of resident.
+
+        $(document).on('click','.add-violation', function(){
+            $('#add-violation').modal('show');
+            $('.add-violation-form').show();
+            $('.add-violation-title').text('Add Violation');
+        });
+
+        // Modal for editing a violation of resident.
+
+        $(document).on('click','.edit-violation', function(){
+            $('#edit-violation').modal('show');
+            $('.edit-violation-form').show();
+            $('.edit-violation-title').text('Edit Violation');
+        });
          // Delete confirmation dialog
 
         $("#FormDeleteTime").submit(function (event) {

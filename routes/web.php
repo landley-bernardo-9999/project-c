@@ -11,11 +11,23 @@
 |
 */
 
+Route::get('/dashboard', function () {
+    // Only verified users may enter...
+})->middleware('verified');
 
+Route::get('/dashboard', function () {
+    if(Auth::guest()){
+        return view('auth.login');
+    }
+    else
+        return view('/dashboard');
+});
 
 Auth::routes(['verify'=>true]);
 
-Route::get('/', 'HomeController@index')->name('home')->middleware('verified');;
+Route::get('/dashboard', 'HomeController@index')->middleware('verified');
+
+Route::get('/', 'HomeController@index')->middleware('verified');
 
 Route::resources([
                     'rooms' => 'RoomController',
@@ -29,3 +41,11 @@ Route::resources([
                 ]);
 
 Route::get('/search/rooms{s?}', 'RoomController@index')->where('s', '[\w\d]+');
+
+Route::get('/search/residents{s?}', 'ResidentController@index')->where('s', '[\w\d]+');
+
+Route::get('/search/repairs{s?}', 'RepairController@index')->where('s', '[\w\d]+');
+
+Route::get('/search/owners{s?}', 'OwnerController@index')->where('s', '[\w\d]+');
+
+Route::get('/search/violations{s?}', 'ViolationController@index')->where('s', '[\w\d]+');

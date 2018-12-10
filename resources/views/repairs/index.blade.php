@@ -19,17 +19,187 @@
     </div>
 
     {{-- Content of the room section. --}}
-    
+
+
+{{-- Content of the room section. --}}
+
     <div class="col-md-10">
         <div class="card">
-            <div class="container-fluid" style="padding:3%; height: 600px">
+               {{-- Search button for finding residents. --}}
+            <div class="card-header">
+                    <form action="/search/repairs" method="GET">
+                        <input type="text" class="form-control float-right" style="width:200px" aria-label="Text input with dropdown button" name="s" value="{{ Request::query('s') }}" placeholder="Search repairs">
+                    </form>
+            </div>
+
+            <div class="card-body" style="padding:3%;" >
+
                 <div class="row">
-                <h1>This is for the repair.</h1> 
-            </div>    
+                        <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Date Reported</th>
+                                        <th>Date Started</th>
+                                        <th>Reported By</th>
+                                        <th>Room No</th>
+                                        <th>Description</th>
+                                        <th>Endorsed To</th>
+                                        
+                                        <th>Total Cost</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($repair as $row)
+                                    <tr>
+                                        <th>{{ $repairRow++ }}</th>
+                                        <td>{{ $row->dateReported }}</td>
+                                        <td>{{ $row->dateStarted }}</td>
+                                        <td>{{ $row->name }}</td>
+                                        <td>{{ $row->roomNo }}</td>
+                                        <td>{{ $row->desc}}</td>
+                                        <td>{{ $row->endorsedTo }}</th>
+                                        {{-- <td>{{ $row->dateFinished }}</td> --}}
+                                        <td>{{ $row->totalCost }}</td>
+                                        <td>{{ $row->status }}</td>
+                                        <td>
+                                            <a href="#" class="btn edit-repair"><i class="fas fa-edit"></i>&nbspEDIT</a>
+
+                                            <div id="edit-repair" class="modal fade" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content" style="width:1320px; margin-left:-80%">
+
+                                                            <div class="modal-header">
+                                                                <h4 class="edit-repair-title float-left"></h4>
+                                                                <button class="close" type="button" data-dismiss="modal" >&times;</button>
+                                                            </div>
+
+                                                            <form method="POST" action="/repairs/{{ $row->repairId}}" >
+
+                                                                {{-- Additional security feature laravel provides. --}}
+                                                                @method('PATCH')
+
+                                                                @csrf
+
+                                                            <div class="modal-body">
+
+                                                                <div class="form-group row" >
+                                                                    <label for="dateReported" class=" col-form-label text-md-right" style="margin-left:3%">Date Reported:<span style="color:red">&nbsp*</span></label>
+                                                                        <div class="col-md-2">
+                                                                        <input name="dateReported" id="dateReported" type="date" class="form-control" value="{{ date('Y-m-d') }}" required>
+                                                                    </div>
+
+                                                                    <label for="name" class=" col-form-label text-md-right">Name<span style="color:red">&nbsp*</span></label>
+                                                                        <div class="col-md-2">
+                                                                        <input name="name" id="name" type="text" class="form-control" value="{{ $row->name }}">
+                                                                    </div>
+
+                                                                    <label for="dateStarted" class=" col-form-label text-md-right">Date Started:<span style="color:red">&nbsp*</span></label>
+                                                                        <div class="col-md-2">
+                                                                        <input name="dateStarted" id="dateStarted" type="date" class="form-control" value="{{ $row->dateStarted }}">
+                                                                    </div>
+
+                                                                    <label for="dateFinished" class="col-form-label text-md-right">Date Finished:<span style="color:red">&nbsp*</span></label>
+                                                                        <div class="col-md-2">
+                                                                        <input name="dateFinished" id="dateFinished" type="date" class="form-control" value="{{ $row->dateFinished }}" >
+                                                                    </div>
+
+                                                                </div>
+
+                                                                 <div class="form-group row" >
+                                                                    <label for="desc" class=" col-form-label text-md-right" style="margin-left:3%">Description:<span style="color:red">&nbsp*</span></label>
+                                                                        <div class="col-md-2">
+                                                                        <select name="desc" id="desc" class="form-control" required>
+                                                                            <option value="{{ $row->desc }}" selected>{{ $row->desc }}</option>
+                                                                            <option value="carpentry">Carpentry</option>
+                                                                            <option value="electrical">Electrical</option>
+                                                                            <option value="plumbing">Plumbing</option>
+                                                                            <option value="installation">Installation</option>
+                                                                            <option value="masonry">Masonry</option>
+                                                                            <option value="painting">Painting</option>
+                                                                            <option value="cleaning">cleaning</option>
+                                                                            <option value="security">security</option>
+                                                                            <option value="internet">internet</option>
+                                                                            <option value="request">request</option>
+                                                                            <option value="door/window">door/window</option>
+                                                                            <option value="general">general</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <label for="endorsedTo" class=" col-form-label text-md-right">Endorsed To:<span style="color:red">&nbsp*</span></label>
+                                                                        <div class="col-md-2">
+                                                                            <select name="endorsedTo" id="endorsedTo" class="form-control" >
+                                                                                <option value="{{ $row->endorsedTo }}" selected>{{ $row->endorsedTo }}</option>
+                                                                                <option value="dsd">asdasdasd</option>
+                                                                            </select>
+                                                                    </div>
+
+                                                                    <label for="totalCost" class="col-form-label text-md-right">Total Cost:<span style="color:red">&nbsp*</span></label>
+                                                                        <div class="col-md-2">
+                                                                        <input name="totalCost" id="totalCost" type="number" class="form-control" value="{{ $row->totalCost }}" >
+                                                                    </div>
+
+                                                                    <label for="status" class="col-form-label text-md-right">Status:<span style="color:red">&nbsp*</span></label>
+                                                                        <div class="col-md-2">
+                                                                        <select name="status" id="status" class="form-control" required>
+                                                                            <option value="{{ $row->status }}" selected>{{ $row->status }}</option>
+                                                                            <option value="pending">Pending</option>
+                                                                            <option value="onGoing">On Going</option>
+                                                                            <option value="closed">Closed</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
+                                                                 <div class="form-group row" >
+                                                                    <label for="rating" class=" col-form-label text-md-right" style="margin-left:3%">Rating:<span style="color:red">&nbsp*</span></label>
+                                                                        <div class="col-md-2">
+                                                                         <select name="rating" id="rating" class="form-control">
+                                                                            <option value="{{ $row->rating }}" selected>{{ $row->rating }}</option>
+                                                                            <option value="lessSatisfactory">Less Satisfactory</option>
+                                                                            <option value="somewhatSatisfactory">Somewhat Satisfactory</option>
+                                                                            <option value="satisfactory">Satisfactory</option>
+                                                                            <option value="aboveSatisfactory">Above Satisfactory</option>
+                                                                         </select>
+                                                                    </div>
+
+                                                                     <div class="col-md-2" style="visibility:hidden">
+                                                                        <input name="room_id" id="room_id" type="number" class="form-control" value="{{ $row->room_id }}" >
+                                                                    </div>
+
+                                                                     <div class="col-md-2" style="visibility:hidden">
+                                                                        <input name="resident_id" id="resident_id" type="number" class="form-control" value="{{ $row->id }}" >
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+                                                            <div class="modal-footer">
+                                                                <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>
+                                                                <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspUPDATE</button>
+                                                            </div>
+
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <h3 class="text-center">Results found: {{count($repair)}}</h3>
+            </div>
         </div>
-        </div>
-    </div>      
+    </div>
 </div>
+
+
 @endsection
 
-  
+

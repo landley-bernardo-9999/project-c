@@ -97,7 +97,7 @@
                   
                 <div class="modal-footer">
                     <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>              
-                    <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspADD</button>    
+                    <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspCREATE</button>    
                 </div>
 
                 </form> 
@@ -109,7 +109,7 @@
 
     <div class="col-md-2">
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <a class="nav-link" id="v-pills-dashboard-tab" href="/" role="tab" aria-controls="v-pills-dashboard" aria-selected="true"><i class="fas fa-chart-line"></i>&nbsp&nbsp&nbspDashboard</a>
+            <a class="nav-link" id="v-pills-dashboard-tab" href="/dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true"><i class="fas fa-chart-line"></i>&nbsp&nbsp&nbspDashboard</a>
             <a class="nav-link active" id="v-pills-rooms-tab" href="/rooms" role="tab" aria-controls="v-pills-rooms" aria-selected="false"><i class="fas fa-home"></i>&nbsp&nbsp&nbspRooms</a>
             <a class="nav-link" id="v-pills-residents-tab"  href="/residents" role="tab" aria-controls="v-pills-residents" aria-selected="false"><i class="fas fa-users"></i>&nbsp&nbsp&nbspResidents</a>
             <a class="nav-link" id="v-pills-owners-tab" href="/owners" role="tab" aria-controls="v-pills-owners" aria-selected="false"><i class="fas fa-user-tie"></i>&nbsp&nbsp&nbspOwners</a>
@@ -130,20 +130,50 @@
                     {{-- Filter features of the page. --}}
 
                     <div class="col-md-2">
-                       <div class="card">
+                       {{-- <div class="card">
                            <div class="card-header">
                                Filter rooms
                            </div>
                            <div class="card-body">
-
+                                <div class="group-form">
+                                    <input type="checkbox" role="button" href="/rooms/"> &nbspOccupied
+                                    <br>
+                                    <input type="checkbox"> &nbspVacant
+                                    <br>
+                                    <input type="checkbox"> &nbspReserved
+                                </div>
                            </div>
-                       </div>
+                       </div> --}}
+                   
+                       <div class="card">
+                            <div class="card-header">
+                                Filter rooms
+                            </div>
+                            <div class="card-body text-center">
+                                    <a href="/search/rooms?s=occupied" class="btn btn-outline-danger" role="button">
+                                        <i class="fas fa-home fa-1x"></i>
+                                    </a><br>
+                                    Occupied
+                                    <br><br>
+                                    <a href="/search/rooms?s=vacant" class="btn btn-outline-success" role="button">
+                                            <i class="fas fa-home fa-1x"></i>
+                                    </a><br>
+                                    Vacant
+                                    <br><br>
+                                    <a href="/search/rooms?s=reserved" class="btn btn-outline-info" role="button">
+                                            <i class="fas fa-home fa-1x"></i>
+                                    </a><br>
+                                    Reserved
+                            </div>
+                        </div>
                     </div>
 
                         {{-- List of all the rooms. --}}
 
                     <div class="col-md-10">
-                    
+                        <div class="card">
+                        <div class="card-header">
+ 
                         {{-- Button for creating a new room. --}}
 
                         <a  href="#" class="create-room btn btn-warning float-left " role="button"><i class="fas fa-plus-circle"></i>&nbspCREATE ROOM</a>
@@ -154,8 +184,9 @@
                             <input type="text" class="form-control float-right" style="width:200px" aria-label="Text input with dropdown button" name="s" value="{{ Request::query('s') }}" placeholder="Search rooms">
                         </form>
 
-                    
-                        <div class="card-body" style=" margin-top:10%">
+                                               
+                    </div>
+                        <div class="card-body" >
                             <table class="table">
                                 @foreach($room as $row)
                                     @if($row->status == 'occupied')
@@ -184,10 +215,11 @@
                             </table>
                         </div>
                         <div class="card-footer">
-                            <h6 class="text-center">Rooms found: {{ count($room) }}</h6>
+                                <h3 class="text-center">Results found: {{count($room)}}</h3>
                         </div>
                     </div>
-            </div>    
+            </div>   
+        </div> 
         </div>
         </div>
     </div>      

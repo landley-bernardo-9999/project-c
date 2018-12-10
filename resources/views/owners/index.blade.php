@@ -20,15 +20,65 @@
 
     {{-- Content of the room section. --}}
     
+    
+{{-- Content of the room section. --}}
+
     <div class="col-md-10">
         <div class="card">
-            <div class="container-fluid" style="padding:3%; height: 600px">
+            
+               {{-- Search button for finding residents. --}}
+            <div class="card-header">
+
+                    <form action="/search/owners" method="GET">
+                        <input type="text" class="form-control float-right" style="width:200px" aria-label="Text input with dropdown button" name="s" value="{{ Request::query('s') }}" placeholder="Search owners">
+                    </form>
+            </div>
+
+            <div class="card-body" style="padding:3%;" >
+
                 <div class="row">
-                <h1>This is for the owner.</h1> 
-            </div>    
-        </div>
-        </div>
+                        <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>First Name</th>
+                                        <th>Middle Name</th>
+                                        <th>Last Name</th> 
+                                        <th>BirthDate</th>
+                                        <th>Email</th>
+                                        <th>Mobile</th>
+                                        <th>Province</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($owner as $row)
+                                        <tr>
+                                            <th>{{ $ownerRow++ }}</th>
+                                            <td>{{ $row->firstName }}</td>
+                                            <td>{{ $row->middleName }}</td>
+                                            <td>{{ $row->lastName }}</td>
+                                            <td>{{ $row->birthDate }}</td>
+                                            <td>{{ $row->emailAddress }}</td>
+                                            <td>{{ $row->mobileNumber }}</td>
+                                            
+                                            <td>{{ $row->province }}</td>
+                                            <td><a href="/owners/{{$row->id}}">MORE</a></td>
+                
+                                        </tr>
+                                        @endforeach
+                                </tbody>
+                            </table>
+                </div>     
+            </div>
+            <div class="card-footer">
+                <h3 class="text-center">Results found: {{count($owner)}}</h3>
+            </div>
+        </div>      
     </div>      
 </div>
+
+       
 @endsection
 
+  

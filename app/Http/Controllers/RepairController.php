@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repair;
+use DB;
+use App\Resident;
 
 class RepairController extends Controller
 {
@@ -11,9 +14,22 @@ class RepairController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('repairs.index');
+        $s = $request->query('s');
+
+        $repairRow = 1;
+
+        $repair = DB::table('repairs')
+           ->join('rooms', 'repairs.room_id', '=', 'rooms.id')
+           ->select('rooms.*','repairs.*', 'repairs.id as repairId')
+           ->where('repairs.status', 'like', "%$s%")
+           ->orWhere('rooms.roomNo', 'like', "%$s%")
+           ->orWhere('repairs.name', 'like', "%$s%")
+           ->orderBy('repairs.created_at', 'desc')
+           ->get();
+
+        return view('repairs.index', compact('repair', 's', 'repairRow'));
     }
 
     /**
@@ -34,7 +50,23 @@ class RepairController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = request()->validate([
+            'name' => [],
+            'dateReported' => [],
+            'dateStarted' => [],
+            'dateFinished' => [],
+            'desc' => [],
+            'endorsedTo' => ['required'],
+            'totalCost' => ['required'],
+            'status' => [],
+            'rating' => [],
+            'room_id' => [],
+            'resident_id' => [],
+        ]);
+
+        Repair::create($validate);
+
+        return redirect('/rooms/'.$request->room_id)->with('success','Repair has been added to the room');
     }
 
     /**
@@ -45,7 +77,7 @@ class RepairController extends Controller
      */
     public function show($id)
     {
-        //
+        //    
     }
 
     /**
@@ -68,7 +100,25 @@ class RepairController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $repair = Repair::findOrFail($id);
+
+        $this->validate($request,[
+            'totalCost' => ['required'],
+        ]);
+
+        $repair->name = request('name');
+        $repair->dateReported = request('dateReported');
+        $repair->dateStarted = request('dateStarted');
+        $repair->dateFinished = request('dateFinished');
+        $repair->desc = request('desc');
+        $repair->endorsedTo = request('endorsedTo');
+        $repair->totalCost = request('totalCost');
+        $repair->status = request('status');
+        $repair->rating = request('rating');
+
+        $repair->save();
+
+        return redirect('/repairs/')->with('success','Repair has been updated!');
     }
 
     /**

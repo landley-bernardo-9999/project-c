@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Owner;
-
+use App\Room;
 class OwnerController extends Controller
 {
     /**
@@ -13,10 +13,21 @@ class OwnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $owner = DB::table('owners')->get();
-        return view('owners.index');
+        $s = $request->query('s');
+
+        $ownerRow = 1;
+
+        $owner = DB::table('owners')
+           ->join('rooms', 'owners.room_id', '=', 'rooms.id')
+           ->select('rooms.*','owners.*', 'owners.id as ownerId')
+           ->where('owners.firstName', 'like', "%$s%")
+           ->orWhere('owners.lastName', 'like', "%$s%")
+           ->orWhere('rooms.roomNo', 'like', "%$s%")
+           ->get();
+
+           return view('owners.index', compact('owner', 's', 'ownerRow'));
     }
 
     /**
@@ -26,7 +37,7 @@ class OwnerController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -37,7 +48,27 @@ class OwnerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = request()->validate([
+            'firstName' => ['max:255'],
+            'middleName' => ['max:255'],
+            'lastName' => ['max:255'],
+            'birthDate' => ['nullable'],
+            'emailAddress' => ['unique:residents', 'nullable'],
+            'mobileNumber' => ['unique:residents', 'nullable'],           
+            'houseNumber' => [],
+            'roomNo' => [],
+            'room_id' => [],
+            'barangay' => ['max:255'],
+            'municipality' => ['max:255'],
+            'province' => ['max:255'],
+            'zip' => ['max:255'],
+            'rep' => ['nullable','max:255'],
+            'repPhoneNumber' => ['nullable','max:255'],
+        ]);
+
+        Owner::create($validate);
+
+        return redirect('/rooms/'.$request->room_id)->with('success','Owner has been added to the room');
     }
 
     /**
@@ -48,7 +79,17 @@ class OwnerController extends Controller
      */
     public function show($id)
     {
-        //
+        $owner = Owner::findOrFail($id);
+
+        $room = DB::table('owners')
+        ->join('rooms', 'owners.room_id', '=', 'rooms.id')
+        ->select('rooms.*','owners.*', 'owners.id as ownerId')
+        ->where('owners.id', $id)
+        ->get();
+
+        $ownerRow = 1;
+
+        return view('owners.show', compact('owner', 'room', 'ownerRow'));
     }
 
     /**
@@ -71,7 +112,49 @@ class OwnerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $this->validate($request,[
+            'firstName' => ['max:255'],
+            'middleName' => ['max:255'],
+            'lastName' => ['max:255'],
+            'birthDate' => ['nullable'],
+            'emailAddress' => ['unique:residents', 'nullable'],
+            'mobileNumber' => ['unique:residents', 'nullable'],           
+            'houseNumber' => [],
+            'roomNo' => [],
+            'room_id' => [],
+            'barangay' => ['max:255'],
+            'municipality' => ['max:255'],
+            'province' => ['max:255'],
+            'zip' => ['max:255'],
+            'rep' => ['nullable','max:255'],
+            'repPhoneNumber' => ['nullable','max:255'],
+        ]);
+
+        $owner = new Owner();
+
+        
+        $owner->firstName = request('firstName');
+        $owner->middleName = request('middleName');
+        $owner->lastName = request('lastName');
+        $owner->birthDate = request('birthDate');
+        $owner->emailAddress = request('emailAddress');
+        $owner->mobileNumber = request('mobileNumber');
+        $owner->houseNumber = request('houseNumber');
+        $owner->room_id = request('room_id');
+        $owner->roomNo = request('roomNo');
+        $owner->barangay = request('barangay');
+        $owner->municipality = request('municipality');
+        $owner->province = request('province');
+        $owner->zip = request('zip');
+        $owner->rep = request('rep');
+        $owner->repPhoneNumber = request('repPhoneNumber');
+
+
+        $owner->save();
+
+        return redirect('/owners/'.$owner->id)->with('success',$request->firstName.' '.$request->lastName.'s information has been updated!');
+
     }
 
     /**

@@ -7,6 +7,7 @@ use DB;
 use App\Resident;
 use App\Transaction;
 use Illuminate\Support\Facades\Storage;
+use App\Room;
 
 class ResidentController extends Controller
 {
@@ -15,10 +16,15 @@ class ResidentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $s = $request->query('s');
         
-        $resident = DB::table('residents')->get();
+        $resident = DB::table('residents')->where('firstName', 'like', "%$s%")
+                                          ->orWhere('lastName', 'like', "%$s%")
+                                          ->orWhere('mobileNumber', 'like', "%$s%")
+                                          ->orWhere('emailAddress', 'like', "%$s%")
+                                          ->get();
 
         $rRow = 1;
 
@@ -51,7 +57,7 @@ class ResidentController extends Controller
             'emailAddress' => ['unique:residents', 'nullable'],
             'mobileNumber' => ['unique:residents', 'nullable'],           
             'houseNumber' => [],
-            'roomNo' => [],
+            // 'roomNo' => [],
             'barangay' => ['max:255'],
             'municipality' => ['max:255'],
             'province' => ['max:255'],
@@ -89,6 +95,7 @@ class ResidentController extends Controller
             $resident->emailAddress = request('emailAddress');
             $resident->mobileNumber = request('mobileNumber');
             $resident->houseNumber = request('houseNumber');
+            $resident->room_id = request('room_id');
             $resident->roomNo = request('roomNo');
             $resident->barangay = request('barangay');
             $resident->municipality = request('municipality');
@@ -103,7 +110,7 @@ class ResidentController extends Controller
 
             $resident->save();
 
-            return redirect('/residents/'.$resident->id)->with('success',$request->firstName.' '.$request->lastName .' has been added to room'.' '.$request->roomNo. '. Please hit the add transaction button.');
+            return redirect('/residents/'.$resident->id)->with('success',$request->firstName.' '.$request->lastName .' has been registered as a resident. You may now add transaction.');
     }
 
     /**
@@ -114,11 +121,29 @@ class ResidentController extends Controller
      */
     public function show($id)
     {
-        $resident = Resident::find($id);
+         $resident = Resident::findOrFail($id);
+
+         $repair = DB::table('repairs')->where('resident_id',$id)->get();
+
+         $violation = DB::table('violations')->where('room_id',$id)->get();
+
+         $room = Room::all();
+
+         $repairRow = 1;
+
+         $violationRow = 1;
+
+        $transaction = DB::table('transactions')
+            ->join('residents', 'transactions.resident_id', '=', 'residents.id')
+            ->select('residents.*','transactions.*')
+            ->where('transactions.resident_id', $id)
+            ->whereIn('transactions.transStatus',['active','pending','movingIn','movingOut'])
+            ->distinct('residents.id')
+            ->get();
 
         $resRow = 1;
 
-        return view('residents.show',compact('resident', 'resRow'));
+        return view('residents.show',compact('resident', 'transaction','resRow', 'room', 'repair', 'repairRow','violation','violationRow'));
     }
 
     /**
@@ -141,7 +166,6 @@ class ResidentController extends Controller
      */
     public function update(Request $request, $id)
     {
-
                 //Handle File Upload
             if($request->hasFile('img')){
                 //Get filename with the extension
@@ -167,7 +191,7 @@ class ResidentController extends Controller
         $resident->emailAddress = request('emailAddress');
         $resident->mobileNumber = request('mobileNumber');
         $resident->houseNumber = request('houseNumber');
-        $resident->roomNo = request('roomNo');
+        
         $resident->barangay = request('barangay');
         $resident->municipality = request('municipality');
         $resident->province = request('province');
@@ -203,6 +227,6 @@ class ResidentController extends Controller
         }
         $resident->delete();
 
-        return redirect('/rooms/'.$resident->roomNo)->with('success','Resident has been deleted!');
+        return redirect('/rooms/'.$resident->room_id)->with('success','Resident has been deleted!');
     }
 }
