@@ -25,6 +25,8 @@ class ViolationController extends Controller
            ->select('rooms.*','violations.*', 'violations.id as violationId')
            ->orWhere('rooms.roomNo', 'like', "%$s%")
            ->orWhere('violations.name', 'like', "%$s%")
+           ->orWhere('violations.reportedBy', 'like', "%$s%")
+           ->orWhere('violations.desc', 'like', "%$s%")
            ->orderBy('violations.created_at', 'desc')
            ->get();
 
@@ -109,6 +111,7 @@ class ViolationController extends Controller
         $violation->details = request('details');
         $violation->fine = request('fine');
         $violation->actionTaken = request('actionTaken');
+
         $violation->save();
 
         return redirect('/violations/')->with('success','Violation has been updated!');

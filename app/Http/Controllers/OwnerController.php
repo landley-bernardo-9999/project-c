@@ -131,7 +131,7 @@ class OwnerController extends Controller
             'repPhoneNumber' => ['nullable','max:255'],
         ]);
 
-        $owner = new Owner();
+        $owner = Owner::findOrFail($id);
 
         
         $owner->firstName = request('firstName');

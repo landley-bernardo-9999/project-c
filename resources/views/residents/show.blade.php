@@ -654,6 +654,10 @@
                          <div class="col-md-2" style="visibility:hidden">
                             <input name="resident_id" id="resident_id" type="number" class="form-control" value="{{ $resident->id }}" >
                         </div> 
+
+                        <div class="col-md-2" style="visibility:hidden">
+                            <input name="roomNo" id="roomNo" type="text" class="form-control" value="{{ $resident->roomNo }}" >
+                        </div> 
                     </div>
                     </div>
                 <div class="modal-footer">
