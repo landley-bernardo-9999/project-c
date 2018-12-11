@@ -332,11 +332,11 @@
                     <button class="close" type="button" data-dismiss="modal" >&times;</button>
                 </div>
 
-                <form method="POST" action="/residents/" enctype="multipart/form-data">
+                <form method="POST" action="/residents" enctype="multipart/form-data">
 
                     {{-- Additional security feature laravel provides. --}}
 
-                    @csrf
+                    {{ csrf_field() }}
 
                 <div class="modal-body">
                      <label for=""><b style="font-size:20px">Personal Information</b></label>
@@ -489,7 +489,7 @@
                     <button class="close" type="button" data-dismiss="modal" >&times;</button>
                 </div>
 
-                <form method="POST" action="/repairs/" >
+                <form method="POST" action="/repairs" >
 
                     {{-- Additional security feature laravel provides. --}}
 
@@ -602,7 +602,7 @@
                     <button class="close" type="button" data-dismiss="modal" >&times;</button>
                 </div>
 
-                <form method="POST" action="/owners/">
+                <form method="POST" action="/owners">
 
                     {{-- Additional security feature laravel provides. --}}
 

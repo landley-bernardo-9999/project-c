@@ -307,7 +307,7 @@
                     <div class="form-group row" >
                         <label for="school" class=" col-form-label text-md-right" style="margin-left:3%">School:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="school" id="school" type="email" class="form-control" value="{{ $resident->school }}" >
+                            <input name="school" id="school" type="text" class="form-control" value="{{ $resident->school }}" >
                         </div>     
     
                         <label for="course" class=" col-form-label text-md-right">Course:<span style="color:red">&nbsp*</span></label>
@@ -369,7 +369,7 @@
                         <button class="close" type="button" data-dismiss="modal" >&times;</button>
                     </div>
     
-                    <form method="POST" action="/transactions/">
+                    <form method="POST" action="/transactions">
     
                         {{-- Additional security feature laravel provides. --}}
     
@@ -462,7 +462,7 @@
                     <button class="close" type="button" data-dismiss="modal" >&times;</button>
                 </div>
 
-                <form method="POST" action="/repairs/" >
+                <form method="POST" action="/repairs" >
 
                     {{-- Additional security feature laravel provides. --}}
 
@@ -579,7 +579,7 @@
                     <button class="close" type="button" data-dismiss="modal" >&times;</button>
                 </div>
 
-                <form method="POST" action="/violations/" >
+                <form method="POST" action="/violations" >
 
                     {{-- Additional security feature laravel provides. --}}
 
