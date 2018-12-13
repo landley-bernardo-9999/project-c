@@ -25,7 +25,7 @@
                     <div class="form-group row">
                         <label for="roomNo" class="col-md-4 col-form-label text-md-right">Room No:<span style="color:red">&nbsp*</span></label>
                         <div class="col-md-6">
-                            <input name="roomNo" id="roomNo" type="text" class="form-control" value="{{ old('roomNo') }}" required>
+                            <input name="roomNo" id="roomNo" type="text" class="form-control" value="{{ old('roomNo') }}" style="text-transform:uppercase" required>
                         </div>     
                     </div>
 
@@ -39,6 +39,10 @@
                                 <option value="harvard">Harvard</option>
                                 <option value="princeton">Princeton</option>
                                 <option value="wharton">Wharton</option>
+                                <option value="loft">Loft</option>
+                                <option value="manors">Manors</option>
+                                <option value="arkansas">Arkansas</option>
+                                <option value="colorado">Colorado</option>
                             </select>
                         </div>     
                     </div>
@@ -164,6 +168,22 @@
                                             <i class="fas fa-home fa-1x"></i>
                                     </a><br>
                                     Reserved
+                                    <br><br>
+                                    <a href="/search/rooms?s=harvard" class="btn btn-outline-dark" role="button">
+                                            <i class="fas fa-home fa-1x"></i>
+                                    </a><br>
+                                    Harvard
+                                    <br><br>
+                                    <a href="/search/rooms?s=princeton" class="btn btn-outline-dark" role="button">
+                                            <i class="fas fa-home fa-1x"></i>
+                                    </a><br>
+                                    Princeton
+                                    <br><br>
+                                    <a href="/search/rooms?s=wharton" class="btn btn-outline-dark" role="button">
+                                            <i class="fas fa-home fa-1x"></i>
+                                    </a><br>
+                                    Wharton
+                                    
                             </div>
                         </div>
                     </div>

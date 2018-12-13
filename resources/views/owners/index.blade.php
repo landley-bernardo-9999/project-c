@@ -44,7 +44,7 @@
                                         <th>First Name</th>
                                         <th>Middle Name</th>
                                         <th>Last Name</th> 
-                                        <th>BirthDate</th>
+                                        
                                         <th>Email</th>
                                         <th>Mobile</th>
                                         <th>Province</th>
@@ -58,7 +58,7 @@
                                             <td>{{ $row->firstName }}</td>
                                             <td>{{ $row->middleName }}</td>
                                             <td>{{ $row->lastName }}</td>
-                                            <td>{{ $row->birthDate }}</td>
+                                            
                                             <td>{{ $row->emailAddress }}</td>
                                             <td>{{ $row->mobileNumber }}</td>
                                             

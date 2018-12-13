@@ -196,7 +196,7 @@
                                             </div>
                                             <div class="card-body">
                                                 <h1 style="font-size: 60px">{{ $pendingRepair}}</h1>
-                                                <i class="fas fa-coins fa-4x"></i>
+                                                <i class="fas fa-hammer fa-4x"></i>
                                             </div>
                                         </div>
                             </div>
@@ -208,7 +208,7 @@
                                             </div>
                                             <div class="card-body">
                                                 <h1 style="font-size: 60px">{{ $onGoingRepair}}</h1>
-                                                <i class="fas fa-coins fa-4x"></i>
+                                                <i class="fas fa-hammer fa-4x"></i>
                                             </div>
                                         </div>
                             </div>

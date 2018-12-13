@@ -97,12 +97,12 @@
                                                 
                                                                         <label for="reportedBy" class=" col-form-label text-md-right">Reported By:<span style="color:red">&nbsp*</span></label>
                                                                             <div class="col-md-2">
-                                                                            <input name="reportedBy" id="reportedBy" type="text" class="form-control" value="{{ $row->reportedBy }}">
+                                                                            <input name="reportedBy" id="reportedBy" type="text" class="form-control" value="{{ $row->reportedBy }}" style="text-transform:uppercase">
                                                                         </div>
                                                 
                                                                         <label for="name" class=" col-form-label text-md-right">Name:<span style="color:red">&nbsp*</span></label>
                                                                             <div class="col-md-1">
-                                                                            <input name="name" id="name" type="text" class="form-control" value="{{ $row->name }}">
+                                                                            <input name="name" id="name" type="text" class="form-control" value="{{ $row->name }}" style="text-transform:uppercase">
                                                                         </div>
                                                 
                                                                     </div>
@@ -126,7 +126,7 @@
                                                 
                                                                         <label for="details" class=" col-form-label text-md-right">Details:<span style="color:red">&nbsp*</span></label>
                                                                             <div class="col-md-2">
-                                                                                <input name="details" id="details" type="textarea" class="form-control" value="{{ $row->details }}">
+                                                                                <input name="details" id="details" type="textarea" class="form-control" value="{{ $row->details }}" style="text-transform:uppercase">
                                                                         </div>
                                                 
                                                                         <label for="fine" class="col-form-label text-md-right">Fine:<span style="color:red">&nbsp*</span></label>
@@ -141,7 +141,7 @@
                                                                      <div class="form-group row" >
                                                                         <label for="actionTaken" class="col-form-label text-md-right" style="margin-left:3%">Action Taken:<span style="color:red">&nbsp*</span></label>
                                                                             <div class="col-md-2">
-                                                                            <input name="actionTaken" id="actionTaken" type="string" class="form-control" value="{{ $row->actionTaken }}" >
+                                                                            <input name="actionTaken" id="actionTaken" type="string" class="form-control" value="{{ $row->actionTaken }}" style="text-transform:uppercase">
                                                                         </div> 
                                                                         
                                                                          <div class="col-md-2" style="visibility:hidden">
