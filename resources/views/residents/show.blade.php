@@ -307,7 +307,11 @@
                     <div class="form-group row" >
                         <label for="school" class=" col-form-label text-md-right" style="margin-left:3%">School:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
+<<<<<<< HEAD
                             <input name="school" id="school" type="text" class="form-control" value="{{ $resident->school }}" style="text-transform:uppercase">
+=======
+                            <input name="school" id="school" type="text" class="form-control" value="{{ $resident->school }}" >
+>>>>>>> af49d4120303842bf7a3ff14573b971f087bb026
                         </div>     
     
                         <label for="course" class=" col-form-label text-md-right">Course:<span style="color:red">&nbsp*</span></label>
