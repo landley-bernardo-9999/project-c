@@ -46,7 +46,6 @@
                                 <option value="manors">Manors</option>
                                 <option value="arkansas">Arkansas</option>
                                 <option value="colorado">Colorado</option>
-<<<<<<< HEAD
                             </select>
                         </div>     
                     </div>
@@ -60,8 +59,6 @@
                                 <option value="{{ $room->project }}">{{ $room->project }}</option>
                                 <option value="northCambridge">North Cambridge</option>
                                 <option value="theCourtyards">The Courtyards</option>
-=======
->>>>>>> 9eadc3ba3d2a755175ec25341f0a4b601db11d7e
                             </select>
                         </div>     
                     </div>
@@ -550,10 +547,10 @@
 
                         <label for="endorsedTo" class=" col-form-label text-md-right">Endorsed To:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                                <select name="endorsedTo" id="endorsedTo" class="form-control" ></select>
+                                <select name="endorsedTo" id="endorsedTo" class="form-control" >
                                     <option value="{{ old('endorsedTo') }}" selected>{{ old('endorsedTo') }}</option>
                                     @foreach ($personnel as $row)
-                                        <option value="{{ $row->firstName }}">{{ $row->firstName }} {{ $row->firstName }}</option>
+                                        <option value="{{ $row->firstName }}">{{ $row->firstName }} {{ $row->lastName }}</option>
                                     @endforeach
                                 </select>
                         </div>
