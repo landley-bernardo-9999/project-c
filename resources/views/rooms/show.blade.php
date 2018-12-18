@@ -550,7 +550,7 @@
 
                         <label for="endorsedTo" class=" col-form-label text-md-right">Endorsed To:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                                <select name="endorsedTo" id="endorsedTo" class="form-control" >
+                                <select name="endorsedTo" id="endorsedTo" class="form-control" ></select>
                                     <option value="{{ old('endorsedTo') }}" selected>{{ old('endorsedTo') }}</option>
                                     @foreach ($personnel as $row)
                                         <option value="{{ $row->firstName }}">{{ $row->firstName }} {{ $row->firstName }}</option>
