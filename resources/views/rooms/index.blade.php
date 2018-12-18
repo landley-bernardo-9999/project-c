@@ -43,6 +43,7 @@
                                 <option value="manors">Manors</option>
                                 <option value="arkansas">Arkansas</option>
                                 <option value="colorado">Colorado</option>
+<<<<<<< HEAD
                             </select>
                         </div>     
                     </div>
@@ -56,6 +57,8 @@
                                 <option value="{{ old('project') }}">{{ old('project') }}</option>
                                 <option value="northCambridge">North Cambridge</option>
                                 <option value="theCourtyards">The Courtyards</option>
+=======
+>>>>>>> 9eadc3ba3d2a755175ec25341f0a4b601db11d7e
                             </select>
                         </div>     
                     </div>
@@ -178,6 +181,7 @@
                                 Legends
                             </div>
                             <div class="card-body text-center">
+<<<<<<< HEAD
                                 <i class="fas fa-home fa-1x btn btn-outline-danger"></i>
                                 <p>Occupied</p>
 
@@ -186,6 +190,38 @@
 
                                 <i class="fas fa-home fa-1x btn btn-outline-info"></i>
                                 <p>Reserved</p>
+=======
+                                    <a href="/search/rooms?s=occupied" class="btn btn-outline-danger" role="button">
+                                        <i class="fas fa-home fa-1x"></i>
+                                    </a><br>
+                                    Occupied
+                                    <br><br>
+                                    <a href="/search/rooms?s=vacant" class="btn btn-outline-success" role="button">
+                                            <i class="fas fa-home fa-1x"></i>
+                                    </a><br>
+                                    Vacant
+                                    <br><br>
+                                    <a href="/search/rooms?s=reserved" class="btn btn-outline-info" role="button">
+                                            <i class="fas fa-home fa-1x"></i>
+                                    </a><br>
+                                    Reserved
+                                    <br><br>
+                                    <a href="/search/rooms?s=harvard" class="btn btn-outline-dark" role="button">
+                                            <i class="fas fa-home fa-1x"></i>
+                                    </a><br>
+                                    Harvard
+                                    <br><br>
+                                    <a href="/search/rooms?s=princeton" class="btn btn-outline-dark" role="button">
+                                            <i class="fas fa-home fa-1x"></i>
+                                    </a><br>
+                                    Princeton
+                                    <br><br>
+                                    <a href="/search/rooms?s=wharton" class="btn btn-outline-dark" role="button">
+                                            <i class="fas fa-home fa-1x"></i>
+                                    </a><br>
+                                    Wharton
+                                    
+>>>>>>> 9eadc3ba3d2a755175ec25341f0a4b601db11d7e
                             </div>
                         </div>
                     </div>

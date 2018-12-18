@@ -46,6 +46,7 @@
                                 <option value="manors">Manors</option>
                                 <option value="arkansas">Arkansas</option>
                                 <option value="colorado">Colorado</option>
+<<<<<<< HEAD
                             </select>
                         </div>     
                     </div>
@@ -59,6 +60,8 @@
                                 <option value="{{ $room->project }}">{{ $room->project }}</option>
                                 <option value="northCambridge">North Cambridge</option>
                                 <option value="theCourtyards">The Courtyards</option>
+=======
+>>>>>>> 9eadc3ba3d2a755175ec25341f0a4b601db11d7e
                             </select>
                         </div>     
                     </div>

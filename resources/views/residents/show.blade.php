@@ -232,17 +232,25 @@
                     <div class="form-group row" >
                         <label for="firstName" class=" col-form-label text-md-right" style="margin-left:3%">First Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
+<<<<<<< HEAD
                             <input name="firstName" id="firstName" type="text" class="form-control" value="{{ $resident->firstName }}" required >
+=======
+                            <input name="firstName" id="firstName" type="text" class="form-control" value="{{ $resident->firstName }}" required style="text-transform:uppercase">
+>>>>>>> 9eadc3ba3d2a755175ec25341f0a4b601db11d7e
                         </div>     
 
                         <label for="middleName" class=" col-form-label text-md-right">Middle Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="middleName" id="middleName" type="text" class="form-control" value="{{ $resident->middleName }}">
+                            <input name="middleName" id="middleName" type="text" class="form-control" value="{{ $resident->middleName }}" style="text-transform:uppercase">
                         </div>
 
                         <label for="lastName" class="col-form-label text-md-right">Last Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
+<<<<<<< HEAD
                             <input name="lastName" id="lastName" type="text" class="form-control" value="{{ $resident->lastName }}" required >
+=======
+                            <input name="lastName" id="lastName" type="text" class="form-control" value="{{ $resident->lastName }}" required style="text-transform:uppercase">
+>>>>>>> 9eadc3ba3d2a755175ec25341f0a4b601db11d7e
                         </div>
 
                         <label for="birthDate" class="col-form-label text-md-right">Birthdate:<span style="color:red">&nbsp*</span></label>
@@ -256,7 +264,11 @@
                     <div class="form-group row" >
                         <label for="emailAddress" class=" col-form-label text-md-right" style="margin-left:3%">Email Address:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
+<<<<<<< HEAD
                             <input name="emailAddress" id="emailAddress" type="email" class="form-control" value="{{ $resident->emailAddress }}">
+=======
+                            <input name="emailAddress" id="emailAddress" type="email" class="form-control" value="{{ $resident->emailAddress }}" style="text-transform:uppercase">
+>>>>>>> 9eadc3ba3d2a755175ec25341f0a4b601db11d7e
                         </div>  
 
                         <label for="mobileNumber" class=" col-form-label text-md-right">Mobile Number:<span style="color:red">&nbsp*</span></label>
@@ -270,22 +282,22 @@
                     <div class="form-group row" >
                         <label for="houseNumber" class=" col-form-label text-md-right" style="margin-left:3%">House No:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="houseNumber" id="houseNumber" type="text" class="form-control" value="{{ $resident->houseNumber }}" >
+                            <input name="houseNumber" id="houseNumber" type="text" class="form-control" value="{{ $resident->houseNumber }}" style="text-transform:uppercase">
                         </div>     
     
                         <label for="barangay" class=" col-form-label text-md-right">Barangay:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="barangay" id="barangay" type="text" class="form-control" value="{{ $resident->barangay }}" >
+                            <input name="barangay" id="barangay" type="text" class="form-control" value="{{ $resident->barangay }}" style="text-transform:uppercase">
                         </div>
 
                         <label for="municipality" class=" col-form-label text-md-right">Municipality:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="municipality" id="municipality" type="text" class="form-control" value="{{ $resident->municipality }}" >
+                            <input name="municipality" id="municipality" type="text" class="form-control" value="{{ $resident->municipality }}" style="text-transform:uppercase">
                         </div>
 
                         <label for="province" class=" col-form-label text-md-right">Province:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="province" id="province" type="text" class="form-control" value="{{ $resident->province }}" >
+                            <input name="province" id="province" type="text" class="form-control" value="{{ $resident->province }}" style="text-transform:uppercase">
                         </div>
                     </div>
 
@@ -307,12 +319,20 @@
                     <div class="form-group row" >
                         <label for="school" class=" col-form-label text-md-right" style="margin-left:3%">School:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
+<<<<<<< HEAD
                             <input name="school" id="school" type="text" class="form-control" value="{{ $resident->school }}" >
+=======
+<<<<<<< HEAD
+                            <input name="school" id="school" type="text" class="form-control" value="{{ $resident->school }}" style="text-transform:uppercase">
+=======
+                            <input name="school" id="school" type="text" class="form-control" value="{{ $resident->school }}" >
+>>>>>>> af49d4120303842bf7a3ff14573b971f087bb026
+>>>>>>> 9eadc3ba3d2a755175ec25341f0a4b601db11d7e
                         </div>     
     
                         <label for="course" class=" col-form-label text-md-right">Course:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="course" id="course" type="text" class="form-control" value="{{ $resident->course }}" >
+                            <input name="course" id="course" type="text" class="form-control" value="{{ $resident->course }}" style="text-transform:uppercase">
                         </div>
 
                         <label for="yearLevel" class=" col-form-label text-md-right">Year Level:<span style="color:red">&nbsp*</span></label>
@@ -326,7 +346,7 @@
                     <div class="form-group row" >
                         <label for="guardian" class=" col-form-label text-md-right" style="margin-left:3%">Guardian's Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="guardian" id="guardian" type="text" class="form-control" value="{{ $resident->guardian }}" >
+                            <input name="guardian" id="guardian" type="text" class="form-control" value="{{ $resident->guardian }}" style="text-transform:uppercase">
                         </div>
                         
                         <label for="guardianPhoneNumber" class=" col-form-label text-md-right" style="margin-left:3%">Contact:<span style="color:red">&nbsp*</span></label>
@@ -604,12 +624,20 @@
 
                         <label for="reportedBy" class=" col-form-label text-md-right">Reported By:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
+<<<<<<< HEAD
                             <input name="reportedBy" id="reportedBy" type="text" class="form-control" value="{{ old('reportedBy') }}" >
+=======
+                            <input name="reportedBy" id="reportedBy" type="text" class="form-control" value="{{ old('reportedBy') }}" style="text-transform:uppercase">
+>>>>>>> 9eadc3ba3d2a755175ec25341f0a4b601db11d7e
                         </div>
 
                         <label for="name" class=" col-form-label text-md-right">Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
+<<<<<<< HEAD
                             <input name="name" id="name" type="text" class="form-control" value="{{ $resident->firstName }}" >
+=======
+                            <input name="name" id="name" type="text" class="form-control" value="{{ $resident->firstName }}" style="text-transform:uppercase">
+>>>>>>> 9eadc3ba3d2a755175ec25341f0a4b601db11d7e
                         </div>
 
                     </div>
@@ -633,7 +661,11 @@
 
                         <label for="details" class=" col-form-label text-md-right">Details:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
+<<<<<<< HEAD
                                 <input name="details" id="details" type="textarea" class="form-control" value="{{ old('details') }}" >
+=======
+                                <input name="details" id="details" type="textarea" class="form-control" value="{{ old('details') }}" style="text-transform:uppercase">
+>>>>>>> 9eadc3ba3d2a755175ec25341f0a4b601db11d7e
                         </div>
 
                         <label for="fine" class="col-form-label text-md-right">Fine:<span style="color:red">&nbsp*</span></label>
@@ -648,7 +680,7 @@
                      <div class="form-group row" >
                         <label for="actionTaken" class="col-form-label text-md-right" style="margin-left:3%">Action Taken:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="actionTaken" id="actionTaken" type="string" class="form-control" value="{{ old('actionTaken') }}" >
+                            <input name="actionTaken" id="actionTaken" type="string" class="form-control" value="{{ old('actionTaken') }}" style="text-transform:uppercase">
                         </div> 
                         
                          <div class="col-md-2" style="visibility:hidden">

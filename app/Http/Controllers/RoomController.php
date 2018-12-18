@@ -35,7 +35,10 @@ class RoomController extends Controller
         $room = DB::table('rooms')->where('roomNo', 'like', "%$s%")
                                   ->orWhere('status', 'like', "%$s%") 
                                   ->orWhere('building', 'like', "%$s%") 
+<<<<<<< HEAD
                                   ->orWhere('project', 'like' , "%$s")
+=======
+>>>>>>> 9eadc3ba3d2a755175ec25341f0a4b601db11d7e
                                  ->get();
 
         return view('rooms.index', compact('room', 's'));
