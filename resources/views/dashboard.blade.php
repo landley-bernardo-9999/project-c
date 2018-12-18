@@ -14,6 +14,7 @@
             <a class="nav-link" id="v-pills-repairs-tab" href="/repairs" role="tab" aria-controls="v-pills-repairs" aria-selected="false"><i class="fas fa-hammer"></i>&nbsp&nbsp&nbspRepairs</a>
             <a class="nav-link" id="v-pills-violations-tab" href="/violations" role="tab" aria-controls="v-pills-violations" aria-selected="false"><i class="fas fa-user-times"></i>&nbsp&nbsp&nbspViolations</a>
             <a class="nav-link" id="v-pills-supplies-tab" href="/supplies" role="tab" aria-controls="v-pills-supplies" aria-selected="false"><i class="fas fa-clipboard-list"></i>&nbsp&nbsp&nbspSupplies</a>
+            <a class="nav-link" id="v-pills-personnels-tab" href="/personnels" role="tab" aria-controls="v-pills-personnels" aria-selected="false"><i class="fas fa-user-lock"></i>&nbsp&nbsp&nbspPersonnels</a>
         </div>
     </div>
 
@@ -31,7 +32,7 @@
                             </div>
                             <div class="card-body">
                                 <h1 style="font-size: 60px">{{$room}}</h1>
-                                <p class="float-right"><a href="/rooms"> More info</a></p>
+                                {{-- <p class="float-right"><a href="/rooms"> More info</a></p> --}}
                                 <i class="fas fa-home fa-4x"></i>
                             </div>
                         </div>
@@ -44,7 +45,7 @@
                             </div>
                             <div class="card-body">
                                 <h1 style="font-size: 60px">{{$resident}}</h1>
-                                <p class="float-right"><a href="/residents"> More info</a></p>
+                                {{-- <p class="float-right"><a href="/residents"> More info</a></p> --}}
                                 <i class="fas fa-users fa-4x"></i>
                             </div>
                         </div>
@@ -57,7 +58,7 @@
                             </div>
                             <div class="card-body">
                                 <h1 style="font-size: 60px">{{$investor}}</h1>
-                                <p class="float-right"><a href="/owners"> More info</a></p>
+                                {{-- <p class="float-right"><a href="/owners"> More info</a></p> --}}
                                 <i class="fas fa-user-tie fa-4x"></i>
                             </div>
                         </div>
@@ -196,7 +197,7 @@
                                             </div>
                                             <div class="card-body">
                                                 <h1 style="font-size: 60px">{{ $pendingRepair}}</h1>
-                                                <i class="fas fa-coins fa-4x"></i>
+                                                <i class="fas fa-hammer fa-4x"></i>
                                             </div>
                                         </div>
                             </div>
@@ -208,7 +209,7 @@
                                             </div>
                                             <div class="card-body">
                                                 <h1 style="font-size: 60px">{{ $onGoingRepair}}</h1>
-                                                <i class="fas fa-coins fa-4x"></i>
+                                                <i class="fas fa-hammer fa-4x"></i>
                                             </div>
                                         </div>
                             </div>
@@ -220,7 +221,7 @@
                        <div class="col-md-12">
                            <h3>Occupancy Rate</h3>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                <div class="progress-bar" role="progressbar" style="width: {{ $occupancyRate }}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ $occupancyRate }}%</div>
                             </div>
                        </div>
 

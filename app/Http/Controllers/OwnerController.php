@@ -8,6 +8,16 @@ use App\Owner;
 use App\Room;
 class OwnerController extends Controller
 {
+      /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -49,17 +59,17 @@ class OwnerController extends Controller
     public function store(Request $request)
     {
         $validate = request()->validate([
-            'firstName' => ['max:255'],
-            'middleName' => ['max:255'],
-            'lastName' => ['max:255'],
+            'firstName' => ['max:255','required'],
+            'middleName' => ['max:255', 'nullable'],
+            'lastName' => ['max:255', 'required'],
             'birthDate' => ['nullable'],
             'emailAddress' => ['unique:residents', 'nullable'],
             'mobileNumber' => ['unique:residents', 'nullable'],           
-            'houseNumber' => [],
-            'roomNo' => [],
-            'room_id' => [],
+            'houseNumber' => ['nullable','max:255'],
+            'roomNo' => ['required','max:255'],
+            'room_id' => ['required','max:255'],
             'barangay' => ['max:255'],
-            'municipality' => ['max:255'],
+            'municipality' => ['max:255','nullable'],
             'province' => ['max:255'],
             'zip' => ['max:255'],
             'rep' => ['nullable','max:255'],

@@ -14,7 +14,7 @@
             <a class="nav-link active" id="v-pills-repairs-tab" href="/repairs" role="tab" aria-controls="v-pills-repairs" aria-selected="false"><i class="fas fa-hammer"></i>&nbsp&nbsp&nbspRepairs</a>
             <a class="nav-link" id="v-pills-violations-tab" href="/violations" role="tab" aria-controls="v-pills-violations" aria-selected="false"><i class="fas fa-user-times"></i>&nbsp&nbsp&nbspViolations</a>
             <a class="nav-link" id="v-pills-supplies-tab" href="/supplies" role="tab" aria-controls="v-pills-supplies" aria-selected="false"><i class="fas fa-clipboard-list"></i>&nbsp&nbsp&nbspSupplies</a>
-            <a class="nav-link" id="v-pills-personnels-tab" href="/personnels" role="tab" aria-controls="v-pills-personnels" aria-selected="false"><i class="fas fa-clipboard-list"></i>&nbsp&nbsp&nbspPersonnels</a>
+            <a class="nav-link" id="v-pills-personnels-tab" href="/personnels" role="tab" aria-controls="v-pills-personnels" aria-selected="false"><i class="fas fa-user-lock"></i>&nbsp&nbsp&nbspPersonnels</a>
         </div>
     </div>
 
@@ -27,6 +27,7 @@
         <div class="card">
                {{-- Search button for finding residents. --}}
             <div class="card-header">
+                    <h3 class="float-left">Repairs</h3>
                     <form action="/search/repairs" method="GET">
                         <input type="text" class="form-control float-right" style="width:200px" aria-label="Text input with dropdown button" name="s" value="{{ Request::query('s') }}" placeholder="Search repairs">
                     </form>
@@ -131,8 +132,10 @@
                                                                     <label for="endorsedTo" class=" col-form-label text-md-right">Endorsed To:<span style="color:red">&nbsp*</span></label>
                                                                         <div class="col-md-2">
                                                                             <select name="endorsedTo" id="endorsedTo" class="form-control" >
-                                                                                <option value="{{ $row->endorsedTo }}" selected>{{ $row->endorsedTo }}</option>
-                                                                                <option value="dsd">asdasdasd</option>
+                                                                                    <option value="{{ $row->endorsedTo }}" selected>{{ $row->endorsedTo }}</option>
+                                                                                    @foreach ($personnel as $per)
+                                                                            <option value="{{ $per->firstName }} {{ $per->lastName }}">{{ $per->firstName }} {{ $per->lastName }}</option>
+                                                                                    @endforeach
                                                                             </select>
                                                                     </div>
 

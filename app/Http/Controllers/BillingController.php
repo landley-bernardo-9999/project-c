@@ -2,20 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Billing;
 use Illuminate\Http\Request;
 
-class SupplyController extends Controller
+class BillingController extends Controller
 {
-      /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +14,7 @@ class SupplyController extends Controller
      */
     public function index()
     {
-        return view('supplies.index');
+        //
     }
 
     /**
@@ -50,10 +41,10 @@ class SupplyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Billing  $billing
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Billing $billing)
     {
         //
     }
@@ -61,10 +52,10 @@ class SupplyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Billing  $billing
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Billing $billing)
     {
         //
     }
@@ -73,10 +64,10 @@ class SupplyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Billing  $billing
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Billing $billing)
     {
         //
     }
@@ -84,10 +75,10 @@ class SupplyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Billing  $billing
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Billing $billing)
     {
         //
     }

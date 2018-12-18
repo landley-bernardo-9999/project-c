@@ -30,6 +30,10 @@ class HomeController extends Controller
     {
         $room = DB::table('rooms')->count();
 
+        $occupiedRooms = DB::table('rooms')->where('status','occupied')->count();
+
+        $occupancyRate = round(($occupiedRooms/$room) * 100);
+
         $resident = DB::table('residents')->count();
 
         $investor = DB::table('owners')->count();
@@ -57,7 +61,7 @@ class HomeController extends Controller
             ->where('transactions.moveOutDate','=',$dateToday)
             ->get();
 
-        return view('dashboard', compact('moveInRow', 'moveOutRow' ,'room', 'resident', 'investor','movein','moveout','onGoingRepair','pendingRepair'));
+        return view('dashboard', compact('moveInRow', 'moveOutRow' ,'room', 'resident', 'investor','movein','moveout','onGoingRepair','pendingRepair', 'occupancyRate'));
     }
 
     

@@ -6,9 +6,20 @@ use Illuminate\Http\Request;
 use App\Repair;
 use DB;
 use App\Resident;
+use App\Personnel;
 
 class RepairController extends Controller
 {
+      /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,6 +31,8 @@ class RepairController extends Controller
 
         $repairRow = 1;
 
+        $personnel = DB::table('personnels')->get();
+
         $repair = DB::table('repairs')
            ->join('rooms', 'repairs.room_id', '=', 'rooms.id')
            ->select('rooms.*','repairs.*', 'repairs.id as repairId')
@@ -29,7 +42,7 @@ class RepairController extends Controller
            ->orderBy('repairs.created_at', 'desc')
            ->get();
 
-        return view('repairs.index', compact('repair', 's', 'repairRow'));
+        return view('repairs.index', compact('repair', 's', 'repairRow', 'personnel'));
     }
 
     /**

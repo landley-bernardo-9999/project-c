@@ -14,7 +14,7 @@
             <a class="nav-link" id="v-pills-repairs-tab" href="/repairs" role="tab" aria-controls="v-pills-repairs" aria-selected="false"><i class="fas fa-hammer"></i>&nbsp&nbsp&nbspRepairs</a>
             <a class="nav-link active" id="v-pills-violations-tab" href="/violations" role="tab" aria-controls="v-pills-violations" aria-selected="false"><i class="fas fa-user-times"></i>&nbsp&nbsp&nbspViolations</a>
             <a class="nav-link" id="v-pills-supplies-tab" href="/supplies" role="tab" aria-controls="v-pills-supplies" aria-selected="false"><i class="fas fa-clipboard-list"></i>&nbsp&nbsp&nbspSupplies</a>
-            <a class="nav-link" id="v-pills-personnels-tab" href="/personnels" role="tab" aria-controls="v-pills-personnels" aria-selected="false"><i class="fas fa-clipboard-list"></i>&nbsp&nbsp&nbspPersonnels</a>
+            <a class="nav-link" id="v-pills-personnels-tab" href="/personnels" role="tab" aria-controls="v-pills-personnels" aria-selected="false"><i class="fas fa-user-lock"></i>&nbsp&nbsp&nbspPersonnels</a>
         </div>
     </div>
 
@@ -27,6 +27,7 @@
         <div class="card">
                {{-- Search button for finding residents. --}}
             <div class="card-header">
+                    <h3 class="float-left">Violations</h3>
                     <form action="/search/violations" method="GET">
                         <input type="text" class="form-control float-right" style="width:200px" aria-label="Text input with dropdown button" name="s" value="{{ Request::query('s') }}" placeholder="Search violations">
                     </form>
@@ -97,12 +98,12 @@
                                                 
                                                                         <label for="reportedBy" class=" col-form-label text-md-right">Reported By:<span style="color:red">&nbsp*</span></label>
                                                                             <div class="col-md-2">
-                                                                            <input name="reportedBy" id="reportedBy" type="text" class="form-control" value="{{ $row->reportedBy }}">
+                                                                            <input name="reportedBy" id="reportedBy" type="text" class="form-control" value="{{ $row->reportedBy }}" style="text-transform:uppercase">
                                                                         </div>
                                                 
                                                                         <label for="name" class=" col-form-label text-md-right">Name:<span style="color:red">&nbsp*</span></label>
                                                                             <div class="col-md-1">
-                                                                            <input name="name" id="name" type="text" class="form-control" value="{{ $row->name }}">
+                                                                            <input name="name" id="name" type="text" class="form-control" value="{{ $row->name }}" style="text-transform:uppercase">
                                                                         </div>
                                                 
                                                                     </div>
@@ -126,7 +127,7 @@
                                                 
                                                                         <label for="details" class=" col-form-label text-md-right">Details:<span style="color:red">&nbsp*</span></label>
                                                                             <div class="col-md-2">
-                                                                                <input name="details" id="details" type="textarea" class="form-control" value="{{ $row->details }}">
+                                                                                <input name="details" id="details" type="textarea" class="form-control" value="{{ $row->details }}" style="text-transform:uppercase">
                                                                         </div>
                                                 
                                                                         <label for="fine" class="col-form-label text-md-right">Fine:<span style="color:red">&nbsp*</span></label>
@@ -141,7 +142,7 @@
                                                                      <div class="form-group row" >
                                                                         <label for="actionTaken" class="col-form-label text-md-right" style="margin-left:3%">Action Taken:<span style="color:red">&nbsp*</span></label>
                                                                             <div class="col-md-2">
-                                                                            <input name="actionTaken" id="actionTaken" type="string" class="form-control" value="{{ $row->actionTaken }}" >
+                                                                            <input name="actionTaken" id="actionTaken" type="string" class="form-control" value="{{ $row->actionTaken }}" style="text-transform:uppercase">
                                                                         </div> 
                                                                         
                                                                          <div class="col-md-2" style="visibility:hidden">

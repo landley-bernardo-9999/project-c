@@ -14,14 +14,13 @@
             <a class="nav-link" id="v-pills-repairs-tab" href="/repairs" role="tab" aria-controls="v-pills-repairs" aria-selected="false"><i class="fas fa-hammer"></i>&nbsp&nbsp&nbspRepairs</a>
             <a class="nav-link" id="v-pills-violations-tab" href="/violations" role="tab" aria-controls="v-pills-violations" aria-selected="false"><i class="fas fa-user-times"></i>&nbsp&nbsp&nbspViolations</a>
             <a class="nav-link" id="v-pills-supplies-tab" href="/supplies" role="tab" aria-controls="v-pills-supplies" aria-selected="false"><i class="fas fa-clipboard-list"></i>&nbsp&nbsp&nbspSupplies</a>
-            <a class="nav-link" id="v-pills-personnels-tab" href="/personnels" role="tab" aria-controls="v-pills-personnels" aria-selected="false"><i class="fas fa-clipboard-list"></i>&nbsp&nbsp&nbspPersonnels</a>
+            <a class="nav-link" id="v-pills-personnels-tab" href="/personnels" role="tab" aria-controls="v-pills-personnels" aria-selected="false"><i class="fas fa-user-lock"></i>&nbsp&nbsp&nbspPersonnels</a>
         </div> 
     </div>
 
 {{-- Content of the room section. --}}
 <div class="col-md-10">
-    
-        <a href="#" class="btn nav-link edit-owner"><i class="fas fa-edit"></i>&nbspEDIT</a>
+        <a href="#" class="btn nav-link edit-owner text-left"><i class="fas fa-edit"></i>&nbspEDIT</a>
     {{-- <form method="POST" action="/residents/{{ $resident->id }}">
     @method('delete')
     @csrf
@@ -134,17 +133,17 @@
                     <div class="form-group row" >
                         <label for="firstName" class=" col-form-label text-md-right" style="margin-left:3%">First Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="firstName" id="firstName" type="text" class="form-control" value="{{ $owner->firstName }}" required>
+                            <input name="firstName" id="firstName" type="text" class="form-control" value="{{ $owner->firstName }}" required style="text-transform:uppercase">
                         </div>     
 
                         <label for="middleName" class=" col-form-label text-md-right">Middle Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="middleName" id="middleName" type="text" class="form-control" value="{{ $owner->middleName }}">
+                            <input name="middleName" id="middleName" type="text" class="form-control" value="{{ $owner->middleName }}" style="text-transform:uppercase">
                         </div>
 
                         <label for="lastName" class="col-form-label text-md-right">Last Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="lastName" id="lastName" type="text" class="form-control" value="{{ $owner->lastName }}" required>
+                            <input name="lastName" id="lastName" type="text" class="form-control" value="{{ $owner->lastName }}" required style="text-transform:uppercase">
                         </div>
 
                         <label for="birthDate" class="col-form-label text-md-right">Birthdate:<span style="color:red">&nbsp*</span></label>
@@ -158,7 +157,7 @@
                     <div class="form-group row" >
                         <label for="emailAddress" class=" col-form-label text-md-right" style="margin-left:3%">Email Address:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="emailAddress" id="emailAddress" type="email" class="form-control" value="{{ $owner->emailAddress }}" >
+                            <input name="emailAddress" id="emailAddress" type="email" class="form-control" value="{{ $owner->emailAddress }}" style="text-transform:uppercase">
                         </div>  
 
                         <label for="mobileNumber" class=" col-form-label text-md-right">Mobile Number:<span style="color:red">&nbsp*</span></label>
@@ -172,22 +171,22 @@
                     <div class="form-group row" >
                         <label for="houseNumber" class=" col-form-label text-md-right" style="margin-left:3%">House No:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="houseNumber" id="houseNumber" type="text" class="form-control" value="{{ $owner->houseNumber }}" >
+                            <input name="houseNumber" id="houseNumber" type="text" class="form-control" value="{{ $owner->houseNumber }}" style="text-transform:uppercase">
                         </div>     
     
                         <label for="barangay" class=" col-form-label text-md-right">Barangay:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="barangay" id="barangay" type="text" class="form-control" value="{{ $owner->barangay }}" >
+                            <input name="barangay" id="barangay" type="text" class="form-control" value="{{ $owner->barangay }}" style="text-transform:uppercase">
                         </div>
 
                         <label for="municipality" class=" col-form-label text-md-right">Municipality:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="municipality" id="municipality" type="text" class="form-control" value="{{ old('municipality') }}" >
+                            <input name="municipality" id="municipality" type="text" class="form-control" value="{{ old('municipality') }}" style="text-transform:uppercase">
                         </div>
 
                         <label for="province" class=" col-form-label text-md-right">Province:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="province" id="province" type="text" class="form-control" value="{{ $owner->municipality }}" >
+                            <input name="province" id="province" type="text" class="form-control" value="{{ $owner->municipality }}" style="text-transform:uppercase">
                         </div>
                     </div>
 
@@ -215,12 +214,12 @@
                     <div class="form-group row" >
                         <label for="rep" class=" col-form-label text-md-right" style="margin-left:3%">Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="rep" id="rep" type="text" class="form-control" value="{{ $owner->rep }}" >
+                            <input name="rep" id="rep" type="text" class="form-control" value="{{ $owner->rep }}" style="text-transform:uppercase">
                         </div>
                         
                         <label for="repPhoneNumber" class=" col-form-label text-md-right" style="margin-left:3%">Mobile:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="repPhoneNumber" id="repPhoneNumber" type="text" class="form-control" value="{{ $owner->repPhoneNumber }}" >
+                            <input name="repPhoneNumber" id="repPhoneNumber" type="text" class="form-control" value="{{ $owner->repPhoneNumber }}" style="text-transform:uppercase">
                         </div>
     
                     </div>

@@ -116,7 +116,7 @@
             <a class="nav-link" id="v-pills-repairs-tab" href="/repairs" role="tab" aria-controls="v-pills-repairs" aria-selected="false"><i class="fas fa-hammer"></i>&nbsp&nbsp&nbspRepairs</a>
             <a class="nav-link" id="v-pills-violations-tab" href="/violations" role="tab" aria-controls="v-pills-violations" aria-selected="false"><i class="fas fa-user-times"></i>&nbsp&nbsp&nbspViolations</a>
             <a class="nav-link" id="v-pills-supplies-tab" href="/supplies" role="tab" aria-controls="v-pills-supplies" aria-selected="false"><i class="fas fa-clipboard-list"></i>&nbsp&nbsp&nbspSupplies</a>
-            <a class="nav-link" id="v-pills-personnels-tab" href="/personnels" role="tab" aria-controls="v-pills-personnels" aria-selected="false"><i class="fas fa-clipboard-list"></i>&nbsp&nbsp&nbspPersonnels</a>
+            <a class="nav-link" id="v-pills-personnels-tab" href="/personnels" role="tab" aria-controls="v-pills-personnels" aria-selected="false"><i class="fas fa-user-lock"></i>&nbsp&nbsp&nbspPersonnels</a>
         </div> 
     </div>
 
@@ -126,9 +126,10 @@
         <div class="card">
                {{-- Search button for finding residents. --}}
             <div class="card-header">
-                    <form action="/search/residents" method="GET">
-                        <input type="text" class="form-control float-right" style="width:200px" aria-label="Text input with dropdown button" name="s" value="{{ Request::query('s') }}" placeholder="Search residents">
-                    </form>
+                <h3 class="float-left">Residents</h3>
+                <form action="/search/residents" method="GET">
+                    <input type="text" class="form-control float-right" style="width:200px" aria-label="Text input with dropdown button" name="s" value="{{ Request::query('s') }}" placeholder="Search residents">
+                </form>
             </div>
 
             <div class="card-body" style="padding:3%;" >
@@ -141,7 +142,7 @@
                                         <th>First Name</th>
                                         <th>Middle Name</th>
                                         <th>Last Name</th>
-                                        <th>Birthdate</th>
+                                        {{-- <th>Birthdate</th> --}}
                                         <th>Email</th>
                                         <th>Mobile</th>
                                         
@@ -156,7 +157,7 @@
                                         <td>{{ $row->firstName }}</td>
                                         <td>{{ $row->middleName }}</td>
                                         <td>{{ $row->lastName }}</td>
-                                        <td>{{ $row->birthDate }}</td>
+                                        {{-- <td>{{ $row->birthDate }}</td> --}}
                                         <td>{{ $row->emailAddress }}</td>
                                         <td>{{ $row->mobileNumber }}</td>
                                         

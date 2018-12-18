@@ -232,7 +232,7 @@
                     <div class="form-group row" >
                         <label for="firstName" class=" col-form-label text-md-right" style="margin-left:3%">First Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="firstName" id="firstName" type="text" class="form-control" value="{{ $resident->firstName }}" required>
+                            <input name="firstName" id="firstName" type="text" class="form-control" value="{{ $resident->firstName }}" required >
                         </div>     
 
                         <label for="middleName" class=" col-form-label text-md-right">Middle Name:<span style="color:red">&nbsp*</span></label>
@@ -242,7 +242,7 @@
 
                         <label for="lastName" class="col-form-label text-md-right">Last Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="lastName" id="lastName" type="text" class="form-control" value="{{ $resident->lastName }}" required>
+                            <input name="lastName" id="lastName" type="text" class="form-control" value="{{ $resident->lastName }}" required >
                         </div>
 
                         <label for="birthDate" class="col-form-label text-md-right">Birthdate:<span style="color:red">&nbsp*</span></label>
@@ -256,7 +256,7 @@
                     <div class="form-group row" >
                         <label for="emailAddress" class=" col-form-label text-md-right" style="margin-left:3%">Email Address:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="emailAddress" id="emailAddress" type="email" class="form-control" value="{{ $resident->emailAddress }}" >
+                            <input name="emailAddress" id="emailAddress" type="email" class="form-control" value="{{ $resident->emailAddress }}">
                         </div>  
 
                         <label for="mobileNumber" class=" col-form-label text-md-right">Mobile Number:<span style="color:red">&nbsp*</span></label>
@@ -307,7 +307,7 @@
                     <div class="form-group row" >
                         <label for="school" class=" col-form-label text-md-right" style="margin-left:3%">School:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="school" id="school" type="email" class="form-control" value="{{ $resident->school }}" >
+                            <input name="school" id="school" type="text" class="form-control" value="{{ $resident->school }}" >
                         </div>     
     
                         <label for="course" class=" col-form-label text-md-right">Course:<span style="color:red">&nbsp*</span></label>
@@ -369,7 +369,7 @@
                         <button class="close" type="button" data-dismiss="modal" >&times;</button>
                     </div>
     
-                    <form method="POST" action="/transactions/">
+                    <form method="POST" action="/transactions">
     
                         {{-- Additional security feature laravel provides. --}}
     
@@ -462,7 +462,7 @@
                     <button class="close" type="button" data-dismiss="modal" >&times;</button>
                 </div>
 
-                <form method="POST" action="/repairs/" >
+                <form method="POST" action="/repairs" >
 
                     {{-- Additional security feature laravel provides. --}}
 
@@ -517,7 +517,9 @@
                             <div class="col-md-2">
                                 <select name="endorsedTo" id="endorsedTo" class="form-control" >
                                     <option value="{{ old('endorsedTo') }}" selected>{{ old('endorsedTo') }}</option>
-                                    <option value="dsd">asdasdasd</option>
+                                    @foreach ($personnel as $row)
+                                        <option value="{{ $row->firstName }}">{{ $row->firstName }} {{ $row->lastName }}</option>
+                                    @endforeach
                                 </select>
                         </div>
 
@@ -535,6 +537,8 @@
                                 <option value="closed">Closed</option>
                             </select>
                         </div>
+
+                        
                     </div>
 
                      <div class="form-group row" >
@@ -579,7 +583,7 @@
                     <button class="close" type="button" data-dismiss="modal" >&times;</button>
                 </div>
 
-                <form method="POST" action="/violations/" >
+                <form method="POST" action="/violations" >
 
                     {{-- Additional security feature laravel provides. --}}
 
@@ -600,12 +604,12 @@
 
                         <label for="reportedBy" class=" col-form-label text-md-right">Reported By:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="reportedBy" id="reportedBy" type="text" class="form-control" value="{{ old('reportedBy') }}">
+                            <input name="reportedBy" id="reportedBy" type="text" class="form-control" value="{{ old('reportedBy') }}" >
                         </div>
 
                         <label for="name" class=" col-form-label text-md-right">Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="name" id="name" type="text" class="form-control" value="{{ $resident->firstName }}">
+                            <input name="name" id="name" type="text" class="form-control" value="{{ $resident->firstName }}" >
                         </div>
 
                     </div>
@@ -629,7 +633,7 @@
 
                         <label for="details" class=" col-form-label text-md-right">Details:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                                <input name="details" id="details" type="textarea" class="form-control" value="{{ old('details') }}">
+                                <input name="details" id="details" type="textarea" class="form-control" value="{{ old('details') }}" >
                         </div>
 
                         <label for="fine" class="col-form-label text-md-right">Fine:<span style="color:red">&nbsp*</span></label>

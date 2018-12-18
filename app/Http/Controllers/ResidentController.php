@@ -11,6 +11,17 @@ use App\Room;
 
 class ResidentController extends Controller
 {
+    
+      /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -126,6 +137,8 @@ class ResidentController extends Controller
          $repair = DB::table('repairs')->where('resident_id',$id)->get();
 
          $violation = DB::table('violations')->where('room_id',$id)->get();
+         
+         $personnel = DB::table('personnels')->get();
 
          $room = Room::all();
 
@@ -143,7 +156,7 @@ class ResidentController extends Controller
 
         $resRow = 1;
 
-        return view('residents.show',compact('resident', 'transaction','resRow', 'room', 'repair', 'repairRow','violation','violationRow'));
+        return view('residents.show',compact('resident', 'transaction','resRow', 'room', 'repair', 'repairRow','violation','violationRow','personnel'));
     }
 
     /**

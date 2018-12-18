@@ -25,7 +25,7 @@
                     <div class="form-group row">
                         <label for="roomNo" class="col-md-4 col-form-label text-md-right">Room No:<span style="color:red">&nbsp*</span></label>
                         <div class="col-md-6">
-                            <input name="roomNo" id="roomNo" type="text" class="form-control" value="{{ old('roomNo') }}" required>
+                            <input name="roomNo" id="roomNo" type="text" class="form-control" value="{{ old('roomNo') }}" style="text-transform:uppercase" required>
                         </div>     
                     </div>
 
@@ -39,6 +39,23 @@
                                 <option value="harvard">Harvard</option>
                                 <option value="princeton">Princeton</option>
                                 <option value="wharton">Wharton</option>
+                                <option value="loft">Loft</option>
+                                <option value="manors">Manors</option>
+                                <option value="arkansas">Arkansas</option>
+                                <option value="colorado">Colorado</option>
+                            </select>
+                        </div>     
+                    </div>
+
+                     {{-- Project Name Input --}}
+
+                     <div class="form-group row">
+                        <label for="project" class="col-md-4 col-form-label text-md-right">Project:<span style="color:red">&nbsp*</span></label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="project" id="project" required>
+                                <option value="{{ old('project') }}">{{ old('project') }}</option>
+                                <option value="northCambridge">North Cambridge</option>
+                                <option value="theCourtyards">The Courtyards</option>
                             </select>
                         </div>     
                     </div>
@@ -116,7 +133,7 @@
             <a class="nav-link" id="v-pills-repairs-tab" href="/repairs" role="tab" aria-controls="v-pills-repairs" aria-selected="false"><i class="fas fa-hammer"></i>&nbsp&nbsp&nbspRepairs</a>
             <a class="nav-link" id="v-pills-violations-tab" href="/violations" role="tab" aria-controls="v-pills-violations" aria-selected="false"><i class="fas fa-user-times"></i>&nbsp&nbsp&nbspViolations</a>
             <a class="nav-link" id="v-pills-supplies-tab" href="/supplies" role="tab" aria-controls="v-pills-supplies" aria-selected="false"><i class="fas fa-clipboard-list"></i>&nbsp&nbsp&nbspSupplies</a>
-            <a class="nav-link" id="v-pills-personnels-tab" href="/personnels" role="tab" aria-controls="v-pills-personnels" aria-selected="false"><i class="fas fa-clipboard-list"></i>&nbsp&nbsp&nbspPersonnels</a>
+            <a class="nav-link" id="v-pills-personnels-tab" href="/personnels" role="tab" aria-controls="v-pills-personnels" aria-selected="false"><i class="fas fa-user-lock"></i>&nbsp&nbsp&nbspPersonnels</a>
         </div> 
     </div>
 
@@ -124,46 +141,51 @@
 
     <div class="col-md-10">
         <div class="card">
-            <div class="container-fluid" style="padding:3%; height: 600px">
+            <div class="container-fluid" style="padding:3%;">
                 <div class="row">
 
                     {{-- Filter features of the page. --}}
 
                     <div class="col-md-2">
-                       {{-- <div class="card">
-                           <div class="card-header">
-                               Filter rooms
-                           </div>
-                           <div class="card-body">
-                                <div class="group-form">
-                                    <input type="checkbox" role="button" href="/rooms/"> &nbspOccupied
-                                    <br>
-                                    <input type="checkbox"> &nbspVacant
-                                    <br>
-                                    <input type="checkbox"> &nbspReserved
-                                </div>
-                           </div>
-                       </div> --}}
-                   
-                       <div class="card">
+                        
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                  <button type="button" class="btn btn-outline-primary">Filter Rooms</button>
+                                      <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="/search/rooms?s=">All</a>
+                                                <div role="separator" class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="/search/rooms?s=occupied">Occupied</a>                                        
+                                                <a class="dropdown-item" href="/search/rooms?s=vacant">Vacant</a>
+                                                <a class="dropdown-item" href="/search/rooms?s=reserved">Reserved</a>
+                                                <div role="separator" class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="/search/rooms?s=harvard">Harvard</a>
+                                                <a class="dropdown-item" href="/search/rooms?s=princeton">Princeton</a>
+                                                <a class="dropdown-item" href="/search/rooms?s=wharton">Wharton</a> 
+                                                <div role="separator" class="dropdown-divider"></div> 
+                                                <a class="dropdown-item" href="/search/rooms?s=northCambridge">North Cambridge</a>
+                                                <a class="dropdown-item" href="/search/rooms?s=theCourtyards">The Courtyards</a>  
+                                            </div>
+                                    </div>                    
+                                </div>  
+                        
+                       
+                        <br>
+                        <div class="card">
                             <div class="card-header">
-                                Filter rooms
+                                Legends
                             </div>
                             <div class="card-body text-center">
-                                    <a href="/search/rooms?s=occupied" class="btn btn-outline-danger" role="button">
-                                        <i class="fas fa-home fa-1x"></i>
-                                    </a><br>
-                                    Occupied
-                                    <br><br>
-                                    <a href="/search/rooms?s=vacant" class="btn btn-outline-success" role="button">
-                                            <i class="fas fa-home fa-1x"></i>
-                                    </a><br>
-                                    Vacant
-                                    <br><br>
-                                    <a href="/search/rooms?s=reserved" class="btn btn-outline-info" role="button">
-                                            <i class="fas fa-home fa-1x"></i>
-                                    </a><br>
-                                    Reserved
+                                <i class="fas fa-home fa-1x btn btn-outline-danger"></i>
+                                <p>Occupied</p>
+
+                                <i class="fas fa-home fa-1x btn btn-outline-success"></i>
+                                <p>Vacant</p>
+
+                                <i class="fas fa-home fa-1x btn btn-outline-info"></i>
+                                <p>Reserved</p>
                             </div>
                         </div>
                     </div>
@@ -176,7 +198,7 @@
  
                         {{-- Button for creating a new room. --}}
 
-                        <a  href="#" class="create-room btn btn-warning float-left " role="button"><i class="fas fa-plus-circle"></i>&nbspCREATE ROOM</a>
+                        <a  href="#" class="create-room btn btn-primary float-left " role="button"><i class="fas fa-plus-circle"></i>&nbspCREATE ROOM</a>
 
                         {{-- Search button for finding rooms. --}}
 

@@ -129,6 +129,23 @@
             $('.edit-violation-form').show();
             $('.edit-violation-title').text('Edit Violation');
         });
+
+         // Modal for adding a personnel.
+
+         $(document).on('click','.add-personnel', function(){
+            $('#add-personnel').modal('show');
+            $('.add-personnel-form').show();
+            $('.add-personnel-title').text('Add Personnel');
+        });
+
+         // Modal for editing personnel's information.
+
+         $(document).on('click','.edit-personnel', function(){
+            $('#edit-personnel').modal('show');
+            $('.edit-personnel-form').show();
+            $('.edit-personnel-title').text('Edit Personnel');
+        });
+
          // Delete confirmation dialog
 
         $("#FormDeleteTime").submit(function (event) {

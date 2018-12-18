@@ -8,6 +8,7 @@ use App\Resident;
 use App\Owner;
 use DB;
 use Carbon\Carbon;
+use App\Personnel;
 
 class RoomController extends Controller
 {
@@ -32,10 +33,13 @@ class RoomController extends Controller
         $s = $request->query('s');
 
         $room = DB::table('rooms')->where('roomNo', 'like', "%$s%")
-                                  ->orWhere('status', 'like', "%$s%")        
+                                  ->orWhere('status', 'like', "%$s%") 
+                                  ->orWhere('building', 'like', "%$s%") 
+                                  ->orWhere('project', 'like' , "%$s")
                                  ->get();
 
         return view('rooms.index', compact('room', 's'));
+        
     }
 
     /**
@@ -84,6 +88,8 @@ class RoomController extends Controller
         $resident = DB::table('residents')->where('room_id',$id)->get();
 
         $repair = DB::table('repairs')->where('room_id',$id)->get();
+
+        $personnel = DB::table('personnels')->get();
         
         $rRow = 1;
 
@@ -102,7 +108,7 @@ class RoomController extends Controller
 
         $room_owner = Owner::where('owners.room_id', $id)->get();
 
-        return view('rooms.show', compact('room', 'rRow', 'transaction', 'resident','repairRow', 'repair', 'room_owner', 'ownerRow'));
+        return view('rooms.show', compact('room', 'rRow', 'transaction', 'resident','repairRow', 'repair', 'room_owner', 'ownerRow', 'personnel'));
     }
 
     /**
