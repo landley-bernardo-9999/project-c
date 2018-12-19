@@ -35,14 +35,15 @@ class RepairController extends Controller
 
         $repair = DB::table('repairs')
            ->join('rooms', 'repairs.room_id', '=', 'rooms.id')
-           ->select('rooms.*','repairs.*', 'repairs.id as repairId')
+           ->join('personnels', 'repairs.endorsedTo', 'personnels.id')
+           ->select('rooms.*','repairs.*', 'repairs.id as repairId', 'personnels.*')
            ->where('repairs.status', 'like', "%$s%")
            ->orWhere('rooms.roomNo', 'like', "%$s%")
            ->orWhere('repairs.name', 'like', "%$s%")
            ->orderBy('repairs.created_at', 'desc')
            ->get();
 
-        return view('repairs.index', compact('repair', 's', 'repairRow', 'personnel'));
+           return view('repairs.index', compact('repair', 's', 'repairRow', 'personnel'));
     }
 
     /**

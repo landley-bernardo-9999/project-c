@@ -135,14 +135,14 @@
             <a class="nav-link" id="v-pills-repairs-tab" href="/repairs" role="tab" aria-controls="v-pills-repairs" aria-selected="false"><i class="fas fa-hammer"></i>&nbsp&nbsp&nbspRepairs</a>
             <a class="nav-link" id="v-pills-violations-tab" href="/violations" role="tab" aria-controls="v-pills-violations" aria-selected="false"><i class="fas fa-user-times"></i>&nbsp&nbsp&nbspViolations</a>
             <a class="nav-link" id="v-pills-supplies-tab" href="/supplies" role="tab" aria-controls="v-pills-supplies" aria-selected="false"><i class="fas fa-clipboard-list"></i>&nbsp&nbsp&nbspSupplies</a>
-            <a class="nav-link" id="v-pills-personnels-tab" href="/personnels" role="tab" aria-controls="v-pills-personnels" aria-selected="false"><i class="fas fa-clipboard-list"></i>&nbsp&nbsp&nbspPersonnels</a>
+            <a class="nav-link" id="v-pills-personnels-tab" href="/personnels" role="tab" aria-controls="v-pills-personnels" aria-selected="false"><i class="fas fa-user-lock"></i>&nbsp&nbsp&nbspPersonnels</a>
         </div> 
     </div>
 
 {{-- Content of the room section. --}}
 
     <div class="col-md-10">
-        <div class="row">
+        
             <a href="#" class="btn edit-room float-left"><i class="fas fa-edit"></i>&nbspEDIT ROOM</a>       
 
             {{-- <form method="POST" action="/rooms/{{ $room->id }}">
@@ -151,21 +151,18 @@
                 <button id="FormDeleteTime" class="button btn btn-danger float-right"><i class="fas fa-trash-alt"></i>&nbspDELETE ROOM</button>
             </form>   --}}
 
-            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" >
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle btn float-right" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-plus-circle"></i>&nbspADD</a>
+                    <a class="nav-link dropdown-toggle btn " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-plus-circle"></i>&nbspADD</a>
                         <div class="dropdown-menu">
-                                <a href="#" class="btn dropdown-item add-resident">Resident</a>
-                                <a href="#" class="btn dropdown-item add-repair">Repair</a>
-                                <a href="#" class="btn dropdown-item add-owner">Owner</a>
-                                <a href="#" class="btn dropdown-item">Billing</a>
-                                </tr>
+                            <a href="#" class="btn dropdown-item add-resident">Resident</a>
+                            <a href="#" class="btn dropdown-item add-repair">Repair</a>
+                            <a href="#" class="btn dropdown-item add-owner">Owner</a>
+                            <a href="#" class="btn dropdown-item">Billing</a>
                         </div>
                     </li>
-                </ul>
-            
-    </div>
-           
+                </ul> 
+    
         <div class="card">
             <div class="container-fluid" style="padding:3%;">
 
@@ -204,7 +201,7 @@
                                 @foreach($room_owner as $row)
                                 <tr>
                                     <th>Principal Owner</th>
-                                    <td> <a href="/owners/{{$row->id}}">{{ $row->firstName }} {{ $row->lastName }}</a></td>
+                                    <td> {{ $row->firstName }} {{ $row->lastName }}</td>
                                 </tr>
                                 <tr>
                                     <th>Representative</th>
@@ -233,9 +230,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>First Name</th>
-                                <th>Middle Name</th>
-                                <th>Last Name</th>
+                                <th>Name</th>
                                 <th>Status</th>
                                 <th>Email</th>
                                 <th>Mobile</th>
@@ -248,10 +243,16 @@
                             @foreach ($transaction as $row) 
                             <tr>
                                 <th>{{ $rRow++ }}</th>
-                                <td>{{ $row->firstName }}</td>
-                                <td>{{ $row->middleName }}</td>
-                                <td>{{ $row->lastName }}</td>
-                                <td>{{ $row->transStatus }}</td>
+                                <td>{{ $row->firstName }} {{ $row->middleName }} {{ $row->lastName }}</td>
+                                <td>
+                                    @if($row->transStatus == 'active')
+                                        <p class="btn-success text-center">{{ $row->transStatus }}</p>
+                                    @elseif($row->transStatus == 'inactive')
+                                        <p class="btn-danger text-center">{{ $row->transStatus }}</p>
+                                    @elseif($row->transStatus == 'pending')
+                                        <p class="btn-warning text-center">{{ $row->transStatus }}</p>
+                                    @endif
+                                </td>
                                 <td>{{ $row->emailAddress }}</td>
                                 <td>{{ $row->mobileNumber }}</td>
                                 <td>{{Carbon\Carbon::parse($row->moveInDate)->formatLocalized('%b %d %Y')}}</td>
@@ -536,12 +537,12 @@
                                 <option value="installation">Installation</option>
                                 <option value="masonry">Masonry</option>
                                 <option value="painting">Painting</option>
-                                <option value="cleaning">cleaning</option>
-                                <option value="security">security</option>
-                                <option value="internet">internet</option>
-                                <option value="request">request</option>
-                                <option value="door/window">door/window</option>
-                                <option value="general">general</option>
+                                <option value="cleaning">Cleaning</option>
+                                <option value="security">Security</option>
+                                <option value="internet">Internet</option>
+                                <option value="request">Request</option>
+                                <option value="doorWindow">Door/Window</option>
+                                <option value="general">General</option>
                             </select>
                         </div>     
 
@@ -550,7 +551,7 @@
                                 <select name="endorsedTo" id="endorsedTo" class="form-control" >
                                     <option value="{{ old('endorsedTo') }}" selected>{{ old('endorsedTo') }}</option>
                                     @foreach ($personnel as $row)
-                                        <option value="{{ $row->firstName }}">{{ $row->firstName }} {{ $row->lastName }}</option>
+                                        <option value="{{ $row->id }}">{{ $row->firstName }} {{ $row->lastName }}</option>
                                     @endforeach
                                 </select>
                         </div>

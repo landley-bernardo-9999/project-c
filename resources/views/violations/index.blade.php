@@ -29,7 +29,7 @@
             <div class="card-header">
                     <h3 class="float-left">Violations</h3>
                     <form action="/search/violations" method="GET">
-                        <input type="text" class="form-control float-right" style="width:200px" aria-label="Text input with dropdown button" name="s" value="{{ Request::query('s') }}" placeholder="Search violations">
+                        <input type="text" class="form-control float-right" style="width:200px" aria-label="Text input with dropdown button" name="s" value="{{ Request::query('s') }}" placeholder="Search residents/rooms">
                     </form>
             </div>
 
@@ -40,14 +40,14 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Date Reported</th>
-                                        <th>Date Committed</th>
+                                        <th>Reported</th>
+                                        <th>Committed</th>
                                         <th>Reported By</th>
                                         <th>Room No</th>
                                         <th>Name</th>
-                                        <th>Description</th>
+                                        <th>Desc</th>
                                         <th>Fine</th>
-                                        <th>Action Taken</th>
+                                        <th>Repercussion</th>
                                         <th>Action</th>
                                     </tr>
                                   

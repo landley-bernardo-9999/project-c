@@ -90,9 +90,10 @@ class PersonnelController extends Controller
         $rowNum = 1;
 
         $repair = DB::table('repairs')
-            ->join('rooms', 'repairs.room_id', 'repairs.firstName')
-            ->select('personnels.*','repairs.*')
-            
+            ->join('personnels', 'repairs.endorsedTo', 'personnels.id')
+            ->join('rooms', 'repairs.room_id', 'rooms.id')
+            ->select('personnels.*','repairs.*', 'rooms.*')
+            ->where('repairs.endorsedTo', $id)
             ->get();
 
         return view('personnels.show', compact('personnel', 'repair', 'rowNum'));

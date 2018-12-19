@@ -27,9 +27,11 @@
         <div class="card">
                {{-- Search button for finding residents. --}}
             <div class="card-header">
+                
                     <h3 class="float-left">Repairs</h3>
+                    
                     <form action="/search/repairs" method="GET">
-                        <input type="text" class="form-control float-right" style="width:200px" aria-label="Text input with dropdown button" name="s" value="{{ Request::query('s') }}" placeholder="Search repairs">
+                        <input type="text" class="form-control float-right" style="width:200px" aria-label="Text input with dropdown button" name="s" value="{{ Request::query('s') }}" placeholder="Search residents/rooms">
                     </form>
             </div>
 
@@ -40,15 +42,15 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Date Reported</th>
-                                        <th>Date Started</th>
-                                        <th>Reported By</th>
+                                        <th>Reported</th>
+                                        <th>Started</th>
+                                        <th>Resident</th>
                                         <th>Room No</th>
                                         <th>Description</th>
                                         <th>Endorsed To</th>
-                                        
                                         <th>Total Cost</th>
                                         <th>Status</th>
+                                        <th>Finished</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -56,15 +58,16 @@
                                     @foreach ($repair as $row)
                                     <tr>
                                         <th>{{ $repairRow++ }}</th>
-                                        <td>{{ $row->dateReported }}</td>
-                                        <td>{{ $row->dateStarted }}</td>
+                                        <td>{{Carbon\Carbon::parse($row->dateReported)->formatLocalized('%b %d %Y')}}</td>
+                                        <td>{{Carbon\Carbon::parse($row->dateStarted)->formatLocalized('%b %d %Y')}}</td>
                                         <td>{{ $row->name }}</td>
                                         <td>{{ $row->roomNo }}</td>
                                         <td>{{ $row->desc}}</td>
-                                        <td>{{ $row->endorsedTo }}</th>
+                                        <td>{{ $row->firstName }}</th>
                                         {{-- <td>{{ $row->dateFinished }}</td> --}}
                                         <td>{{ $row->totalCost }}</td>
                                         <td>{{ $row->status }}</td>
+                                        <td>{{Carbon\Carbon::parse($row->dateFinished)->formatLocalized('%b %d %Y')}}</td>
                                         <td>
                                             <a href="#" class="btn edit-repair"><i class="fas fa-edit"></i>&nbspEDIT</a>
 
@@ -134,7 +137,7 @@
                                                                             <select name="endorsedTo" id="endorsedTo" class="form-control" >
                                                                                     <option value="{{ $row->endorsedTo }}" selected>{{ $row->endorsedTo }}</option>
                                                                                     @foreach ($personnel as $per)
-                                                                            <option value="{{ $per->firstName }} {{ $per->lastName }}">{{ $per->firstName }} {{ $per->lastName }}</option>
+                                                                            <option value="{{ $per->id }}">{{ $per->firstName }} {{ $per->lastName }}</option>
                                                                                     @endforeach
                                                                             </select>
                                                                     </div>

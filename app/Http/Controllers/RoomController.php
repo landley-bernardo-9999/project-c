@@ -60,17 +60,9 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        $validate =  request()->validate([
-            'roomNo' => ['required', 'max:255', 'unique:rooms'],
-            'building' => ['required', 'max:255'],
-            'shortTermRent' => ['required'],
-            'longTermRent' => ['required'],
-            'status' => ['required'],
-            'size' => ['required'],
-            'capacity' => ['required']
-        ]);  
+        $attribute = $this->validateInput();
 
-        Room::create($validate);
+        Room::create($attribute);
 
         return redirect('/rooms')->with('success','Room '.$request->roomNo.' has been created!');
     }
@@ -103,7 +95,7 @@ class RoomController extends Controller
             ->join('residents', 'transactions.resident_id', '=', 'residents.id')
             ->select('residents.*','transactions.*')
             ->where('transactions.room_id', $id)
-            ->whereIn('transactions.transStatus',['active','pending','movingIn','movingOut'])
+            ->whereIn('transactions.transStatus',['active','inactive','pending','movingIn','movingOut'])
             ->get();
 
         $room_owner = Owner::where('owners.room_id', $id)->get();
@@ -131,19 +123,24 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
-       $room = Room::findOrFail($id);
+        $attributes = request()->validate([
+            'roomNo' => ['required', 'max:255'],
+            'building' => ['required', 'max:255'],
+            'shortTermRent' => ['required'],
+            'longTermRent' => ['required'],
+            'project' => ['required'],
+            'status' => ['required'],
+            'size' => ['required'],
+            'capacity' => ['required'] 
+        ]);
 
-       $room->roomNo = request('roomNo');
-       $room->building = request('building');
-       $room->shortTermRent = request('shortTermRent');
-       $room->longTermRent = request('longTermRent');
-       $room->status = request('status');
-       $room->capacity = request('capacity');
-       $room->size = request('size');
+        Room::findOrFail($id)->update($attributes);
 
-       $room->save();
+        Room::find($id)->update();
 
-        return redirect('/rooms/'.$room->id)->with('success','Room '.$request->roomNo.' has been updated!');
+
+        return redirect('/rooms/'.$id)->with('success','Room '.$request->roomNo.' has been updated!');
+        
     }
 
     /**
@@ -157,5 +154,18 @@ class RoomController extends Controller
         $room = Room::findOrFail($id)->delete();
 
         return redirect('/rooms')->with('success','Room has been deleted!');
+    }
+
+    protected function validateInput(){
+        return request()->validate([
+            'roomNo' => ['required', 'max:255', 'unique:rooms'],
+            'building' => ['required', 'max:255'],
+            'shortTermRent' => ['required'],
+            'longTermRent' => ['required'],
+            'project' => ['required'],
+            'status' => ['required'],
+            'size' => ['required'],
+            'capacity' => ['required']
+        ]);
     }
 }

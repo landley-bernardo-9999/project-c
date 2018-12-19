@@ -69,23 +69,23 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Date Reported</th>
-                                    
                                     <th>RoomNo</th>
                                     <th>Description</th>
                                     <th>Total Cost</th>
                                     <th>Status</th>
+                                    <th>Satisfaction</th>
                                 </tr>
                             </thead>
                             <tbody>
                                @foreach ($repair as $row)
                                    <tr>
-                                       <th>{{ $rowNum++ }}</th>
-                                       <td>{{ $row->dateReported }}</td>
-                                       <td></td>
-                                       <td>{{ $row->desc }}</td>
-                                       
-                                       <td>{{ $row->totalCost }}</td>
-                                       <td>{{ $row->status }}</td>
+                                        <th>{{ $rowNum++ }}</th>
+                                        <td>{{ $row->dateReported }}</td>
+                                        <td>{{ $row->roomNo }}</td>
+                                        <td>{{ $row->desc }}</td>
+                                        <td>{{ $row->totalCost }}</td>
+                                        <td>{{ $row->status }}</td>
+                                        <td>{{ $row->rating }}</td>
                                    </tr>
                                @endforeach
                             </tbody>

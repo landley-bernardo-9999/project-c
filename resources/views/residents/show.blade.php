@@ -118,14 +118,22 @@
                                     <tbody>
                                         @foreach ($transaction as $transaction) 
                                         <tr>
-                                           <th>{{ $resRow++ }}</th>
-                                           <td>{{ Carbon\Carbon::parse($transaction->transDate)->formatLocalized('%b %d %Y') }}</td>
-                                           <td>{{ $transaction->roomNo }}</td>
-                                           <td>{{ $transaction->transStatus }}</td>
-                                           <td>{{ Carbon\Carbon::parse($transaction->moveInDate)->formatLocalized('%b %d %Y') }}</td>
-                                           <td>{{ Carbon\Carbon::parse($transaction->moveOutDate)->formatLocalized('%b %d %Y') }}</td>
-                                           <td>{{ $transaction->term }}</td>
-                                           <td>{{ $transaction->initialSecDep }}</td>
+                                            <th>{{ $resRow++ }}</th>
+                                            <td>{{ Carbon\Carbon::parse($transaction->transDate)->formatLocalized('%b %d %Y') }}</td>
+                                            <td>{{ $transaction->roomNo }}</td>
+                                            <td>
+                                                @if($transaction->transStatus == 'active')
+                                                    <p class="btn-success text-center">{{ $transaction->transStatus }}</p>
+                                                @elseif($transaction->transStatus == 'inactive')
+                                                    <p class="btn-danger text-center">{{ $transaction->transStatus }}</p>
+                                                @elseif($transaction->transStatus == 'pending')
+                                                    <p class="btn-warning text-center">{{ $transaction->transStatus }}</p>
+                                                @endif
+                                            </td>
+                                            <td>{{ Carbon\Carbon::parse($transaction->moveInDate)->formatLocalized('%b %d %Y') }}</td>
+                                            <td>{{ Carbon\Carbon::parse($transaction->moveOutDate)->formatLocalized('%b %d %Y') }}</td>
+                                            <td>{{ $transaction->term }}</td>
+                                            <td>{{ $transaction->initialSecDep }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -524,12 +532,12 @@
                                 <option value="installation">Installation</option>
                                 <option value="masonry">Masonry</option>
                                 <option value="painting">Painting</option>
-                                <option value="cleaning">cleaning</option>
-                                <option value="security">security</option>
-                                <option value="internet">internet</option>
-                                <option value="request">request</option>
-                                <option value="door/window">door/window</option>
-                                <option value="general">general</option>
+                                <option value="cleaning">Cleaning</option>
+                                <option value="security">Security</option>
+                                <option value="internet">Internet</option>
+                                <option value="request">Request</option>
+                                <option value="doorWindow">Door/Window</option>
+                                <option value="general">General</option>
                             </select>
                         </div>     
 
@@ -538,7 +546,7 @@
                                 <select name="endorsedTo" id="endorsedTo" class="form-control" >
                                     <option value="{{ old('endorsedTo') }}" selected>{{ old('endorsedTo') }}</option>
                                     @foreach ($personnel as $row)
-                                        <option value="{{ $row->firstName }}">{{ $row->firstName }} {{ $row->lastName }}</option>
+                                        <option value="{{ $row->id }}">{{ $row->firstName }} {{ $row->lastName }}</option>
                                     @endforeach
                                 </select>
                         </div>
@@ -627,7 +635,7 @@
 <<<<<<< HEAD
                             <input name="reportedBy" id="reportedBy" type="text" class="form-control" value="{{ old('reportedBy') }}" >
 =======
-                            <input name="reportedBy" id="reportedBy" type="text" class="form-control" value="{{ old('reportedBy') }}" style="text-transform:uppercase">
+                            <input name="reportedBy" id="reportedBy" type="text" class="form-control" value="{{ old('reportedBy') }}" >
 >>>>>>> 9eadc3ba3d2a755175ec25341f0a4b601db11d7e
                         </div>
 
@@ -636,7 +644,7 @@
 <<<<<<< HEAD
                             <input name="name" id="name" type="text" class="form-control" value="{{ $resident->firstName }}" >
 =======
-                            <input name="name" id="name" type="text" class="form-control" value="{{ $resident->firstName }}" style="text-transform:uppercase">
+                            <input name="name" id="name" type="text" class="form-control" value="{{ $resident->firstName }}" >
 >>>>>>> 9eadc3ba3d2a755175ec25341f0a4b601db11d7e
                         </div>
 

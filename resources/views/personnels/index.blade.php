@@ -100,7 +100,7 @@
                 </div>     
             </div>
             <div class="card-footer">
-                <h3 class="text-center">Results found: </h3>
+                <h3 class="text-center">Results found: {{count($personnel)}}</h3>
             </div>
         </div>      
     </div>
