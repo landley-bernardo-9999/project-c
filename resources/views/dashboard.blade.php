@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @include('includes.notifications')
+@section('title', 'Dashboard')
 @section('content')
 <div class="row">
 

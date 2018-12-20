@@ -2,30 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Supply;
+use App\Stock;
 use Illuminate\Http\Request;
-use DB;
 
-class SupplyController extends Controller
+class StockController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $s  = $request->query('s');
-
-        $supplies = DB::table('supplies')->where('category', 'like', "%$s%")
-                                          ->orWhere('brand', 'like', "%$s%")
-                                          ->orWhere('desc', 'like', "%$s%")
-                                          ->paginate(5);
-        $items = Supply::all();
-
-        $outOfStocks = DB::table('supplies')->whereBetween('stock', [0,2])->get();
-
-        return view('supplies.index', compact('supplies', 'outOfStocks', 'items'));
+        //
     }
 
     /**
@@ -46,19 +35,16 @@ class SupplyController extends Controller
      */
     public function store(Request $request)
     {
-        
-        Supply::create($request->all());
-
-        return redirect('/supplies')->with('success', 'A new entry has been added!');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Supply  $supply
+     * @param  \App\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function show(Supply $supply)
+    public function show(Stock $stock)
     {
         //
     }
@@ -66,10 +52,10 @@ class SupplyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Supply  $supply
+     * @param  \App\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function edit(Supply $supply)
+    public function edit(Stock $stock)
     {
         //
     }
@@ -78,10 +64,10 @@ class SupplyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Supply  $supply
+     * @param  \App\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Supply $supply)
+    public function update(Request $request, Stock $stock)
     {
         //
     }
@@ -89,10 +75,10 @@ class SupplyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Supply  $supply
+     * @param  \App\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Supply $supply)
+    public function destroy(Stock $stock)
     {
         //
     }

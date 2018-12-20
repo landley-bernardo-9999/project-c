@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@include('includes.notifications')
+@section('title', $personnel->firstName.' '.$personnel->lastName)
 @section('content')
 <div class="row">
 
@@ -20,6 +20,7 @@
 
 {{-- Content of the room section. --}}
 <div class="col-md-10">
+    @include('includes.notifications')
     <a href="#" class="btn nav-link edit-personnel text-left"><i class="fas fa-edit"></i>&nbspEDIT</a>
     {{-- <form method="POST" action="/residents/{{ $resident->id }}">
     @method('delete')

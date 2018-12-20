@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -145,6 +145,32 @@
             $('.edit-personnel-form').show();
             $('.edit-personnel-title').text('Edit Personnel');
         });
+
+         // Modal for editing personnel's information.
+
+         $(document).on('click','.add-supply', function(){
+            $('#add-supply').modal('show');
+            $('.add-supply-form').show();
+            $('.add-supply-title').text('New Entry');
+        });
+
+        // Modal for in of supplies.
+
+        $(document).on('click','.inSupply', function(){
+            $('#inSupply').modal('show');
+            $('.inSupply-form').show();
+            $('.inSupply-title').text('In Supply');
+        });
+
+        // Modal for out of supplies.
+
+        $(document).on('click','.outSupply', function(){
+            $('#outSupply').modal('show');
+            $('.outSupply-form').show();
+            $('.outSupply-title').text('Out Supply');
+        });
+
+
 
          // Delete confirmation dialog
 

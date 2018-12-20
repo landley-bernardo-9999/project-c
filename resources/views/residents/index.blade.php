@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@include('includes.notifications')
+@section('title', 'Residents')
 @section('content')
 <div class="row">
 
@@ -123,6 +123,7 @@
 {{-- Content of the room section. --}}
 
     <div class="col-md-10">
+        @include('includes.notifications')
         <div class="card">
                {{-- Search button for finding residents. --}}
             <div class="card-header">

@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@include('includes.notifications')
+@section('title', 'Rooms')
 @section('content')
 <div class="row">
 
@@ -25,7 +25,7 @@
                     <div class="form-group row">
                         <label for="roomNo" class="col-md-4 col-form-label text-md-right">Room No:<span style="color:red">&nbsp*</span></label>
                         <div class="col-md-6">
-                            <input name="roomNo" id="roomNo" type="text" class="form-control" value="{{ old('roomNo') }}" style="text-transform:uppercase" required>
+                            <input name="roomNo" id="roomNo" type="text" class="form-control" value="{{ old('roomNo') }}" required>
                         </div>     
                     </div>
 
@@ -140,6 +140,7 @@
 {{-- Content of the room section. --}}
 
     <div class="col-md-10">
+        @include('includes.notifications')
         <div class="card">
             <div class="container-fluid" style="padding:3%;">
                 <div class="row">

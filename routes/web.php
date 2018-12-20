@@ -51,3 +51,5 @@ Route::get('/search/owners{s?}', 'OwnerController@index')->where('s', '[\w\d]+')
 Route::get('/search/violations{s?}', 'ViolationController@index')->where('s', '[\w\d]+');
 
 Route::get('/search/personnels{s?}', 'PersonnelController@index')->where('s', '[\w\d]+');
+
+Route::get('/search/supplies{s?}', 'SupplyController@index')->where('s', '[\w\d]+');

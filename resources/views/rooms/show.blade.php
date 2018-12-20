@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@include('includes.notifications')
+@section('title', $room->roomNo)
 @section('content')
 <div class="row">
 {{-- Modal for creating room.  --}}
@@ -142,7 +142,7 @@
 {{-- Content of the room section. --}}
 
     <div class="col-md-10">
-        
+        @include('includes.notifications')
             <a href="#" class="btn edit-room float-left"><i class="fas fa-edit"></i>&nbspEDIT ROOM</a>       
 
             {{-- <form method="POST" action="/rooms/{{ $room->id }}">

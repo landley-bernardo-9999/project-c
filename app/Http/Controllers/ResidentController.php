@@ -31,11 +31,13 @@ class ResidentController extends Controller
     {
         $s = $request->query('s');
         
-        $resident = DB::table('residents')->where('firstName', 'like', "%$s%")
-                                          ->orWhere('lastName', 'like', "%$s%")
-                                          ->orWhere('mobileNumber', 'like', "%$s%")
-                                          ->orWhere('emailAddress', 'like', "%$s%")
-                                          ->get();
+        $resident = DB::table('residents')
+           ->where('firstName', 'like', "%$s%")
+           ->orWhere('lastName', 'like', "%$s%")
+           ->orWhere('middleName', 'like', "%$s%")
+           ->orWhere('emailAddress', 'like', "%$s%")
+           ->orWhere('mobileNumber', 'like', "%$s%")
+           ->get();
 
         $rRow = 1;
 
