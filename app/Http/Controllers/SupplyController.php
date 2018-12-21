@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Supply;
 use Illuminate\Http\Request;
 use DB;
+use App\Stock;
 
 class SupplyController extends Controller
 {
@@ -16,6 +17,7 @@ class SupplyController extends Controller
     public function index(Request $request)
     {
         $s  = $request->query('s');
+        $qty = $request->query('qty');
 
         $supplies = DB::table('supplies')->where('category', 'like', "%$s%")
                                           ->orWhere('brand', 'like', "%$s%")
@@ -25,7 +27,9 @@ class SupplyController extends Controller
 
         $outOfStocks = DB::table('supplies')->whereBetween('stock', [0,2])->get();
 
-        return view('supplies.index', compact('supplies', 'outOfStocks', 'items'));
+        $stock = Stock::all();
+
+        return view('supplies.index', compact('supplies', 'outOfStocks', 'items', 'stock'));
     }
 
     /**

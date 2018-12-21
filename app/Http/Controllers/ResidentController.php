@@ -149,11 +149,11 @@ class ResidentController extends Controller
          $violationRow = 1;
 
         $transaction = DB::table('transactions')
-            ->join('residents', 'transactions.resident_id', '=', 'residents.id')
-            ->select('residents.*','transactions.*')
+            ->join('residents', 'transactions.resident_id','residents.id')
+            ->join('owners', 'transactions.room_id', 'owners.room_id')
+            ->select('residents.*','transactions.*', 'owners.*')
             ->where('transactions.resident_id', $id)
-            ->whereIn('transactions.transStatus',['active','pending','movingIn','movingOut'])
-            ->distinct('residents.id')
+            // ->whereIn('transactions.transStatus',['active','pending','movingIn','movingOut'])
             ->get();
 
         $resRow = 1;

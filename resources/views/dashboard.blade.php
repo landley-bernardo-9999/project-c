@@ -29,43 +29,72 @@
                     <div class="col-md-4 text-center" >
                         <div class="card ">
                             <div class="card-header">
-                                <h6><b>Rooms</b></h6>
+                                <h4><b>Rooms</b></h4>
                             </div>
                             <div class="card-body">
-                                <h1 style="font-size: 60px">{{$room}}</h1>
-                                {{-- <p class="float-right"><a href="/rooms"> More info</a></p> --}}
-                                <i class="fas fa-home fa-4x"></i>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                        <h1 style="font-size: 60px">{{$room}}</h1>
+                                        <i class="fas fa-home fa-4x float-left"></i>
+                                    </div>
+                                            
+                                        <div class="col-md-6 float-right">
+                                            <p>Vacant  = <b style="font-size: 20px">{{ $vacantRooms }}</b></p>
+                                            <p>Occupied  = <b style="font-size: 20px">{{ $occupiedRooms }}</b></p>
+                                            <p>Reserved  = <b style="font-size: 20px">{{ $reservedRooms }}</b></p>
+                                        </div>
+                                    </div>   
                             </div>
                         </div>
                     </div>
-
                     <div class="col-md-4 text-center" >
-                        <div class="card ">
-                            <div class="card-header">
-                                <h6><b>Residents</b></h6>
-                            </div>
-                            <div class="card-body">
-                                <h1 style="font-size: 60px">{{$resident}}</h1>
-                                {{-- <p class="float-right"><a href="/residents"> More info</a></p> --}}
-                                <i class="fas fa-users fa-4x"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 text-center" >
-                        <div class="card ">
-                            <div class="card-header">
-                                <h6><b>Investors</b></h6>
-                            </div>
-                            <div class="card-body">
-                                <h1 style="font-size: 60px">{{$investor}}</h1>
-                                {{-- <p class="float-right"><a href="/owners"> More info</a></p> --}}
-                                <i class="fas fa-user-tie fa-4x"></i>
+                            <div class="card ">
+                                <div class="card-header">
+                                    <h4><b>Residents</b></h4>
+                                </div>
+                                <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                            <h1 style="font-size: 60px">{{$resident}}</h1>
+                                            <i class="fas fa-users fa-4x"></i>
+                                        </div>
+                                                
+                                            <div class="col-md-6 float-right">
+                                                <p>Harvard  = <b style="font-size: 20px">{{ $harvardResident }}</b></p>
+                                                <p>Princeton  = <b style="font-size: 20px">{{ $princetonResident }}</b></p>
+                                                <p>Wharton  = <b style="font-size: 20px">{{ $whartonResident }}</b></p>
+                                                <p>Courtyards  = <b style="font-size: 20px">{{ $courtyardsResident }}</b></p>
+                                            </div>
+                                        </div>   
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>  
 
+                        <div class="col-md-4 text-center" >
+                                <div class="card ">
+                                    <div class="card-header">
+                                        <h4><b>Owners</b></h4>
+                                    </div>
+                                    <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                <h1 style="font-size: 60px">{{$owner}}</h1>
+                                                <i class="fas fa-user-tie fa-4x"></i>
+                                            </div>
+                                                    
+                                                <div class="col-md-6 float-right">
+                                                    <p>Harvard  = <b style="font-size: 20px">{{ $harvardOwner }}</b></p>
+                                                    <p>Princeton  = <b style="font-size: 20px">{{ $princetonOwner }}</b></p>
+                                                    <p>Wharton  = <b style="font-size: 20px">{{ $whartonOwner }}</b></p>
+                                                    <p>Courtyards  = <b style="font-size: 20px">{{ $courtyardsOwner }}</b></p>
+                                                </div>
+                                            </div>   
+                                    </div>
+                                </div>
+                            </div>
+
+                    
+                </div>
                 <br>
                 <div class="row">
                         <div class="col-md-6 text-center" >

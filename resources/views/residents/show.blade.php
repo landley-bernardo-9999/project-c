@@ -34,8 +34,10 @@
             <a class="nav-link dropdown-toggle btn float-right" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-plus-circle"></i>&nbspADD</a>
                 <div class="dropdown-menu">
                     <a href="#" class=" dropdown-item add-transaction text-left">Transaction</a>
+                    <a href="/inventory/create" class=" dropdown-item text-left">Inventory</a>
                     <a href="#" class=" dropdown-item add-repair text-left">Repair</a>
                     <a href="#" class=" dropdown-item add-violation text-left">Violation</a>
+                   
                     <a href="#" class=" dropdown-item add-billing text-left">Billing</a>
                     
                 </div>
@@ -112,7 +114,7 @@
                                             <th>Move-In Date</th>
                                             <th>Move-Out Date</th>
                                             <th>Term</th>
-                                            <th>Security Deposit</th>
+                                            <th>Action</th>
                                             
                                         </tr>
                                     </thead>
@@ -134,7 +136,85 @@
                                             <td>{{ Carbon\Carbon::parse($transaction->moveInDate)->formatLocalized('%b %d %Y') }}</td>
                                             <td>{{ Carbon\Carbon::parse($transaction->moveOutDate)->formatLocalized('%b %d %Y') }}</td>
                                             <td>{{ $transaction->term }}</td>
-                                            <td>{{ $transaction->initialSecDep }}</td>
+                                            <td><a href="#" class="add-inventory text-left">ADD INVENTORY</a>
+                                            {{-- Modal for editing resident information. --}}
+
+                                                <div id="add-inventory" class="modal fade" role="dialog">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content" style="width:1320px; margin-left:-80%">
+
+                                                                <div class="modal-header">
+                                                                    <h4 class="add-inventory-title float-left"></h4>
+                                                                    <button class="close" type="button" data-dismiss="modal" >&times;</button>
+                                                                </div>
+
+                                                                <form action="/inventory" method="POST" >
+                                                                    @csrf 
+                                                                    
+                                                                <div class="modal-body">
+                                                                   <div class="card">
+                                                                        <div class="card-body">
+                                                                            <div class="form-group row">
+                                                                                <label for="date" class=" col-form-label text-md-right" style="margin-left:3%">Date:<span style="color:red">&nbsp*</span></label>
+                                                                                <div class="col-md-2">
+                                                                                    <input name="date" id="date" type="date" class="form-control" value="{{ date('Y-m-d') }}" required>
+                                                                                </div>
+
+                                                                                <label for="inventory_roomNo" class=" col-form-label text-md-right">Room No:</label>
+                                                                                <div class="col-md-2">
+                                                                                    <input name="inventory_roomNo" id="inventory_roomNo" type="text" class="form-control" value="{{ $transaction->roomNo }}" readonly>
+                                                                                </div>
+
+                                                                                <label for="inventory_owner" class=" col-form-label text-md-right">Room Owner:</label>
+                                                                                <div class="col-md-2">
+                                                                                    <input name="inventory_owner" id="inventory_owner" type="text" class="form-control" value="{{ $transaction->firstName }} {{$transaction->lastName}}" readonly>
+                                                                                </div>
+
+                                                                                <div class="col-md-1" style="visibility: ">
+                                                                                    <input name="inventory_room_id" id="inventory_room_id" type="number" class="form-control" value="{{ $transaction->room_id }}"  >
+                                                                                </div>
+
+                                                                                <div class="col-md-1" style="visibility: ">
+                                                                                    <input name="inventory_resident_id" id="inventory_resident_id" type="number" class="form-control" value="{{ $transaction->resident_id }}"  >
+                                                                                </div>
+                                                                            </div>
+                                                                            <hr>
+                                                                            
+                                                                                <h5>REMARKS:</h5> [<b>TR</b>: Transient] [<b>ST</b>: Short Term] [<b>LT</b>: Long Term] [<b>M</b>: Missing] [<b>PO</b>: Pulled Out] [<b>R</b>: Replaced] [<b>D</b>: Damaged]
+                                                                                <br><br>
+                                                                                <table class="table table-bordered">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>#</th>
+                                                                                        <th>Furnitures</th>
+                                                                                        <th>Qty</th>
+                                                                                        <th>Remarks</th>
+                                                                                    </tr>
+                                                                                </thead>    
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td>1</td>
+                                                                                        <td>Chair</td>
+                                                                                        <td>23</td>
+                                                                                        <td>D</td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>                                                                
+                                                                   </div>
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>              
+                                                                    <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspADD</button>
+                                                                </div>
+
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            
+                                            
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -316,15 +396,9 @@
                     <div class="form-group row" >
                         <label for="school" class=" col-form-label text-md-right" style="margin-left:3%">School:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-<<<<<<< HEAD
+
                             <input name="school" id="school" type="text" class="form-control" value="{{ $resident->school }}" >
-=======
-<<<<<<< HEAD
-                            <input name="school" id="school" type="text" class="form-control" value="{{ $resident->school }}">
-=======
-                            <input name="school" id="school" type="text" class="form-control" value="{{ $resident->school }}" >
->>>>>>> af49d4120303842bf7a3ff14573b971f087bb026
->>>>>>> 9eadc3ba3d2a755175ec25341f0a4b601db11d7e
+
                         </div>     
     
                         <label for="course" class=" col-form-label text-md-right">Course:<span style="color:red">&nbsp*</span></label>
@@ -439,8 +513,8 @@
                                     </select>
                                 </div> 
 
-                                <label for="room_id" class=" col-form-label text-md-right" style="margin-left:3%">Room No<span style="color:red">&nbsp*</span></label>
-                                    <div class="col-md-1" >
+                                <label for="room_id" class=" col-form-label text-md-right">Room No<span style="color:red">&nbsp*</span></label>
+                                    <div class="col-md-2" >
                                         <select name="room_id" id="room_id" class="form-control">
                                             <option value="{{ $resident->room_id }}" selected>{{ $resident->roomNo }}</option>
                                             @foreach ($room as $row)
@@ -621,20 +695,12 @@
 
                         <label for="reportedBy" class=" col-form-label text-md-right">Reported By:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-<<<<<<< HEAD
                             <input name="reportedBy" id="reportedBy" type="text" class="form-control" value="{{ old('reportedBy') }}" >
-=======
-                            <input name="reportedBy" id="reportedBy" type="text" class="form-control" value="{{ old('reportedBy') }}" >
->>>>>>> 9eadc3ba3d2a755175ec25341f0a4b601db11d7e
                         </div>
 
                         <label for="name" class=" col-form-label text-md-right">Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-<<<<<<< HEAD
                             <input name="name" id="name" type="text" class="form-control" value="{{ $resident->firstName }}" >
-=======
-                            <input name="name" id="name" type="text" class="form-control" value="{{ $resident->firstName }}" >
->>>>>>> 9eadc3ba3d2a755175ec25341f0a4b601db11d7e
                         </div>
 
                     </div>
@@ -658,11 +724,8 @@
 
                         <label for="details" class=" col-form-label text-md-right">Details:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-<<<<<<< HEAD
+
                                 <input name="details" id="details" type="textarea" class="form-control" value="{{ old('details') }}" >
-=======
-                                <input name="details" id="details" type="textarea" class="form-control" value="{{ old('details') }}" style="text-transform:uppercase">
->>>>>>> 9eadc3ba3d2a755175ec25341f0a4b601db11d7e
                         </div>
 
                         <label for="fine" class="col-form-label text-md-right">Fine:<span style="color:red">&nbsp*</span></label>

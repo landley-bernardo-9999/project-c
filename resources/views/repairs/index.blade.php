@@ -124,12 +124,12 @@
                                                                             <option value="installation">Installation</option>
                                                                             <option value="masonry">Masonry</option>
                                                                             <option value="painting">Painting</option>
-                                                                            <option value="cleaning">cleaning</option>
-                                                                            <option value="security">security</option>
-                                                                            <option value="internet">internet</option>
-                                                                            <option value="request">request</option>
-                                                                            <option value="door/window">door/window</option>
-                                                                            <option value="general">general</option>
+                                                                            <option value="cleaning">Cleaning</option>
+                                                                            <option value="security">Security</option>
+                                                                            <option value="internet">Internet</option>
+                                                                            <option value="request">Request</option>
+                                                                            <option value="door/window">Door/Window</option>
+                                                                            <option value="general">General</option>
                                                                         </select>
                                                                     </div>
 

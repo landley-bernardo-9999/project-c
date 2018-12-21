@@ -38,6 +38,8 @@ Route::resources([
                     'violations' => 'ViolationController',
                     'supplies' => 'SupplyController',
                     'personnels' => 'PersonnelController',
+                    'stocks' => 'StockController',
+                    'inventory' => 'InventoryController'
                 ]);
 
 Route::get('/search/rooms{s?}', 'RoomController@index')->where('s', '[\w\d]+');

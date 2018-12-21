@@ -159,14 +159,10 @@
                                                             <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>
                                                             <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspUPDATE</button>
                                                         </div>
-
-    </form>
-</div>
+                                            </form>
+                                        </div>
                                                     </div>
                                                 </div>
-
-
-
                                         </td>
                                     </tr>
                                     @endforeach

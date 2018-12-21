@@ -156,7 +156,7 @@
                                         <span class="sr-only">Toggle Dropdown</span>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="/search/rooms?s=">All</a>
+                                                <a class="dropdown-item" href="/rooms">All</a>
                                                 <div role="separator" class="dropdown-divider"></div>
                                                 <a class="dropdown-item" href="/search/rooms?s=occupied">Occupied</a>                                        
                                                 <a class="dropdown-item" href="/search/rooms?s=vacant">Vacant</a>

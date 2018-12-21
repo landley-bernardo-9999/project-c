@@ -28,15 +28,73 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // Room Stats
+
         $room = DB::table('rooms')->count();
 
         $occupiedRooms = DB::table('rooms')->where('status','occupied')->count();
 
+        $vacantRooms = DB::table('rooms')->where('status','vacant')->count();
+
+        $reservedRooms = DB::table('rooms')->where('status','reserved')->count();
+
         $occupancyRate = round(($occupiedRooms/$room) * 100);
+
+        //Resident Stats
 
         $resident = DB::table('residents')->count();
 
-        $investor = DB::table('owners')->count();
+        $harvardResident = DB::table('residents')
+                ->join('rooms', 'residents.room_id', 'rooms.id')
+                ->select('rooms.*', 'residents.*')
+                ->where('rooms.building', 'harvard')
+                ->count();
+
+        $princetonResident = DB::table('residents')
+                ->join('rooms', 'residents.room_id', 'rooms.id')
+                ->select('rooms.*', 'residents.*')
+                ->where('rooms.building', 'princeton')
+                ->count();
+
+        $whartonResident = DB::table('residents')
+                ->join('rooms', 'residents.room_id', 'rooms.id')
+                ->select('rooms.*', 'residents.*')
+                ->where('rooms.building', 'wharton')
+                ->count();
+
+        $courtyardsResident = DB::table('residents')
+                ->join('rooms', 'residents.room_id', 'rooms.id')
+                ->select('rooms.*', 'residents.*')
+                ->where('rooms.project', 'theCourtyards')
+                ->count();
+
+                
+        $owner = DB::table('owners')->count();
+
+        $harvardOwner = DB::table('owners')
+                ->join('rooms', 'owners.room_id', 'rooms.id')
+                ->select('rooms.*', 'owners.*')
+                ->where('rooms.building', 'harvard')
+                ->count();
+
+        $princetonOwner = DB::table('owners')
+                ->join('rooms', 'owners.room_id', 'rooms.id')
+                ->select('rooms.*', 'owners.*')
+                ->where('rooms.building', 'princeton')
+                ->count();
+
+        $whartonOwner = DB::table('owners')
+                ->join('rooms', 'owners.room_id', 'rooms.id')
+                ->select('rooms.*', 'owners.*')
+                ->where('rooms.building', 'wharton')
+                ->count();
+
+        $courtyardsOwner = DB::table('owners')
+                ->join('rooms', 'owners.room_id', 'rooms.id')
+                ->select('rooms.*', 'owners.*')
+                ->where('rooms.project', 'theCourtyards')
+                ->count();
+        
 
         $onGoingRepair = DB::table('repairs')->where('status', 'onGoing')->count();
 
@@ -61,7 +119,10 @@ class HomeController extends Controller
             ->where('transactions.moveOutDate','=',$dateToday)
             ->get();
 
-        return view('dashboard', compact('moveInRow', 'moveOutRow' ,'room', 'resident', 'investor','movein','moveout','onGoingRepair','pendingRepair', 'occupancyRate'));
+        return view('dashboard', compact('moveInRow', 'moveOutRow' ,'room', 'resident', 'owner','movein','moveout','onGoingRepair','pendingRepair', 
+                'occupancyRate', 'occupiedRooms', 'vacantRooms', 'reservedRooms',
+                'harvardResident', 'princetonResident', 'whartonResident', 'courtyardsResident',
+                'harvardOwner', 'princetonOwner', 'whartonOwner', 'courtyardsOwner'));
     }
 
     

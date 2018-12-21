@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            <div class="card-body" style="padding:3%;" >
+            <div class="card-body" style="padding:3%;">
                 <div class="row">
                     <div>
                         <div class="input-group float-left">
@@ -57,7 +57,7 @@
                         
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-1">
                         <div class="input-group float-left">
                             <div class="input-group-prepend">
                                 <button type="button" class="btn btn-outline-primary">Brand</button>
@@ -73,10 +73,13 @@
                                         </div>
                             </div>                    
                         </div>   
+                             
                     </div>
 
-                    
-                    <br><br>
+                    <div class="col-md-9">
+                        <a  href="#" class="add-supply btn btn-primary float-right" role="button"><i class="fas fa-plus-circle"></i>&nbspNEW ENTRY</a>
+                    </div>
+                        <br><br>
                         <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
@@ -85,16 +88,163 @@
                                         <th>Desc</th>
                                         <th>Serial Number</th>
                                         <th>Stock</th>
+                                        <th colspan="2" class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($supplies as $item)
+                                    @foreach ($supplies as $row)
                                     <tr>
-                                        <td>{{ $item->category }}</td>
-                                        <td>{{ $item->brand }}</td>
-                                        <td>{{ $item->desc }}</td>
-                                        <td>{{ $item->serialNumber }}</td>
-                                        <td>{{ $item->stock }}</td>
+                                        <td>{{ $row->category }}</td>
+                                        <td>{{ $row->brand }}</td>
+                                        <td>{{ $row->desc }}</td>
+                                        <td>{{ $row->serialNumber }}</td>
+                                        <td>{{ $row->stock }}</td>
+                                        <td> 
+                                            <a  href="#" class="inSupply btn btn-success float-right" role="button"><i class="fas fa-sign-in-alt"></i>&nbspIn</a>
+
+                                                {{-- Modal for adding stock.  --}}
+
+                                                <div id="inSupply" class="modal fade" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content" style="width:1320px; margin-left:-80%">
+
+                                                            <div class="modal-header">
+                                                                <h4 class="inSupply-title float-left"></h4>
+                                                                <button class="close" type="button" data-dismiss="modal" >&times;</button>
+                                                            </div>
+                                                            <form method="POST" action="/stocks">
+
+                                                                @csrf
+
+                                                            <div class="modal-body">
+
+                                                                    <div class="form-group row" >
+                                                                        <label for="stock_date" class=" col-form-label text-md-right" style="margin-left:3%">Date:<span style="color:red">&nbsp*</span></label>
+                                                                            <div class="col-md-2">
+                                                                                <input name="stock_date" id="stock_date" type="date" class="form-control" value="{{ date('Y-m-d') }}">
+                                                                            </div>
+
+                                                                        <label for="stock_category" class=" col-form-label text-md-right">Category:<span style="color:red">&nbsp*</span></label>
+                                                                            <div class="col-md-2">
+                                                                                <input name="stock_category" id="stock_category" type="text" class="form-control" value="{{ $row->category }}">
+                                                                        </div>     
+                                                    
+                                                                        <label for="stock_brand" class=" col-form-label text-md-right">Brand:<span style="color:red">&nbsp*</span></label>
+                                                                            <div class="col-md-2">
+                                                                                <input name="stock_brand" id="stock_brand" type="text" class="form-control" value="{{ $row->brand }}">
+                                                                        </div>
+
+                                                                        <label for="stock_desc" class=" col-form-label text-md-right">Description:<span style="color:red">&nbsp*</span></label>
+                                                                            <div class="col-md-2">
+                                                                                <input name="stock_desc" id="stock_desc" type="text" class="form-control" value="{{ $row->desc }}">
+                                                                            </div>
+                                                                    </div>
+                                                                        <div class="form-group row" >
+                                                                            <label for="stock_serialNumber" class=" col-form-label text-md-right" style="margin-left:3%">Serial Number:<span style="color:red">&nbsp*</span></label>
+                                                                            <div class="col-md-2">
+                                                                                <input name="stock_serialNumber" id="stock_serialNumber" type="text" class="form-control" value="{{ $row->serialNumber }}">
+                                                                            </div> 
+
+                                                                            <label for="stock_qty" class=" col-form-label text-md-right">Qty:<span style="color:red">&nbsp*</span></label>
+                                                                            <div class="col-md-2">
+                                                                                <input name="stock_qty" id="stock_qty" type="number" min="1" class="form-control" value="{{ Request::query('qty') }}" required>
+                                                                            </div>
+
+                                                                            <div class="col-md-2">
+                                                                                <input name="stock_action" id="stock_action" type="text" class="form-control" value="in"> 
+                                                                            </div>
+
+                                                                            <div class="col-md-2" >
+                                                                                <input name="supply_id" id="supply_id" type="number" class="form-control" value="{{ $row->id }}"> 
+                                                                            </div>
+
+                                                                        </div>
+                                                                    
+                                                            </div>
+                                                            
+                                                            <div class="modal-footer">
+                                                                <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>              
+                                                                <button class="btn btn-primary" type="submit"><i class="fas fa-sign-in-alt"></i>&nbspIN</button>    
+                                                            </div>
+
+                                                            </form> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </td>
+                                        <td>
+                                            <a  href="#" class="outSupply btn btn-danger float-right " role="button"><i class="fas fa-sign-out-alt"></i> &nbspOut</a>
+
+                                               {{-- Modal for adding stock.  --}}
+
+                                               <div id="outSupply" class="modal fade" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content" style="width:1320px; margin-left:-80%">
+
+                                                            <div class="modal-header">
+                                                                <h4 class="outSupply-title float-left"></h4>
+                                                                <button class="close" type="button" data-dismiss="modal" >&times;</button>
+                                                            </div>
+                                                            <form method="POST" action="/stocks">
+
+                                                                @csrf
+
+                                                            <div class="modal-body">
+
+                                                                    <div class="form-group row" >
+                                                                        <label for="stock_date" class=" col-form-label text-md-right" style="margin-left:3%">Date:<span style="color:red">&nbsp*</span></label>
+                                                                            <div class="col-md-2">
+                                                                                <input name="stock_date" id="stock_date" type="date" class="form-control" value="{{ date('Y-m-d') }}">
+                                                                            </div>
+
+                                                                        <label for="stock_category" class=" col-form-label text-md-right">Category:<span style="color:red">&nbsp*</span></label>
+                                                                            <div class="col-md-2">
+                                                                                <input name="stock_category" id="stock_category" type="text" class="form-control" value="{{ $row->category }}">
+                                                                        </div>     
+                                                    
+                                                                        <label for="stock_brand" class=" col-form-label text-md-right">Brand:<span style="color:red">&nbsp*</span></label>
+                                                                            <div class="col-md-2">
+                                                                                <input name="stock_brand" id="stock_brand" type="text" class="form-control" value="{{ $row->brand }}">
+                                                                        </div>
+
+                                                                        <label for="stock_desc" class=" col-form-label text-md-right">Description:<span style="color:red">&nbsp*</span></label>
+                                                                            <div class="col-md-2">
+                                                                                <input name="stock_desc" id="stock_desc" type="text" class="form-control" value="{{ $row->desc }}">
+                                                                            </div>
+                                                                    </div>
+                                                                        <div class="form-group row" >
+                                                                            <label for="stock_serialNumber" class=" col-form-label text-md-right" style="margin-left:3%">Serial Number:<span style="color:red">&nbsp*</span></label>
+                                                                            <div class="col-md-2">
+                                                                                <input name="stock_serialNumber" id="stock_serialNumber" type="text" class="form-control" value="{{ $row->serialNumber }}">
+                                                                            </div> 
+
+                                                                            <label for="stock_qty" class=" col-form-label text-md-right">Qty:<span style="color:red">&nbsp*</span></label>
+                                                                            <div class="col-md-2">
+                                                                                <input name="stock_qty" id="stock_qty" type="number" min="1" class="form-control" value="{{ Request::query('qty') }}" required>
+                                                                            </div>
+
+                                                                            <div class="col-md-2">
+                                                                                <input name="stock_action" id="stock_action" type="text" class="form-control" value="out"> 
+                                                                            </div>
+
+                                                                            <div class="col-md-2" >
+                                                                                <input name="supply_id" id="supply_id" type="number" class="form-control" value="{{ $row->id }}"> 
+                                                                            </div>
+
+                                                                        </div>
+                                                                    
+                                                            </div>
+                                                            
+                                                            <div class="modal-footer">
+                                                                <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>              
+                                                                <button class="btn btn-primary" type="submit"><i class="fas fa-sign-in-alt"></i>&nbspOUT</button>    
+                                                            </div>
+
+                                                            </form> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                    </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -118,30 +268,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                 <td>sdsdf</td>
-                                 <td>sdfs</td>
-                                 <td>sdfsdf</td>
-                                 <td>sdfsd</td>
-                                 <td>sdfsdf</td>
-                                 <td>10</td>
-                                 <td>In</td>
-                            </tr>
+                            @foreach ($stock as $item)
+                                <tr>
+                                    <td>{{ $item->stock_date }}</td>
+                                    <td>{{ $item->stock_category }}</td>
+                                    <td>{{ $item->stock_brand }}</td>
+                                    <td>{{ $item->stock_desc }}</td>
+                                    <td>{{ $item->stock_stock_serialNumber }}</td>
+                                    <td>{{ $item->stock_qty }}</td>
+                                    <td>
+                                        @if($item->stock_action == 'in')
+                                        <p class="btn-success text-center">{{ $item->stock_action }}</p>
+                                        @elseif($item->stock_action == 'out')
+                                        <p class="btn-danger text-center">{{ $item->stock_action }}</p>
+                                        @endif
+                                    </td>
+                               </tr>
+                            @endforeach
                         </tbody>
                     </table>
 
-                    <div class="col-md-4">
-                        <a  href="#" class="add-supply btn btn-primary float-left " role="button"><i class="fas fa-plus-circle"></i>&nbspNEW ENTRY</a>
-                    </div>
-
-                    <div class="col-md-3">
-                        <a  href="#" class="inSupply btn btn-primary float-right " role="button"><i class="fas fa-sign-in-alt"></i>&nbspIn</a>
-                    </div>
-
-                    <div class="col-md-3">
-                        <a  href="#" class="outSupply btn btn-primary float-right " role="button"><i class="fas fa-sign-out-alt"></i>  &nbspOut</a>
-                    </div>
-
+                   
                     
                 </div>
                 <br>
@@ -266,116 +413,6 @@
             </div>
         </div>
     </div>
-
-    {{-- Modal for editing personnel's information.  --}}
-
-   <div id="inSupply" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content" style="width:1320px; margin-left:-80%">
-
-                <div class="modal-header">
-                    <h4 class="inSupply-title float-left"></h4>
-                    <button class="close" type="button" data-dismiss="modal" >&times;</button>
-                </div>
-                <form method="POST" action="/inSupplies">
-
-                    @csrf
-
-                <div class="modal-body">
-
-                        <div class="form-group row" >
-                            <label for="stock_date" class=" col-form-label text-md-right" style="margin-left:3%">Date:<span style="color:red">&nbsp*</span></label>
-                                <div class="col-md-2">
-                                    <input name="stock_date" id="stock_date" type="date" class="form-control" value="{{ date('Y-m-d') }}">
-                                </div>
-
-                            <label for="stock_category" class=" col-form-label text-md-right">Category:<span style="color:red">&nbsp*</span></label>
-                                <div class="col-md-2">
-                                <select name="stock_category" id="stock_category" class="form-control">
-                                    <option value="" selected>Select Category</option>
-                                    @foreach ($items as $item)
-                                    <option value="{{ $item->category }}">{{ $item->category }}</option>
-                                    @endforeach
-                                </select>
-                            </div>     
-        
-                            <label for="stock_brand" class=" col-form-label text-md-right">Brand:<span style="color:red">&nbsp*</span></label>
-                                <div class="col-md-2">
-                                <select name="stock_brand" id="stock_brand" class="form-control">
-                                    <option value="" selected>Select Brand</option>
-                                    @foreach ($items as $item)
-                                    <option value="{{ $item->brand }}">{{ $item->brand }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <label for="stock_desc" class=" col-form-label text-md-right">Description:<span style="color:red">&nbsp*</span></label>
-                                <div class="col-md-2">
-                                <select name="stock_desc" id="stock_desc" class="form-control">
-                                    <option value="" selected>Select Description</option>
-                                    @foreach ($items as $item)
-                                    <option value="{{ $item->desc }}">{{ $item->desc }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                            <div class="form-group row" >
-                                <label for="stock_serialNumber" class=" col-form-label text-md-right" style="margin-left:3%">Serial Number:<span style="color:red">&nbsp*</span></label>
-                                <div class="col-md-2">
-                                    <input name="stock_serialNumber" id="stock_serialNumber" type="text" class="form-control" value="{{ old('stock_serialNumber') }}">
-                                </div> 
-
-                                <label for="stock_qty" class=" col-form-label text-md-right">Qty:<span style="color:red">&nbsp*</span></label>
-                                <div class="col-md-2">
-                                    <input name="stock_qty" id="stock_qty" type="number" min="1" class="form-control" value="{{ old('stock_qty') }}">
-                                </div>
-
-                                <div class="col-md-2" style="visibility:hidden">
-                                    <input name="stock_action" id="stock_action" type="text" class="form-control" value="in"> 
-                                </div>
-
-
-                            </div>
-                           
-                </div>
-                  
-                <div class="modal-footer">
-                    <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>              
-                    <button class="btn btn-primary" type="submit"><i class="fas fa-sign-in-alt"></i>&nbspIN</button>    
-                </div>
-
-                </form> 
-            </div>
-        </div>
-    </div>
-
-
-    <div id="outSupply" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content" style="width:1320px; margin-left:-80%">
-    
-                    <div class="modal-header">
-                        <h4 class="outSupply-title float-left"></h4>
-                        <button class="close" type="button" data-dismiss="modal" >&times;</button>
-                    </div>
-                    <form method="POST" action="/outSupplies">
-    
-                        @csrf
-    
-                    <div class="modal-body">
-                       
-                    </div>
-                      
-                    <div class="modal-footer">
-                        <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>              
-                        <button class="btn btn-primary" type="submit"><i class="fas fa-sign-out-alt"></i>&nbspOUT</button>    
-                    </div>
-    
-                    </form> 
-                </div>
-            </div>
-        </div>
-
 
 @endsection
 
