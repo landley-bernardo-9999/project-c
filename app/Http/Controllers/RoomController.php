@@ -9,6 +9,7 @@ use App\Owner;
 use DB;
 use Carbon\Carbon;
 use App\Personnel;
+use App\Inventory;
 
 class RoomController extends Controller
 {
@@ -93,14 +94,22 @@ class RoomController extends Controller
 
         $transaction = DB::table('transactions')
             ->join('residents', 'transactions.resident_id', '=', 'residents.id')
-            ->select('residents.*','transactions.*')
+            ->join('owners', 'transactions.room_id', 'owners.room_id')
+            ->select('residents.*','residents.firstName as residentFirstName', 'residents.middleName as residentMiddleName', 'residents.lastName as residentLastName'
+            ,'transactions.*', 'owners.*')
             ->where('transactions.room_id', $id)
             ->whereIn('transactions.transStatus',['active','inactive','pending','movingIn','movingOut'])
             ->get();
 
         $room_owner = Owner::where('owners.room_id', $id)->get();
 
-        return view('rooms.show', compact('room', 'rRow', 'transaction', 'resident','repairRow', 'repair', 'room_owner', 'ownerRow', 'personnel'));
+
+        $inventory = Inventory::where('inventory_roomId', $id)->get();
+
+        $inventoryRow = 1;
+
+
+        return view('rooms.show', compact('room', 'rRow', 'transaction', 'resident','repairRow', 'repair', 'room_owner', 'ownerRow', 'personnel', 'inventory', 'inventoryRow'));
     }
 
     /**

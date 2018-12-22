@@ -35,7 +35,10 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        Inventory::create($request->all());
+
+        return redirect('/rooms/'.$request->inventory_roomId)->with('success','Success!');
     }
 
     /**

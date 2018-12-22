@@ -232,10 +232,11 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Status</th>
-                                <th>Email</th>
-                                <th>Mobile</th>
+                                {{-- <th>Email</th>
+                                <th>Mobile</th> --}}
                                 <th>Move-in</th>
                                 <th>Move-out</th>
+                                <th colspan="2">Action</th>
                                 
                             </tr>
                         </thead>
@@ -243,7 +244,7 @@
                             @foreach ($transaction as $row) 
                             <tr>
                                 <th>{{ $rRow++ }}</th>
-                                <td>{{ $row->firstName }} {{ $row->middleName }} {{ $row->lastName }}</td>
+                                <td>{{ $row->residentFirstName }} {{ $row->residentMiddleName }} {{ $row->residentLastName }}</td>
                                 <td>
                                     @if($row->transStatus == 'active')
                                         <p class="btn-success text-center">{{ $row->transStatus }}</p>
@@ -253,10 +254,137 @@
                                         <p class="btn-warning text-center">{{ $row->transStatus }}</p>
                                     @endif
                                 </td>
-                                <td>{{ $row->emailAddress }}</td>
-                                <td>{{ $row->mobileNumber }}</td>
+                                {{-- <td>{{ $row->emailAddress }}</td>
+                                <td>{{ $row->mobileNumber }}</td> --}}
                                 <td>{{Carbon\Carbon::parse($row->moveInDate)->formatLocalized('%b %d %Y')}}</td>
                                 <td>{{Carbon\Carbon::parse($row->moveOutDate)->formatLocalized('%b %d %Y')}}</td>
+                                <td>
+                                    <a href="#" class="add-inventory text-left">INVENTORY</a>
+                                            
+                                                {{-- Modal for editing resident information. --}}
+
+                                                <div id="add-inventory" class="modal fade" role="dialog">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content" style="width:1320px; margin-left:-80%">
+
+                                                                <div class="modal-header">
+                                                                    <h4 class="add-inventory-title float-left"></h4>
+                                                                    <button class="close" type="button" data-dismiss="modal" >&times;</button>
+                                                                </div>
+
+                                                                <form action="/inventory" method="POST" >
+                                                                    @csrf 
+                                                                    
+                                                                <div class="modal-body">
+                                                                   <div class="card">
+                                                                        <div class="card-body">
+                                                                            
+                                                                            <hr>
+                                                                            
+                                                                                <h5>REMARKS:</h5> [<b>TR</b>: Transient] [<b>ST</b>: Short Term] [<b>LT</b>: Long Term] [<b>M</b>: Missing] [<b>PO</b>: Pulled Out] [<b>R</b>: Replaced] [<b>D</b>: Damaged]
+                                                                                <br><br>
+                                                                                <table class="table table-bordered">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>#</th>
+                                                                                        <th>Date</th>
+                                                                                        <th>Item</th>
+                                                                                        <th>Move-in Inventory</th>
+                                                                                        <th>Remarks</th>
+                                                                                        <th>Move-out Inventory</th>
+                                                                                        <th>Remarks</th>
+                                                                                    </tr>
+                                                                                </thead>    
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <th>{{ $inventoryRow++ }}</th>
+                                                                                        <td>
+                                                                                            <input name="inventory_date" id="inventory_date" type="date" class="form-control" value="{{ date('Y-m-d') }}" required>
+                                                                                            
+                                                                                                    <input name="inventory_roomId" id="inventory_roomId" type="number" class=" col-md-3" value="{{ $row->room_id }}"  >
+                                                                                                    <input name="inventory_residentId" id="inventory_residentId" type="number" class=" col-md-3" value="{{ $row->resident_id }}" >
+                                                                                          
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <input name="furn" id="furn" type="text" class="form-control    " value="Bed" readonly>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <input name="moveInInventory" id="moveInInventory" type="number" class="form-control" value="0"  >
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <input name="moveInRemarks" id="moveInRemarks" type="text" class="form-control" value="{{ old('moveInRemarks') }}"  >
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <input name="moveOutInventory" id="moveOutInventory" type="number" class="form-control" value="0"  >
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <input name="moveOutRemarks" id="moveOutRemarks" type="text" class="form-control" value="{{ old('moveOutRemarks') }}"  >
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>{{ $inventoryRow++ }}</th>
+                                                                                        <td>
+                                                                                            <input name="inventory_date" id="inventory_date" type="date" class="form-control" value="{{ date('Y-m-d') }}" required>
+                                                                                            <input name="inventory_roomId" id="inventory_roomId" type="number" class=" col-md-3" value="{{ $row->room_id }}"  >
+                                                                                                    <input name="inventory_residentId" id="inventory_residentId" type="number" class=" col-md-3" value="{{ $row->resident_id }}" >
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <input name="furn" id="furn" type="text" class="form-control    " value="Refrigerator" readonly>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <input name="moveInInventory" id="moveInInventory" type="number" class="form-control" value="0"  >
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <input name="moveInRemarks" id="moveInRemarks" type="text" class="form-control" value="{{ old('moveInRemarks') }}"  >
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <input name="moveOutInventory" id="moveOutInventory" type="number" class="form-control" value="0"  >
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <input name="moveOutRemarks" id="moveOutRemarks" type="text" class="form-control" value="{{ old('moveOutRemarks') }}"  >
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>{{ $inventoryRow++ }}</th>
+                                                                                        <td>
+                                                                                            <input name="inventory_date" id="inventory_date" type="date" class="form-control" value="{{ date('Y-m-d') }}" required>
+                                                                                            <input name="inventory_roomId" id="inventory_roomId" type="number" class=" col-md-3" value="{{ $row->room_id }}"  >
+                                                                                                    <input name="inventory_residentId" id="inventory_residentId" type="number" class=" col-md-3" value="{{ $row->resident_id }}" >
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <input name="furn" id="furn" type="text" class="form-control" value="Stove" readonly>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <input name="moveInInventory" id="moveInInventory" type="number" class="form-control" value="0"  >
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <input name="moveInRemarks" id="moveInRemarks" type="text" class="form-control" value="{{ old('moveInRemarks') }}"  >
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <input name="moveOutInventory" id="moveOutInventory" type="number" class="form-control" value="0"  >
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <input name="moveOutRemarks" id="moveOutRemarks" type="text" class="form-control" value="{{ old('moveOutRemarks') }}"  >
+                                                                                        </td>
+                                                                                    </tr>
+
+                                                                                </tbody>
+                                                                            </table>                                                                
+                                                                   </div>
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>              
+                                                                    <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspADD</button>
+                                                                </div>
+
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            
+                                </td>
+                                <td></td>
                                 
                             </tr>
                             @endforeach

@@ -175,7 +175,7 @@
          $(document).on('click','.add-inventory', function(){
             $('#add-inventory').modal('show');
             $('.add-inventory-form').show();
-            $('.add-inventory-title').text('Inventory Information');
+            $('.add-inventory-title').text('Inventory');
         });
 
 
