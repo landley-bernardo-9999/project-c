@@ -55,3 +55,9 @@ Route::get('/search/violations{s?}', 'ViolationController@index')->where('s', '[
 Route::get('/search/personnels{s?}', 'PersonnelController@index')->where('s', '[\w\d]+');
 
 Route::get('/search/supplies{s?}', 'SupplyController@index')->where('s', '[\w\d]+');
+
+// This is the route for messaging.
+
+Route::get('api/users', 'Api\V1\UsersController@index');
+Route::post('api/messages', 'Api\V1\MessagesController@index');
+Route::post('api/messages/send', 'Api\V1\MessagesController@store');

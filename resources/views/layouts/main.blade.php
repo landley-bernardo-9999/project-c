@@ -6,6 +6,11 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+    {{-- Messaging App --}}
+     @auth
+        <meta name="userID" content="{{ auth()->user()->id }}">
+    @endauth
 
     <title>@yield('title')</title>
 

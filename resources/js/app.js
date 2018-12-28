@@ -18,7 +18,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
+Vue.component('chat-application', require('./components/ChatApplication.vue'))
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
 
@@ -29,5 +29,12 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+      userID: null
+    },
+    mounted () {
+      // Assign the ID from meta tag for future use in application
+      this.userID = document.head.querySelector('meta[name="userID"]').content
+    }
 });
