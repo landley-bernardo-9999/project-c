@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers; 
 use Illuminate\Http\Request;
 use App\Room;
 use App\Resident;
@@ -10,6 +9,9 @@ use DB;
 use Carbon\Carbon;
 use App\Personnel;
 use App\Inventory;
+use Mail;
+use Auth;
+
 
 class RoomController extends Controller
 {
@@ -64,6 +66,12 @@ class RoomController extends Controller
         $attribute = $this->validateInput();
 
         Room::create($attribute);
+
+        // Mail::to('webmaster@marthaservices.com')->send(
+        //     new RoomCreated($room)
+        // );
+
+            
 
         return redirect('/rooms')->with('success','Room '.$request->roomNo.' has been created!');
     }

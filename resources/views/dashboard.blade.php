@@ -275,12 +275,9 @@
                     </div>
                     <br><br>
                     <h1>Messaging App</h1>
-                    <div class="row justify-content-center">
-                        <div class="col-md-12">
-                            <chat-application>sefsf</chat-application>
-                           
-                        </div>
-                    </div>  
+                    
+                            <example-component>dfsddfsdfsf</example-component> 
+                   
 
             </div>
             

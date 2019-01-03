@@ -2,13 +2,29 @@
 
 namespace App;
 
+use App\Mail\RoomCreated; //Added
+use Illuminate\Support\Facades\Mail; //Added
 use Illuminate\Database\Eloquent\Model;
+
 
 class Room extends Model
 {
     protected $fillable = [
         'roomNo', 'building', 'project','longTermRent', 'shortTermRent', 'status', 'size', 'capacity'
     ];
+
+    //Hooks and Seesaws
+    
+    public static function boot(){
+
+        parent::boot();
+
+        static::created(function ($room){
+            Mail::to('webmaster@marthaservices.com')->send(
+                new RoomCreated($room)
+            );
+        });
+    }
 
     public function transactions(){
         return $this->hasMany(Transaction::class);
