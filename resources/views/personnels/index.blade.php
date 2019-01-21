@@ -74,9 +74,8 @@
                                     <tr>
                                         <th>#</th>
                                         <th>First Name</th>
-                                        <th>Middle Name</th>
                                         <th>Last Name</th>
-                                        <th>Email</th>
+                                        
                                         <th>Mobile</th>
                                         <th>Province</th>
                                         <th>Action</th>
@@ -87,9 +86,9 @@
                                         <tr>
                                             <th>{{ $perRow++ }}</th>
                                             <td>{{ $row->firstName }}</td>
-                                            <td>{{ $row->middleName }}</td>
+                                            
                                             <td>{{ $row->lastName }}</td>
-                                            <td>{{ $row->emailAddress }}</td>
+                                            
                                             <td>{{ $row->mobileNumber }}</td>
                                             <td>{{ $row->province }}</td>
                                             <td><a href="/personnels/{{ $row->id }}">MORE</a></td>

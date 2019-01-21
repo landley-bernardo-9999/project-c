@@ -43,7 +43,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>First Name</th>
-                                        <th>Middle Name</th>
+                                        
                                         <th>Last Name</th> 
                                         
                                         <th>Email</th>
@@ -57,7 +57,7 @@
                                         <tr>
                                             <th>{{ $ownerRow++ }}</th>
                                             <td>{{ $row->firstName }}</td>
-                                            <td>{{ $row->middleName }}</td>
+                                            
                                             <td>{{ $row->lastName }}</td>
                                             
                                             <td>{{ $row->emailAddress }}</td>

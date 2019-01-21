@@ -836,13 +836,13 @@
                     <div class="form-group row" >
                         <label for="rep" class=" col-form-label text-md-right" style="margin-left:3%">Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="rep" id="rep" type="text" class="form-control" value="{{ old('rep') }}" >
-                        </div>
+                                <input name="rep" id="rep" type="text" class="form-control" value="{{ old('rep') }}" >
+                            </div>
                         
                         <label for="repPhoneNumber" class=" col-form-label text-md-right" style="margin-left:3%">Mobile:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="repPhoneNumber" id="repPhoneNumber" type="text" class="form-control" value="{{ old('repPhoneNumber') }}" >
-                        </div>
+                                <input name="repPhoneNumber" id="repPhoneNumber" type="text" class="form-control" value="{{ old('repPhoneNumber') }}" >
+                            </div>
     
                     </div>
 

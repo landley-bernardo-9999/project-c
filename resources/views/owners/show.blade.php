@@ -87,14 +87,15 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Room No</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($room as $row) 
                                         <tr>
-                                           <th>{{ $ownerRow++ }}</th>
-                                           <td>{{ $row->roomNo }}</td>
-                                           
+                                            <th>{{ $ownerRow++ }}</th>
+                                            <td>{{ $row->roomNo }}</td>
+                                            <td>{{ $row->status }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

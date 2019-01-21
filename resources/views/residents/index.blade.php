@@ -141,9 +141,9 @@
                                     <tr>
                                         <th>#</th>
                                         <th>First Name</th>
-                                        <th>Middle Name</th>
+                                        
                                         <th>Last Name</th>
-                                        {{-- <th>Birthdate</th> --}}
+                                        
                                         <th>Email</th>
                                         <th>Mobile</th>
                                         
@@ -156,9 +156,9 @@
                                     <tr>
                                         <th>{{ $rRow++ }}</th>
                                         <td>{{ $row->firstName }}</td>
-                                        <td>{{ $row->middleName }}</td>
+                                        
                                         <td>{{ $row->lastName }}</td>
-                                        {{-- <td>{{ $row->birthDate }}</td> --}}
+                                        
                                         <td>{{ $row->emailAddress }}</td>
                                         <td>{{ $row->mobileNumber }}</td>
                                         
