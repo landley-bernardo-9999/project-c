@@ -483,17 +483,17 @@
                     <div class="form-group row" >
                         <label for="firstName" class=" col-form-label text-md-right" style="margin-left:3%">First Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="firstName" id="firstName" type="text" class="form-control" value="{{ old('firstName') }}" style="text-transform:uppercase" required>
+                            <input name="firstName" id="firstName" type="text" class="form-control" value="{{ old('firstName') }}" required>
                         </div>     
 
                         <label for="middleName" class=" col-form-label text-md-right">Middle Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="middleName" id="middleName" type="text" class="form-control" value="{{ old('middleName') }}" style="text-transform:uppercase">
+                            <input name="middleName" id="middleName" type="text" class="form-control" value="{{ old('middleName') }}">
                         </div>
 
                         <label for="lastName" class="col-form-label text-md-right">Last Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="lastName" id="lastName" type="text" class="form-control" value="{{ old('lastName') }}" style="text-transform:uppercase" required>
+                            <input name="lastName" id="lastName" type="text" class="form-control" value="{{ old('lastName') }}" required>
                         </div>
 
                         <label for="birthDate" class="col-form-label text-md-right">Birthdate:<span style="color:red">&nbsp*</span></label>
@@ -521,22 +521,22 @@
                     <div class="form-group row" >
                         <label for="houseNumber" class=" col-form-label text-md-right" style="margin-left:3%">House No:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="houseNumber" id="houseNumber" type="text" class="form-control" value="{{ old('houseNumber') }}" style="text-transform:uppercase">
+                            <input name="houseNumber" id="houseNumber" type="text" class="form-control" value="{{ old('houseNumber') }}">
                         </div>     
     
                         <label for="barangay" class=" col-form-label text-md-right">Barangay:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="barangay" id="barangay" type="text" class="form-control" value="{{ old('barangay') }}" style="text-transform:uppercase">
+                            <input name="barangay" id="barangay" type="text" class="form-control" value="{{ old('barangay') }}" >
                         </div>
 
                         <label for="municipality" class=" col-form-label text-md-right">Municipality:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="municipality" id="municipality" type="text" class="form-control" value="{{ old('municipality') }}" style="text-transform:uppercase">
+                            <input name="municipality" id="municipality" type="text" class="form-control" value="{{ old('municipality') }}">
                         </div>
 
                         <label for="province" class=" col-form-label text-md-right">Province:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="province" id="province" type="text" class="form-control" value="{{ old('province') }}" style="text-transform:uppercase">
+                            <input name="province" id="province" type="text" class="form-control" value="{{ old('province') }}" >
                         </div>
                     </div>
 
@@ -563,12 +563,12 @@
                     <div class="form-group row" >
                         <label for="school" class=" col-form-label text-md-right" style="margin-left:3%">School:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="school" id="school" type="text" class="form-control" value="{{ old('school') }}" style="text-transform:uppercase">
+                            <input name="school" id="school" type="text" class="form-control" value="{{ old('school') }}" >
                         </div>     
     
                         <label for="course" class=" col-form-label text-md-right">Course:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="course" id="course" type="text" class="form-control" value="{{ old('course') }}" style="text-transform:uppercase">
+                            <input name="course" id="course" type="text" class="form-control" value="{{ old('course') }}">
                         </div>
 
                         <label for="yearLevel" class=" col-form-label text-md-right">Year Level:<span style="color:red">&nbsp*</span></label>
@@ -582,7 +582,7 @@
                     <div class="form-group row" >
                         <label for="guardian" class=" col-form-label text-md-right" style="margin-left:3%">Guardian's Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="guardian" id="guardian" type="text" class="form-control" value="{{ old('guardian') }}" style="text-transform:uppercase">
+                            <input name="guardian" id="guardian" type="text" class="form-control" value="{{ old('guardian') }}" >
                         </div>
                         
                         <label for="guardianPhoneNumber" class=" col-form-label text-md-right" style="margin-left:3%">Contact:<span style="color:red">&nbsp*</span></label>
@@ -755,17 +755,17 @@
                     <div class="form-group row" >
                         <label for="firstName" class=" col-form-label text-md-right" style="margin-left:3%">First Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="firstName" id="firstName" type="text" class="form-control" value="{{ old('firstName') }}" required style="text-transform:uppercase">
+                            <input name="firstName" id="firstName" type="text" class="form-control" value="{{ old('firstName') }}" required>
                         </div>     
 
                         <label for="middleName" class=" col-form-label text-md-right">Middle Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="middleName" id="middleName" type="text" class="form-control" value="{{ old('middleName') }}" style="text-transform:uppercase">
+                            <input name="middleName" id="middleName" type="text" class="form-control" value="{{ old('middleName') }}">
                         </div>
 
                         <label for="lastName" class="col-form-label text-md-right">Last Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="lastName" id="lastName" type="text" class="form-control" value="{{ old('lastName') }}" required style="text-transform:uppercase">
+                            <input name="lastName" id="lastName" type="text" class="form-control" value="{{ old('lastName') }}" required>
                         </div>
 
                         <label for="birthDate" class="col-form-label text-md-right">Birthdate:<span style="color:red">&nbsp*</span></label>
@@ -793,22 +793,22 @@
                     <div class="form-group row" >
                         <label for="houseNumber" class=" col-form-label text-md-right" style="margin-left:3%">House No:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="houseNumber" id="houseNumber" type="text" class="form-control" value="{{ old('houseNumber') }}" style="text-transform:uppercase">
+                            <input name="houseNumber" id="houseNumber" type="text" class="form-control" value="{{ old('houseNumber') }}" >
                         </div>     
     
                         <label for="barangay" class=" col-form-label text-md-right">Barangay:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="barangay" id="barangay" type="text" class="form-control" value="{{ old('barangay') }}" style="text-transform:uppercase">
+                            <input name="barangay" id="barangay" type="text" class="form-control" value="{{ old('barangay') }}" >
                         </div>
 
                         <label for="municipality" class=" col-form-label text-md-right">Municipality:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="municipality" id="municipality" type="text" class="form-control" value="{{ old('municipality') }}" style="text-transform:uppercase">
+                            <input name="municipality" id="municipality" type="text" class="form-control" value="{{ old('municipality') }}">
                         </div>
 
                         <label for="province" class=" col-form-label text-md-right">Province:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="province" id="province" type="text" class="form-control" value="{{ old('province') }}" style="text-transform:uppercase">
+                            <input name="province" id="province" type="text" class="form-control" value="{{ old('province') }}" >
                         </div>
                     </div>
 
@@ -836,7 +836,7 @@
                     <div class="form-group row" >
                         <label for="rep" class=" col-form-label text-md-right" style="margin-left:3%">Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="rep" id="rep" type="text" class="form-control" value="{{ old('rep') }}" style="text-transform:uppercase">
+                            <input name="rep" id="rep" type="text" class="form-control" value="{{ old('rep') }}" >
                         </div>
                         
                         <label for="repPhoneNumber" class=" col-form-label text-md-right" style="margin-left:3%">Mobile:<span style="color:red">&nbsp*</span></label>

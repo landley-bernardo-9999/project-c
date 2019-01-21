@@ -48,8 +48,8 @@
                                         <th>Resident</th>
                                         <th>Room No</th>
                                         <th>Description</th>
-                                        <th>Endorsed To</th>
-                                        <th>Total Cost</th>
+                                        <th>Endorsed</th>
+                                        <th>Cost</th>
                                         <th>Status</th>
                                         <th>Finished</th>
                                         <th>Action</th>

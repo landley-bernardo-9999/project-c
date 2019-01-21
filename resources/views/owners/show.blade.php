@@ -134,17 +134,17 @@
                     <div class="form-group row" >
                         <label for="firstName" class=" col-form-label text-md-right" style="margin-left:3%">First Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="firstName" id="firstName" type="text" class="form-control" value="{{ $owner->firstName }}" required style="text-transform:uppercase">
+                            <input name="firstName" id="firstName" type="text" class="form-control" value="{{ $owner->firstName }}" required >
                         </div>     
 
                         <label for="middleName" class=" col-form-label text-md-right">Middle Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="middleName" id="middleName" type="text" class="form-control" value="{{ $owner->middleName }}" style="text-transform:uppercase">
+                            <input name="middleName" id="middleName" type="text" class="form-control" value="{{ $owner->middleName }}">
                         </div>
 
                         <label for="lastName" class="col-form-label text-md-right">Last Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="lastName" id="lastName" type="text" class="form-control" value="{{ $owner->lastName }}" required style="text-transform:uppercase">
+                            <input name="lastName" id="lastName" type="text" class="form-control" value="{{ $owner->lastName }}" required >
                         </div>
 
                         <label for="birthDate" class="col-form-label text-md-right">Birthdate:<span style="color:red">&nbsp*</span></label>
@@ -158,7 +158,7 @@
                     <div class="form-group row" >
                         <label for="emailAddress" class=" col-form-label text-md-right" style="margin-left:3%">Email Address:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="emailAddress" id="emailAddress" type="email" class="form-control" value="{{ $owner->emailAddress }}" style="text-transform:uppercase">
+                            <input name="emailAddress" id="emailAddress" type="email" class="form-control" value="{{ $owner->emailAddress }}" >
                         </div>  
 
                         <label for="mobileNumber" class=" col-form-label text-md-right">Mobile Number:<span style="color:red">&nbsp*</span></label>
@@ -172,22 +172,22 @@
                     <div class="form-group row" >
                         <label for="houseNumber" class=" col-form-label text-md-right" style="margin-left:3%">House No:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="houseNumber" id="houseNumber" type="text" class="form-control" value="{{ $owner->houseNumber }}" style="text-transform:uppercase">
+                            <input name="houseNumber" id="houseNumber" type="text" class="form-control" value="{{ $owner->houseNumber }}" >
                         </div>     
     
                         <label for="barangay" class=" col-form-label text-md-right">Barangay:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="barangay" id="barangay" type="text" class="form-control" value="{{ $owner->barangay }}" style="text-transform:uppercase">
+                            <input name="barangay" id="barangay" type="text" class="form-control" value="{{ $owner->barangay }}" >
                         </div>
 
                         <label for="municipality" class=" col-form-label text-md-right">Municipality:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="municipality" id="municipality" type="text" class="form-control" value="{{ old('municipality') }}" style="text-transform:uppercase">
+                            <input name="municipality" id="municipality" type="text" class="form-control" value="{{ old('municipality') }}">
                         </div>
 
                         <label for="province" class=" col-form-label text-md-right">Province:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="province" id="province" type="text" class="form-control" value="{{ $owner->municipality }}" style="text-transform:uppercase">
+                            <input name="province" id="province" type="text" class="form-control" value="{{ $owner->municipality }}">
                         </div>
                     </div>
 
@@ -215,12 +215,12 @@
                     <div class="form-group row" >
                         <label for="rep" class=" col-form-label text-md-right" style="margin-left:3%">Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="rep" id="rep" type="text" class="form-control" value="{{ $owner->rep }}" style="text-transform:uppercase">
+                            <input name="rep" id="rep" type="text" class="form-control" value="{{ $owner->rep }}" >
                         </div>
                         
                         <label for="repPhoneNumber" class=" col-form-label text-md-right" style="margin-left:3%">Mobile:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="repPhoneNumber" id="repPhoneNumber" type="text" class="form-control" value="{{ $owner->repPhoneNumber }}" style="text-transform:uppercase">
+                            <input name="repPhoneNumber" id="repPhoneNumber" type="text" class="form-control" value="{{ $owner->repPhoneNumber }}" >
                         </div>
     
                     </div>

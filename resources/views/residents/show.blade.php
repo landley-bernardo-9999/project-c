@@ -661,7 +661,7 @@
                      <div class="form-group row" >
                         <label for="actionTaken" class="col-form-label text-md-right" style="margin-left:3%">Action Taken:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="actionTaken" id="actionTaken" type="string" class="form-control" value="{{ old('actionTaken') }}" style="text-transform:uppercase">
+                            <input name="actionTaken" id="actionTaken" type="string" class="form-control" value="{{ old('actionTaken') }}" >
                         </div> 
                         
                          <div class="col-md-2" style="visibility:hidden">
