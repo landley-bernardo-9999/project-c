@@ -153,7 +153,6 @@ class ResidentController extends Controller
             ->join('owners', 'transactions.room_id', 'owners.room_id')
             ->select('residents.*','transactions.*', 'owners.*')
             ->where('transactions.resident_id', $id)
-            // ->whereIn('transactions.transStatus',['active','pending','movingIn','movingOut'])
             ->get();
 
         $resRow = 1;
@@ -173,7 +172,7 @@ class ResidentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     *   the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id

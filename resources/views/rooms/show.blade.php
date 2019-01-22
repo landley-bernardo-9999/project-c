@@ -13,23 +13,17 @@
                 </div>
 
                 <form method="POST" action="/rooms/{{ $room->id }}">
-                
-                {{-- A method to tell the browser that we are updating and not posting. --}}
-
-                @method('PATCH') 
-
-                    {{-- Additional security feature laravel provides. --}}
-
+                @method('PATCH')
                     @csrf
 
                 <div class="modal-body">
-                     
+
                     {{-- Room number input.     --}}
                     <div class="form-group row">
                         <label for="roomNo" class="col-md-4 col-form-label text-md-right">Room No:<span style="color:red">&nbsp*</span></label>
                         <div class="col-md-6">
                             <input name="roomNo" id="roomNo" type="text" class="form-control" value="{{ $room->roomNo }}" readonly>
-                        </div>     
+                        </div>
                     </div>
 
                     {{-- Building input --}}
@@ -47,7 +41,7 @@
                                 <option value="arkansas">Arkansas</option>
                                 <option value="colorado">Colorado</option>
                             </select>
-                        </div>     
+                        </div>
                     </div>
 
                     {{-- Project Name Input --}}
@@ -60,7 +54,7 @@
                                 <option value="northCambridge">North Cambridge</option>
                                 <option value="theCourtyards">The Courtyards</option>
                             </select>
-                        </div>     
+                        </div>
                     </div>
 
                     {{-- Short term rent input. --}}
@@ -69,7 +63,7 @@
                         <label for="shortTermRent" class="col-md-4 col-form-label text-md-right">Short-term Rent:<span style="color:red">&nbsp*</span></label>
                         <div class="col-md-6">
                             <input name="shortTermRent" id="shortTermRent" type="number" min="1" class="form-control" value="{{ $room->shortTermRent }}" required>
-                        </div>     
+                        </div>
                     </div>
 
                     {{-- Long term rent input. --}}
@@ -78,7 +72,7 @@
                         <label for="longTermRent" class="col-md-4 col-form-label text-md-right">Long-term Rent:<span style="color:red">&nbsp*</span></label>
                         <div class="col-md-6">
                             <input name="longTermRent" id="longTermRent" type="number" min="1" class="form-control" value="{{ $room->longTermRent }}" required>
-                        </div>     
+                        </div>
                     </div>
 
                     {{-- Room status input. --}}
@@ -92,7 +86,7 @@
                                 <option value="reserved">Reserved</option>
                                 <option value="vacant">Vacant</option>
                            </select>
-                        </div>     
+                        </div>
                     </div>
 
                     {{-- Size of the room input. --}}
@@ -101,7 +95,7 @@
                         <label for="size" class="col-md-4 col-form-label text-md-right">Size:<span style="color:red">&nbsp*</span></label>
                         <div class="col-md-6">
                             <input name="size" id="size" type="number" min="1" class="form-control" value="{{ $room->size }}" required>
-                        </div>     
+                        </div>
                     </div>
 
                     {{-- Capacity of the room input. --}}
@@ -110,17 +104,17 @@
                         <label for="capacity" class="col-md-4 col-form-label text-md-right">Capacity:<span style="color:red">&nbsp*</span></label>
                         <div class="col-md-6">
                             <input name="capacity" id="capacity" type="number" min="1" class="form-control" value="{{ $room->capacity }}" required>
-                        </div>     
+                        </div>
                     </div>
 
                 </div>
-                  
+
                 <div class="modal-footer">
-                    <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>              
-                    <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspUPDATE</button>    
+                    <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>
+                    <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspUPDATE</button>
                 </div>
 
-                </form> 
+                </form>
             </div>
         </div>
     </div>
@@ -136,21 +130,14 @@
             <a class="nav-link" id="v-pills-violations-tab" href="/violations" role="tab" aria-controls="v-pills-violations" aria-selected="false"><i class="fas fa-user-times"></i>&nbsp&nbsp&nbspViolations</a>
             <a class="nav-link" id="v-pills-supplies-tab" href="/supplies" role="tab" aria-controls="v-pills-supplies" aria-selected="false"><i class="fas fa-clipboard-list"></i>&nbsp&nbsp&nbspSupplies</a>
             <a class="nav-link" id="v-pills-personnels-tab" href="/personnels" role="tab" aria-controls="v-pills-personnels" aria-selected="false"><i class="fas fa-user-lock"></i>&nbsp&nbsp&nbspPersonnels</a>
-        </div> 
+        </div>
     </div>
 
 {{-- Content of the room section. --}}
 
     <div class="col-md-10">
         @include('includes.notifications')
-            <a href="#" class="btn edit-room float-left"><i class="fas fa-edit"></i>&nbspEDIT ROOM</a>       
-
-            {{-- <form method="POST" action="/rooms/{{ $room->id }}">
-                @method('delete')
-                @csrf
-                <button id="FormDeleteTime" class="button btn btn-danger float-right"><i class="fas fa-trash-alt"></i>&nbspDELETE ROOM</button>
-            </form>   --}}
-
+            <a href="#" class="btn edit-room float-left"><i class="fas fa-edit"></i>&nbspEDIT ROOM</a>
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" >
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle btn " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-plus-circle"></i>&nbspADD</a>
@@ -161,8 +148,8 @@
                             <a href="#" class="btn dropdown-item">Billing</a>
                         </div>
                     </li>
-                </ul> 
-    
+                </ul>
+
         <div class="card">
             <div class="container-fluid" style="padding:3%;">
 
@@ -170,33 +157,33 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                            
-                            <h5 class="float-left">Room No <span style="color:red; font-size: 25px;">&nbsp<b>{{ $room->roomNo }}</b></span></h5>  
-                        <table class="table">   
+
+                            <h5 class="float-left">Room No <span style="color:red; font-size: 25px;">&nbsp<b>{{ $room->roomNo }}</b></span></h5>
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th>Building</th>
-                                    <td>{{ $room->building }}</td>  
+                                    <td>{{ $room->building }}</td>
                                 </tr>
                                 <tr>
                                     <th>Long Term Rent</th>
-                                    <td>{{ $room->longTermRent }}</td>  
+                                    <td>{{ $room->longTermRent }}</td>
                                 </tr>
                                 <tr>
                                     <th>Short Term Rent</th>
-                                    <td>{{ $room->shortTermRent }}</td>  
+                                    <td>{{ $room->shortTermRent }}</td>
                                 </tr>
                                 <tr>
                                     <th>Status</th>
-                                    <td>{{ $room->status }}</td>  
+                                    <td>{{ $room->status }}</td>
                                 </tr>
                                 <tr>
                                     <th>Capacity</th>
-                                    <td>{{ $room->capacity }}<span style="color:red">&nbsppax</span></td>  
+                                    <td>{{ $room->capacity }}<span style="color:red">&nbsppax</span></td>
                                 </tr>
                                 <tr>
                                     <th>Size</th>
-                                    <td>{{ $room->size }}<span style="color:red">&nbspsqm</span></td>  
+                                    <td>{{ $room->size }}<span style="color:red">&nbspsqm</span></td>
                                 </tr>
                                 @foreach($room_owner as $row)
                                 <tr>
@@ -213,12 +200,12 @@
                                 </tr>
 
                                 @endforeach
-                                
+
                             </thead>
-                            
-                    </table> 
-                    </div>   
-                
+
+                    </table>
+                    </div>
+
                 </div>
                 <br>
 
@@ -232,16 +219,14 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Status</th>
-                                {{-- <th>Email</th>
-                                <th>Mobile</th> --}}
                                 <th>Move-in</th>
                                 <th>Move-out</th>
-                                <th colspan="2">Action</th>
-                                
+                                <th style="text-align:center" colspan="3">Action</th>
+
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($transaction as $row) 
+                            @foreach ($transaction as $row)
                             <tr>
                                 <th>{{ $rRow++ }}</th>
                                 <td>{{ $row->residentFirstName }} {{ $row->residentMiddleName }} {{ $row->residentLastName }}</td>
@@ -260,7 +245,7 @@
                                 <td>{{Carbon\Carbon::parse($row->moveOutDate)->formatLocalized('%b %d %Y')}}</td>
                                 <td>
                                     <a href="#" class="add-inventory text-left">INVENTORY</a>
-                                            
+
                                                 {{-- Modal for editing resident information. --}}
 
                                                 <div id="add-inventory" class="modal fade" role="dialog">
@@ -273,14 +258,14 @@
                                                                 </div>
 
                                                                 <form action="/inventory" method="POST" >
-                                                                    @csrf 
-                                                                    
+                                                                    @csrf
+
                                                                 <div class="modal-body">
                                                                    <div class="card">
                                                                         <div class="card-body">
-                                                                            
+
                                                                             <hr>
-                                                                            
+
                                                                                 <h5>REMARKS:</h5> [<b>TR</b>: Transient] [<b>ST</b>: Short Term] [<b>LT</b>: Long Term] [<b>M</b>: Missing] [<b>PO</b>: Pulled Out] [<b>R</b>: Replaced] [<b>D</b>: Damaged]
                                                                                 <br><br>
                                                                                 <table class="table table-bordered">
@@ -294,16 +279,16 @@
                                                                                         <th>Move-out Inventory</th>
                                                                                         <th>Remarks</th>
                                                                                     </tr>
-                                                                                </thead>    
+                                                                                </thead>
                                                                                 <tbody>
                                                                                     <tr>
                                                                                         <th>{{ $inventoryRow++ }}</th>
                                                                                         <td>
                                                                                             <input name="inventory_date" id="inventory_date" type="date" class="form-control" value="{{ date('Y-m-d') }}" required>
-                                                                                            
+
                                                                                                     <input name="inventory_roomId" id="inventory_roomId" type="number" class=" col-md-3" value="{{ $row->room_id }}"  >
                                                                                                     <input name="inventory_residentId" id="inventory_residentId" type="number" class=" col-md-3" value="{{ $row->resident_id }}" >
-                                                                                          
+
                                                                                         </td>
                                                                                         <td>
                                                                                             <input name="furn" id="furn" type="text" class="form-control    " value="Bed" readonly>
@@ -369,12 +354,12 @@
                                                                                     </tr>
 
                                                                                 </tbody>
-                                                                            </table>                                                                
+                                                                            </table>
                                                                    </div>
                                                                 </div>
 
                                                                 <div class="modal-footer">
-                                                                    <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>              
+                                                                    <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>
                                                                     <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspADD</button>
                                                                 </div>
 
@@ -382,10 +367,10 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                            
+
                                 </td>
-                                <td></td>
-                                
+                                <td><a href="#" class="move-out-resident float-left">MOVE OUT</a></td>
+                                <td><a href="#" class="renew-contract-resident float-left">RENEW </a></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -456,9 +441,9 @@
                 </div>
 
 
-            </div>    
+            </div>
         </div>
-        </div>     
+        </div>
 
         {{-- Modal for adding resident.  --}}
 
@@ -484,7 +469,7 @@
                         <label for="firstName" class=" col-form-label text-md-right" style="margin-left:3%">First Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
                             <input name="firstName" id="firstName" type="text" class="form-control" value="{{ old('firstName') }}" required>
-                        </div>     
+                        </div>
 
                         <label for="middleName" class=" col-form-label text-md-right">Middle Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
@@ -501,14 +486,14 @@
                             <input name="birthDate" id="birthDate" type="date" class="form-control" value="{{ old('birthDate') }}" >
                         </div>
                     </div>
-                    
+
                     <label for=""><b style="font-size:20px">Contact Information</b></label>
 
                     <div class="form-group row" >
                         <label for="emailAddress" class=" col-form-label text-md-right" style="margin-left:3%">Email Address:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
                             <input name="emailAddress" id="emailAddress" type="email" class="form-control" value="{{ old('emailAddress') }}" style="text-transform:uppercase">
-                        </div>  
+                        </div>
 
                         <label for="mobileNumber" class=" col-form-label text-md-right">Mobile Number:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
@@ -522,8 +507,8 @@
                         <label for="houseNumber" class=" col-form-label text-md-right" style="margin-left:3%">House No:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
                             <input name="houseNumber" id="houseNumber" type="text" class="form-control" value="{{ old('houseNumber') }}">
-                        </div>     
-    
+                        </div>
+
                         <label for="barangay" class=" col-form-label text-md-right">Barangay:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
                             <input name="barangay" id="barangay" type="text" class="form-control" value="{{ old('barangay') }}" >
@@ -544,19 +529,19 @@
                             <label for="zip" class=" col-form-label text-md-right" style="margin-left:3%">Zipcode:<span style="color:red">&nbsp*</span></label>
                                 <div class="col-md-2">
                                 <input name="zip" id="zip" type="text" class="form-control" value="{{ old('zip') }}" >
-                            </div>  
+                            </div>
 
                             <label for="room_id" class=" col-form-label text-md-right" style="visibility: hidden">Room No:<span style="color:red">&nbsp*</span></label>
                                 <div class="col-md-2" style="visibility: hidden">
                                 <input name="room_id" id="room_id" type="number" class="form-control" value="{{$room->id}}" >
-                            </div> 
-                            
+                            </div>
+
                             <label for="roomNo" class=" col-form-label text-md-right" style="visibility: hidden">Room No:<span style="color:red">&nbsp*</span></label>
                                 <div class="col-md-2" style="visibility: hidden">
                                 <input name="roomNo" id="roomNo" type="text" class="form-control" value="{{$room->roomNo}}" >
-                            </div> 
-                
-        
+                            </div>
+
+
                         </div>
                     <label for=""><b style="font-size:20px">Educational Information</b></label>
 
@@ -564,8 +549,8 @@
                         <label for="school" class=" col-form-label text-md-right" style="margin-left:3%">School:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
                             <input name="school" id="school" type="text" class="form-control" value="{{ old('school') }}" >
-                        </div>     
-    
+                        </div>
+
                         <label for="course" class=" col-form-label text-md-right">Course:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
                             <input name="course" id="course" type="text" class="form-control" value="{{ old('course') }}">
@@ -584,12 +569,12 @@
                             <div class="col-md-2">
                             <input name="guardian" id="guardian" type="text" class="form-control" value="{{ old('guardian') }}" >
                         </div>
-                        
+
                         <label for="guardianPhoneNumber" class=" col-form-label text-md-right" style="margin-left:3%">Contact:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
                             <input name="guardianPhoneNumber" id="guardianPhoneNumber" type="text" class="form-control" value="{{ old('guardianPhoneNumber') }}" >
                         </div>
-    
+
                     </div>
 
                     <label for=""><b style="font-size:20px">Upload Image</b></label>
@@ -598,18 +583,18 @@
                         <label for="img" class=" col-form-label text-md-right" style="margin-left:3%">Image:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
                             <input name="img" id="img" type="file" class="form-control" value="{{ old('img') }}" >
-                        </div>     
-    
+                        </div>
+
                     </div>
 
                 </div>
-                  
+
                 <div class="modal-footer">
-                    <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>              
-                    <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspADD</button>    
+                    <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>
+                    <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspADD</button>
                 </div>
 
-                </form> 
+                </form>
             </div>
         </div>
     </div>
@@ -629,29 +614,24 @@
                 </div>
 
                 <form method="POST" action="/repairs" >
-
-                    {{-- Additional security feature laravel provides. --}}
-
                     @csrf
-
                 <div class="modal-body">
 
                     <div class="form-group row" >
                         <label for="dateReported" class=" col-form-label text-md-right" style="margin-left:3%">Date Reported:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="dateReported" id="dateReported" type="date" class="form-control" value="{{ date('Y-m-d') }}" required>
-                        </div>     
+                                <input name="dateReported" id="dateReported" type="date" class="form-control" value="{{ date('Y-m-d') }}" required>
+                            </div>
 
                         <label for="dateStarted" class=" col-form-label text-md-right">Date Started:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="dateStarted" id="dateStarted" type="date" class="form-control" value="{{ old('dateStarted') }}">
-                        </div>
+                                <input name="dateStarted" id="dateStarted" type="date" class="form-control" value="{{ old('dateStarted') }}">
+                            </div>
 
                         <label for="dateFinished" class="col-form-label text-md-right">Date Finished:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="dateFinished" id="dateFinished" type="date" class="form-control" value="{{ old('dateFinished') }}" >
-                        </div>
-
+                                <input name="dateFinished" id="dateFinished" type="date" class="form-control" value="{{ old('dateFinished') }}" >
+                            </div>
                     </div>
 
                      <div class="form-group row" >
@@ -672,7 +652,7 @@
                                 <option value="doorWindow">Door/Window</option>
                                 <option value="general">General</option>
                             </select>
-                        </div>     
+                        </div>
 
                         <label for="endorsedTo" class=" col-form-label text-md-right">Endorsed To:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
@@ -686,18 +666,18 @@
 
                         <label for="totalCost" class="col-form-label text-md-right">Total Cost:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="totalCost" id="totalCost" type="number" class="form-control" value="{{ old('totalCost') }}" >
-                        </div>
+                                <input name="totalCost" id="totalCost" type="number" class="form-control" value="{{ old('totalCost') }}" >
+                            </div>
 
                         <label for="status" class="col-form-label text-md-right">Status:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <select name="status" id="status" class="form-control" required>
-                                <option value="{{ old('status') }}" selected>{{ old('status') }}</option>
-                                <option value="pending">Pending</option>
-                                <option value="onGoing">On Going</option>
-                                <option value="closed">Closed</option>
-                            </select>
-                        </div>
+                                <select name="status" id="status" class="form-control" required>
+                                    <option value="{{ old('status') }}" selected>{{ old('status') }}</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="onGoing">On Going</option>
+                                    <option value="closed">Closed</option>
+                                </select>
+                            </div>
                     </div>
 
                      <div class="form-group row" >
@@ -710,126 +690,126 @@
                                 <option value="satisfactory">Satisfactory</option>
                                 <option value="aboveSatisfactory">Above Satisfactory</option>
                              </select>
-                        </div> 
-                        
+                        </div>
+
                         <div class="col-md-2" style="visibility: hidden">
                             <input name="room_id" id="room_id" type="number" class="form-control" value="{{ $room->id }}" >
                         </div>
+                    </div>
+                    </div>
 
-                        {{-- <div class="col-md-2">
-                            <input name="resident_id" id="resident_id" type="number" class="form-control" value="{{ $resident->id }}" >
-                        </div> --}}
-                    </div>
-                    </div>
                 <div class="modal-footer">
-                    <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>              
-                    <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspADD</button>    
+                    <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>
+                    <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspADD</button>
                 </div>
 
-                </form> 
+                </form>
             </div>
         </div>
     </div>
 </div>
 
- {{-- Modal for adding resident.  --}}
+ {{-- Modal for adding owner for the room.  --}}
 
  <div id="add-owner" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content" style="width:1320px; margin-left:-80%">
-
                 <div class="modal-header">
                     <h4 class="add-owner-title float-left"></h4>
                     <button class="close" type="button" data-dismiss="modal" >&times;</button>
                 </div>
 
                 <form method="POST" action="/owners">
-
-                    {{-- Additional security feature laravel provides. --}}
-
                     @csrf
-
                 <div class="modal-body">
+
+                    {{-- Owner's Personal Information. --}}
+
                      <label for=""><b style="font-size:20px">Personal Information</b></label>
 
                     <div class="form-group row" >
                         <label for="firstName" class=" col-form-label text-md-right" style="margin-left:3%">First Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="firstName" id="firstName" type="text" class="form-control" value="{{ old('firstName') }}" required>
-                        </div>     
+                                <input name="firstName" id="firstName" type="text" class="form-control" value="{{ old('firstName') }}" required>
+                            </div>
 
                         <label for="middleName" class=" col-form-label text-md-right">Middle Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="middleName" id="middleName" type="text" class="form-control" value="{{ old('middleName') }}">
-                        </div>
+                                <input name="middleName" id="middleName" type="text" class="form-control" value="{{ old('middleName') }}">
+                            </div>
 
                         <label for="lastName" class="col-form-label text-md-right">Last Name:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="lastName" id="lastName" type="text" class="form-control" value="{{ old('lastName') }}" required>
-                        </div>
+                               <input name="lastName" id="lastName" type="text" class="form-control" value="{{ old('lastName') }}" required>
+                            </div>
 
                         <label for="birthDate" class="col-form-label text-md-right">Birthdate:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="birthDate" id="birthDate" type="date" class="form-control" value="{{ old('birthDate') }}" >
-                        </div>
+                                <input name="birthDate" id="birthDate" type="date" class="form-control" value="{{ old('birthDate') }}" >
+                            </div>
                     </div>
-                    
+
+                    {{-- Owners's Contact Information --}}
+
                     <label for=""><b style="font-size:20px">Contact Information</b></label>
 
                     <div class="form-group row" >
                         <label for="emailAddress" class=" col-form-label text-md-right" style="margin-left:3%">Email Address:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="emailAddress" id="emailAddress" type="email" class="form-control" value="{{ old('emailAddress') }}" >
-                        </div>  
+                              <input name="emailAddress" id="emailAddress" type="email" class="form-control" value="{{ old('emailAddress') }}" >
+                            </div>
 
                         <label for="mobileNumber" class=" col-form-label text-md-right">Mobile Number:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="mobileNumber" id="mobileNumber" type="text" class="form-control" value="{{ old('mobileNumber') }}" >
-                        </div>
+                                <input name="mobileNumber" id="mobileNumber" type="text" class="form-control" value="{{ old('mobileNumber') }}" >
+                            </div>
                     </div>
+
+
+                    {{-- Owner's Address Information --}}
 
                     <label for=""><b style="font-size:20px">Address Information</b></label>
 
                     <div class="form-group row" >
                         <label for="houseNumber" class=" col-form-label text-md-right" style="margin-left:3%">House No:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="houseNumber" id="houseNumber" type="text" class="form-control" value="{{ old('houseNumber') }}" >
-                        </div>     
-    
+                                <input name="houseNumber" id="houseNumber" type="text" class="form-control" value="{{ old('houseNumber') }}" >
+                            </div>
+
                         <label for="barangay" class=" col-form-label text-md-right">Barangay:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="barangay" id="barangay" type="text" class="form-control" value="{{ old('barangay') }}" >
-                        </div>
+                                <input name="barangay" id="barangay" type="text" class="form-control" value="{{ old('barangay') }}" >
+                            </div>
 
                         <label for="municipality" class=" col-form-label text-md-right">Municipality:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="municipality" id="municipality" type="text" class="form-control" value="{{ old('municipality') }}">
-                        </div>
+                                <input name="municipality" id="municipality" type="text" class="form-control" value="{{ old('municipality') }}">
+                            </div>
 
                         <label for="province" class=" col-form-label text-md-right">Province:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
-                            <input name="province" id="province" type="text" class="form-control" value="{{ old('province') }}" >
-                        </div>
+                                <input name="province" id="province" type="text" class="form-control" value="{{ old('province') }}" >
+                            </div>
                     </div>
 
                     <div class="form-group row" >
-                            <label for="zip" class=" col-form-label text-md-right" style="margin-left:3%">Zipcode:<span style="color:red">&nbsp*</span></label>
-                                <div class="col-md-2">
+                        <label for="zip" class=" col-form-label text-md-right" style="margin-left:3%">Zipcode:<span style="color:red">&nbsp*</span></label>
+                            <div class="col-md-2">
                                 <input name="zip" id="zip" type="text" class="form-control" value="{{ old('zip') }}" >
-                            </div>  
+                            </div>
 
-                            <label for="room_id" class=" col-form-label text-md-right" style="visibility: hidden">Room No:<span style="color:red">&nbsp*</span></label>
-                                <div class="col-md-2" style="visibility: hidden">
+                        <label for="room_id" class=" col-form-label text-md-right" style="visibility: hidden">Room No:<span style="color:red">&nbsp*</span></label>
+                            <div class="col-md-2" style="visibility: hidden">
                                 <input name="room_id" id="room_id" type="number" class="form-control" value="{{$room->id}}" >
-                            </div> 
-                            
-                            <label for="roomNo" class=" col-form-label text-md-right" style="visibility: hidden">Room No:<span style="color:red">&nbsp*</span></label>
-                                <div class="col-md-2" style="visibility: hidden">
+                            </div>
+
+                        <label for="roomNo" class=" col-form-label text-md-right" style="visibility: hidden">Room No:<span style="color:red">&nbsp*</span></label>
+                            <div class="col-md-2" style="visibility: hidden">
                                 <input name="roomNo" id="roomNo" type="text" class="form-control" value="{{$room->roomNo}}" >
-                            </div> 
-                
-        
-                        </div>
+                            </div>
+                    </div>
+
+                    {{-- Owner's Representative's Information. --}}
 
                     <label for=""><b style="font-size:20px">Representative's Information</b></label>
 
@@ -838,25 +818,171 @@
                             <div class="col-md-2">
                                 <input name="rep" id="rep" type="text" class="form-control" value="{{ old('rep') }}" >
                             </div>
-                        
+
                         <label for="repPhoneNumber" class=" col-form-label text-md-right" style="margin-left:3%">Mobile:<span style="color:red">&nbsp*</span></label>
                             <div class="col-md-2">
                                 <input name="repPhoneNumber" id="repPhoneNumber" type="text" class="form-control" value="{{ old('repPhoneNumber') }}" >
                             </div>
-    
+
                     </div>
 
                 </div>
-                  
+
                 <div class="modal-footer">
-                    <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>              
-                    <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspADD</button>    
+                    <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>
+                    <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspADD</button>
                 </div>
 
-                </form> 
+                </form>
             </div>
         </div>
     </div>
+
+
+    {{-- Modal for moving-out a resident --}}
+
+    <div id="move-out-resident" class="modal fade" role="dialog">
+        <div class="modal-dialog"   >
+            <div class="modal-content" style="width:1320px; margin-left:-80%">
+                <div class="modal-header">
+                    <h4 class="move-out-resident-title float-left"></h4>
+                    <button class="close" type="button" data-dismiss="modal" >&times;</button>
+                </div>
+
+                
+                    
+                @foreach ($resident_transaction as $transaction)
+            <form action="/transactions/{{ $transaction->id }}" method="POST" >
+                    @method('PATCH');
+                    @csrf
+                   
+                <div class="modal-body">
+                    <h5>Move out checklist:</h5>  
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="checkbox" aria-label="Radio button for following text input" required>
+                                </div>
+                            </div>
+                                <input type="text" class="form-control" value="Move out asdasda." readonly>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="checkbox" aria-label="Radio button for following text input" required>
+                                </div>
+                            </div>
+                                <input type="text" class="form-control" value="Move out asdasda." readonly>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="checkbox" aria-label="Radio button for following text input" required>
+                                </div>
+                            </div>
+                                <input type="text" class="form-control" value="Move out asdasda." readonly>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="checkbox" aria-label="Radio button for following text input" required>
+                                </div>
+                            </div>
+                                <input type="text" class="form-control" value="Move out asdasda." readonly>
+                        </div>
+                        
+                  
+                        
+                        <input style="visibility:hidden" name="transStatus" id="transStatus" type="text" class="form-control" value="inactive" required>
+                </div>
+                @endforeach
+                <div class="modal-footer">
+                    <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>
+                    <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspMOVE OUT</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+     {{-- Modal for renewing contract of a resident --}}
+
+     <div id="renew-contract-resident" class="modal fade" role="dialog">
+            <div class="modal-dialog"   >
+                <div class="modal-content" style="width:1320px; margin-left:-80%">
+                    <div class="modal-header">
+                        <h4 class="renew-contract-resident-title float-left"></h4>
+                        <button class="close" type="button" data-dismiss="modal" >&times;</button>
+                    </div>
+    
+            
+                    @foreach ($resident_transaction as $transaction)
+                <form action="/transactions/" method="POST" >
+                        @csrf
+                       
+                    <div class="modal-body">
+                            <div class="form-group row" >
+                                    <label for="transDate" class=" col-form-label text-md-right" style="margin-left:3%">Transaction Date:<span style="color:red">&nbsp*</span></label>
+                                        <div class="col-md-2">
+                                        <input name="transDate" id="transDate" type="date" class="form-control" value="{{ date('Y-m-d') }}" >
+                                    </div> 
+                                    
+                                    <label for="moveInDate" class=" col-form-label text-md-right" style="margin-left:3%">Move-in Date:<span style="color:red">&nbsp*</span></label>
+                                        <div class="col-md-2">
+                                        <input name="moveInDate" id="moveInDate" type="date" class="form-control" value="{{ old('moveInDate') }}" required>
+                                    </div>
+                                    
+                                    <label for="moveOutDate" class=" col-form-label text-md-right" style="margin-left:3%">Move-out Date:<span style="color:red">&nbsp*</span></label>
+                                        <div class="col-md-2">
+                                        <input name="moveOutDate" id="moveOutDate" type="date" class="form-control" value="{{ old('moveOutDate') }}" required>
+                                    </div>  
+                                </div>
+    
+                                <div class="form-group row" >
+                                    <label for="term" class=" col-form-label text-md-right" style="margin-left:3%">Term:<span style="color:red">&nbsp*</span></label>
+                                        <div class="col-md-2">
+                                        <select name="term" id="term" class="form-control" required>
+                                            <option value="{{ old('term') }}" selected>{{ old('term') }}</option>
+                                            <option value="longTerm">Long Term</option>
+                                            <option value="shortTerm">Short Term</option>
+                                            <option value="transient">Transient</option>
+                                        </select>
+                                    </div> 
+                                        
+                                    <label for="initialSecDep" class=" col-form-label text-md-right" style="margin-left:3%">Security Deposit:<span style="color:red">&nbsp*</span></label>
+                                        <div class="col-md-2">
+                                        <input name="initialSecDep" id="initialSecDep" type="number" class="form-control" value="{{ $transaction->initialSecDep}}" required>
+                                    </div>
+                                    
+                                   
+                                        <div style = "visibility:hidden" class="col-md-2">
+                                            <input name="transStatus" id="transStatus" type="text" class="form-control" value="active" required>
+                                        </div> 
+    
+                                       
+                                        <div class="col-md-2" style = "visibility:hidden" >
+                                            <input name="resident_id" id="resident_id" type="number" class="form-control" value="{{ $transaction->resident_id }}" required>
+                                        </div>  
+                                    
+                                        <div class="col-md-1" style="visibility:hidden" >
+                                        <input name="room_id" id="room_id" type="number" class="form-control" value="{{ $transaction->room_id }}" required>
+                                    </div>
+                                </div>
+                           
+                    </div>
+                    @endforeach
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>
+                        <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspRENEW</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
 @endsection
 
-  
+

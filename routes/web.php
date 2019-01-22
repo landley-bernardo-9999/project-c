@@ -23,6 +23,8 @@ Route::get('/dashboard', function () {
         return view('/dashboard');
 });
 
+Route::get('/users','HomeController@index' )->middleware('verified');
+
 Auth::routes(['verify'=>true]);
 
 Route::get('/dashboard', 'HomeController@index')->middleware('verified');

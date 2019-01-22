@@ -9,6 +9,7 @@ use DB;
 use Carbon\Carbon;
 use App\Personnel;
 use App\Inventory;
+use App\Transactions;
 use Mail;
 use Auth;
 
@@ -94,6 +95,8 @@ class RoomController extends Controller
         
         $rRow = 1;
 
+        $resident_transaction = DB::table('transactions')->where('room_id', $id)->get();
+
         $repairRow = 1;
 
         $ownerRow = 1;
@@ -117,7 +120,7 @@ class RoomController extends Controller
         $inventoryRow = 1;
 
 
-        return view('rooms.show', compact('room', 'rRow', 'transaction', 'resident','repairRow', 'repair', 'room_owner', 'ownerRow', 'personnel', 'inventory', 'inventoryRow'));
+        return view('rooms.show', compact('room', 'rRow', 'transaction', 'resident','repairRow', 'repair', 'room_owner', 'ownerRow', 'personnel', 'inventory', 'inventoryRow', 'resident_transaction'));
     }
 
     /**

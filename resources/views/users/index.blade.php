@@ -126,7 +126,7 @@
 
     <div class="col-md-2">
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <a class="nav-link" id="v-pills-personnels-tab" href="/users" role="tab" aria-controls="v-pills-personnels" aria-selected="false"><i class="fas fa-user"></i>&nbsp&nbsp&nbspUsers</a>
+            <a class="nav-link" id="v-pills-personnels-tab" href="/users" role="tab" aria-controls="v-pills-users" aria-selected="false"><i class="fas fa-user"></i>&nbsp&nbsp&nbspUsers</a>
             <a class="nav-link" id="v-pills-dashboard-tab" href="/dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true"><i class="fas fa-chart-line"></i>&nbsp&nbsp&nbspDashboard</a>
             <a class="nav-link active" id="v-pills-rooms-tab" href="/rooms" role="tab" aria-controls="v-pills-rooms" aria-selected="false"><i class="fas fa-home"></i>&nbsp&nbsp&nbspRooms</a>
             <a class="nav-link" id="v-pills-residents-tab"  href="/residents" role="tab" aria-controls="v-pills-residents" aria-selected="false"><i class="fas fa-users"></i>&nbsp&nbsp&nbspResidents</a>
@@ -144,106 +144,7 @@
         @include('includes.notifications')
         <div class="card">
             <div class="container-fluid" style="padding:3%;">
-                <div class="row">
-
-                    {{-- Filter features of the page. --}}
-
-                    <div class="col-md-2">
-                        
-                            <div class="input-group ">
-                                <div class="input-group-prepend">
-                                  <button type="button" class="btn btn-outline-primary">Filter Rooms</button>
-                                      <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="/rooms">All</a>
-                                                <div role="separator" class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="/search/rooms?s=occupied">Occupied</a>                                        
-                                                <a class="dropdown-item" href="/search/rooms?s=vacant">Vacant</a>
-                                                <a class="dropdown-item" href="/search/rooms?s=reserved">Reserved</a>
-                                                <div role="separator" class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="/search/rooms?s=harvard">Harvard</a>
-                                                <a class="dropdown-item" href="/search/rooms?s=princeton">Princeton</a>
-                                                <a class="dropdown-item" href="/search/rooms?s=wharton">Wharton</a> 
-                                                <div role="separator" class="dropdown-divider"></div> 
-                                                <a class="dropdown-item" href="/search/rooms?s=northCambridge">North Cambridge</a>
-                                                <a class="dropdown-item" href="/search/rooms?s=theCourtyards">The Courtyards</a>  
-                                            </div>
-                                    </div>                    
-                                </div>  
-                        <br>
-                        <div class="card">
-                            <div class="card-header">
-                                Legends
-                            </div>
-                            <div class="card-body text-center">
-
-                                <i class="fas fa-home fa-1x btn btn-outline-danger"></i>
-                                <p>Occupied</p>
-
-                                <i class="fas fa-home fa-1x btn btn-outline-success"></i>
-                                <p>Vacant</p>
-
-                                <i class="fas fa-home fa-1x btn btn-outline-info"></i>
-                                <p>Reserved</p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                        {{-- List of all the rooms. --}}
-
-                    <div class="col-md-10">
-                        <div class="card">
-                        <div class="card-header">
- 
-                        {{-- Button for creating a new room. --}}
-
-                        <a  href="#" class="create-room btn btn-primary float-left " role="button"><i class="fas fa-plus-circle"></i>&nbspCREATE ROOM</a>
-
-                        {{-- Search button for finding rooms. --}}
-
-                        <form action="/search/rooms" method="GET">
-                            <input type="text" class="form-control float-right" style="width:200px" aria-label="Text input with dropdown button" name="s" value="{{ Request::query('s') }}" placeholder="Search rooms">
-                        </form>
-
-                                               
-                    </div>
-                        <div class="card-body" >
-                            <table class="table">
-                                @foreach($room as $row)
-                                    @if($row->status == 'occupied')
-                                        <a href="/rooms/{{$row->id}}" class="btn btn-outline-danger" role="button">
-                                            <i class="fas fa-home fa-2x"></i>
-                                            <div style="display: flex; width: 30px; justify-content: space-around; margin-bottom:-60%">
-                                                <p style="font-size: 11px">{{$row->roomNo}}</p>
-                                            </div>
-                                        </a>
-                                    @elseif($row->status == 'vacant')
-                                        <a href="/rooms/{{$row->id}}" class="btn btn-outline-success" role="button">
-                                            <i class="fas fa-home fa-2x"></i>
-                                            <div style="display: flex; width: 30px; justify-content: space-around; margin-bottom:-60%">
-                                                <p style="font-size: 11px">{{$row->roomNo}}</p>
-                                            </div>
-                                        </a>
-                                    @elseif($row->status == 'reserved')
-                                        <a href="/rooms/{{$row->id}}" class="btn btn-outline-primary" role="button">
-                                            <i class="fas fa-home fa-2x"></i>
-                                            <div style="display: flex; width: 30px; justify-content: space-around; margin-bottom:-60%">
-                                                <p style="font-size: 11px">{{$row->roomNo}}</p>
-                                            </div>
-                                        </a>
-                                    @endif
-                                @endforeach
-                            </table>
-                        </div>
-                        <div class="card-footer">
-                                <h3 class="text-center">Results found: {{count($room)}}</h3>
-                        </div>
-                    </div>
-            </div>   
-        </div> 
+              
         </div>
         </div>
     </div>      

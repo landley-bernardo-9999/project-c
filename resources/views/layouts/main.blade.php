@@ -183,6 +183,21 @@
             $('.add-inventory-title').text('Inventory');
         });
 
+         // modal for moving out resident.
+
+        $(document).on('click', '.move-out-resident', function(){
+            $('#move-out-resident').modal('show');
+            $('.move-out-resident-form').show();
+            $('.move-out-resident-title').text('Move Out');
+        });
+
+        // modal for renewing contract.
+
+        $(document).on('click', '.renew-contract-resident', function(){
+            $('#renew-contract-resident').modal('show');
+            $('.renew-contract-resident-form').show();
+            $('.renew-contract-resident-title').text('Renew Contract');
+        });
 
 
          // Delete confirmation dialog

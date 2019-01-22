@@ -422,40 +422,31 @@
                                     <input name="initialSecDep" id="initialSecDep" type="number" class="form-control" value="{{ old('initialSecDep') }}" required>
                                 </div>
                                 
-                                <label for="transStatus" class=" col-form-label text-md-right" style="margin-left:3%">Status:<span style="color:red">&nbsp*</span></label>
-                                    <div class="col-md-2">
-                                    <select name="transStatus" id="transStatus" class="form-control" required>
-                                        <option value="{{ old('transStatus') }}" selected>{{ old('transStatus') }}</option>
-                                        <option value="pending">Pending</option>
-                                        <option value="movingIn">Moving In</option>
-                                        <option value="active">Active</option>
-                                        <option value="movingOut">Moving Out</option>
-                                        <option value="inactive">Inactive</option>
-                                    </select>
-                                </div> 
+                               
+                                    <div style = "visibility:hidden" class="col-md-2">
+                                        <input name="transStatus" id="transStatus" type="text" class="form-control" value="active" required>
+                                    </div> 
 
-                                <label for="room_id" class=" col-form-label text-md-right">Room No<span style="color:red">&nbsp*</span></label>
-                                    <div class="col-md-2" >
+                                   
+                                    <div class="col-md-2" style = "visibility:hidden" >
                                         <select name="room_id" id="room_id" class="form-control">
                                             <option value="{{ $resident->room_id }}" selected>{{ $resident->roomNo }}</option>
                                             @foreach ($room as $row)
                                                 <option value="{{ $row->id }}">{{ $row->roomNo }}</option>
                                             @endforeach
                                         </select>
-                                    </div> 
+                                    </div>  
                                 
                                     <div class="col-md-1" style="visibility:hidden" >
                                     <input name="resident_id" id="resident_id" type="number" class="form-control" value="{{ $resident->id }}" required>
                                 </div>
-
-                               
                             </div>
                         
                     </div>
                       
                     <div class="modal-footer">
                         <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>              
-                        <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspADD</button>    
+                        <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspMOVE IN</button>    
                     </div>
     
                     </form> 
@@ -597,6 +588,7 @@
 
                 <form method="POST" action="/violations" >
 
+                   
                     {{-- Additional security feature laravel provides. --}}
 
                     @csrf

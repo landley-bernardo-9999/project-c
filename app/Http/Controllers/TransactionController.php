@@ -69,7 +69,9 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        //
+        $transaction = Transaction::findOrFail($id);
+
+        return view('residents.show', compact('transaction'));
     }
 
     /**
@@ -92,7 +94,13 @@ class TransactionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $transaction = Transaction::findOrFail($id);
+
+        $transaction->transStatus = request('transStatus');
+
+        $transaction->save();
+
+        return redirect('/rooms/'.$transaction->room_id)->with('success','Resident has been moved out!');
     }
 
     /**
