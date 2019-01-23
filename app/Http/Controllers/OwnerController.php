@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use DB;
 use App\Owner;
 use App\Room;
+use Gate;
+
 class OwnerController extends Controller
 {
       /**
@@ -25,6 +27,8 @@ class OwnerController extends Controller
      */
     public function index(Request $request)
     {
+      
+
         $s = $request->query('s');
 
         $ownerRow = 1;

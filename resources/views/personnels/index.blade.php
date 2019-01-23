@@ -39,6 +39,9 @@
 
     <div class="col-md-2">
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            @can('isAdmin')
+            <a class="nav-link " id="v-pills-personnels-tab" href="/users" role="tab" aria-controls="v-pills-users" aria-selected="false"><i class="fas fa-user"></i>&nbsp&nbsp&nbspUsers</a>
+            @endcan
             <a class="nav-link" id="v-pills-dashboard-tab" href="/dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="false"><i class="fas fa-chart-line"></i>&nbsp&nbsp&nbspDashboard</a>
             <a class="nav-link" id="v-pills-rooms-tab" href="/rooms" role="tab" aria-controls="v-pills-rooms" aria-selected="false"><i class="fas fa-home"></i>&nbsp&nbsp&nbspRooms</a>
             <a class="nav-link" id="v-pills-residents-tab"  href="/residents" role="tab" aria-controls="v-pills-residents" aria-selected="false"><i class="fas fa-users"></i>&nbsp&nbsp&nbspResidents</a>
@@ -70,35 +73,25 @@
 
                 <div class="row">
                         <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        
-                                        <th>Mobile</th>
-                                        <th>Province</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($personnel as $row)
-                                        <tr>
-                                            <th>{{ $perRow++ }}</th>
-                                            <td>{{ $row->firstName }}</td>
-                                            
-                                            <td>{{ $row->lastName }}</td>
-                                            
-                                            <td>{{ $row->mobileNumber }}</td>
-                                            <td>{{ $row->province }}</td>
-                                            <td><a href="/personnels/{{ $row->id }}">MORE</a></td>
-                                        </tr>
-                                    @endforeach
-                                   
-                                </tbody>
-                            </table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($personnel as $row)
+                                <tr>
+                                    <th>{{ $perRow++ }}</th>
+                                    <td><a href="/personnels/{{ $row->id }}">{{ $row->firstName }} {{ $row->lastName }}</a></td>
+                                </tr>
+                                @endforeach 
+                            </tbody>
+                        </table>
                 </div>     
             </div>
+            
             <div class="card-footer">
                 <h3 class="text-center">Results found: {{count($personnel)}}</h3>
             </div>

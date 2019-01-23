@@ -195,8 +195,8 @@
 
         $(document).on('click', '.renew-contract-resident', function(){
             $('#renew-contract-resident').modal('show');
-            $('.renew-contract-resident-form').show();
-            $('.renew-contract-resident-title').text('Renew Contract');
+            $('.renew-contrat-resident-form').show();
+            $('.renew-contract-resident-title').text('Contract Renewal');
         });
 
 

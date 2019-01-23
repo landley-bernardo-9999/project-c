@@ -72,7 +72,7 @@ class InventoryController extends Controller
      */
     public function update(Request $request, Inventory $inventory)
     {
-        //
+        dd('hello');
     }
 
     /**

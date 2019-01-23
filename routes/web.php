@@ -23,7 +23,11 @@ Route::get('/dashboard', function () {
         return view('/dashboard');
 });
 
-Route::get('/users','HomeController@index' )->middleware('verified');
+// Route::get('/users', function(){
+//     return view('users.index');
+// });
+
+// Route::get('/users','HomeController@index' )->middleware('verified');
 
 Auth::routes(['verify'=>true]);
 
@@ -31,18 +35,21 @@ Route::get('/dashboard', 'HomeController@index')->middleware('verified');
 
 Route::get('/', 'HomeController@index')->middleware('verified');
 
-Route::resources([
-                    'rooms' => 'RoomController',
-                    'residents' => 'ResidentController',
-                    'transactions' => 'TransactionController',
-                    'owners' => 'OwnerController',
-                    'repairs' => 'RepairController',
-                    'violations' => 'ViolationController',
-                    'supplies' => 'SupplyController',
-                    'personnels' => 'PersonnelController',
-                    'stocks' => 'StockController',
-                    'inventory' => 'InventoryController'
-                ]);
+Route::group(['middleware' => 'verified'], function(){
+    Route::resources([
+        'rooms' => 'RoomController',
+        'residents' => 'ResidentController',
+        'transactions' => 'TransactionController',
+        'owners' => 'OwnerController',
+        'repairs' => 'RepairController',
+        'violations' => 'ViolationController',
+        'supplies' => 'SupplyController',
+        'personnels' => 'PersonnelController',
+        'stocks' => 'StockController',
+        'inventory' => 'InventoryController',
+        'users' => 'UserController',
+    ]);
+});
 
 Route::get('/search/rooms{s?}', 'RoomController@index')->where('s', '[\w\d]+');
 
@@ -58,8 +65,4 @@ Route::get('/search/personnels{s?}', 'PersonnelController@index')->where('s', '[
 
 Route::get('/search/supplies{s?}', 'SupplyController@index')->where('s', '[\w\d]+');
 
-// This is the route for messaging.
-
-Route::get('api/users', 'Api\V1\UsersController@index');
-Route::post('api/messages', 'Api\V1\MessagesController@index');
-Route::post('api/messages/send', 'Api\V1\MessagesController@store');
+Route::get('/search/users{s?}', 'UserController@index')->where('s', '[\w\d]+');

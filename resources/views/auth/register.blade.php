@@ -85,7 +85,9 @@
                                     <option value="" selected>Select your position</option>
                                     <option value="leasingOfficer" {{ old('position') == 'leasingOfficer' ? 'selected' : ''}} >Leasing Officer</option>
                                     <option value="leasingManager" {{ old('position') == 'leasingManager' ? 'selected' : ''}}>Leasing Manager</option>
-                                    <option value="maintenance" {{ old('postion') == 'maintenance' ? 'selected': ''}}>Maintenance</option> 
+                                    <option value="executive" {{ old('postion') == 'executive' ? 'selected': ''}}>Executives</option> 
+                                    <option value="admin" {{ old('postion') == 'admin' ? 'selected': ''}}>Admin</option>
+                                    <option value="treasury" {{ old('postion') == 'treasury' ? 'selected': ''}}>Treasury</option>
                                 </select>
 
                                 @if ($errors->has('position'))

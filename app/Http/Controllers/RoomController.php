@@ -12,7 +12,7 @@ use App\Inventory;
 use App\Transactions;
 use Mail;
 use Auth;
-
+use Gate;
 
 class RoomController extends Controller
 {
@@ -34,6 +34,7 @@ class RoomController extends Controller
      */
     public function index(Request $request)
     {
+     
         $s = $request->query('s');
 
         $room = DB::table('rooms')->where('roomNo', 'like', "%$s%")
@@ -85,6 +86,8 @@ class RoomController extends Controller
      */
     public function show($id)
     {
+      
+
         $room = Room::findOrFail($id);
 
         $resident = DB::table('residents')->where('room_id',$id)->get();
@@ -95,33 +98,41 @@ class RoomController extends Controller
         
         $rRow = 1;
 
-        $resident_transaction = DB::table('transactions')->where('room_id', $id)->get();
 
-        $repairRow = 1;
+            $resident_transaction = DB::table('transactions')->where('room_id', $id)->get();
 
-        $ownerRow = 1;
+            $repairRow = 1;
+    
+            $ownerRow = 1;
+    
+            $dateToday = Carbon::today()->toDateString();
+    
+            $transaction = DB::table('transactions')
+                ->join('residents', 'transactions.resident_id', '=', 'residents.id')
+                ->join('owners', 'transactions.room_id', 'owners.room_id')
+                ->select('residents.*','residents.firstName as residentFirstName', 'residents.middleName as residentMiddleName', 'residents.lastName as residentLastName'
+                ,'transactions.*', 'owners.*')
+                ->where('transactions.room_id', $id)
+               
+                ->get();
+    
+            $room_owner = Owner::where('owners.room_id', $id)->get();
+    
+    
+            $inventory = DB::table('inventories')
+                ->join('residents', 'inventories.inventory_residentId', 'residents.id')
+                ->join('rooms', 'inventories.inventory_roomId', 'rooms.id')
+                ->select('residents.*', 'rooms.*', 'inventories.*')
+                ->where('inventory_roomId', $id)
+                ->get();
+            
+            $inventoryRow = 1;
+    
+    
+            return view('rooms.show', compact('room', 'rRow', 'transaction', 'resident','repairRow', 'repair', 'room_owner', 'ownerRow', 'personnel', 'inventory', 'inventoryRow', 'resident_transaction', 'listOfRooms'));
+    
 
-        $dateToday = Carbon::today()->toDateString();
-
-        $transaction = DB::table('transactions')
-            ->join('residents', 'transactions.resident_id', '=', 'residents.id')
-            ->join('owners', 'transactions.room_id', 'owners.room_id')
-            ->select('residents.*','residents.firstName as residentFirstName', 'residents.middleName as residentMiddleName', 'residents.lastName as residentLastName'
-            ,'transactions.*', 'owners.*')
-            ->where('transactions.room_id', $id)
-            ->whereIn('transactions.transStatus',['active','inactive','pending','movingIn','movingOut'])
-            ->get();
-
-        $room_owner = Owner::where('owners.room_id', $id)->get();
-
-
-        $inventory = Inventory::where('inventory_roomId', $id)->get();
-
-        $inventoryRow = 1;
-
-
-        return view('rooms.show', compact('room', 'rRow', 'transaction', 'resident','repairRow', 'repair', 'room_owner', 'ownerRow', 'personnel', 'inventory', 'inventoryRow', 'resident_transaction'));
-    }
+            }
 
     /**
      * Show the form for editing the specified resource.

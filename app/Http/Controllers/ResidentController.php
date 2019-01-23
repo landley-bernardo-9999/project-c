@@ -29,6 +29,8 @@ class ResidentController extends Controller
      */
     public function index(Request $request)
     {
+  
+        
         $s = $request->query('s');
         
         $resident = DB::table('residents')
