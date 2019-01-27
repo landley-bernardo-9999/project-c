@@ -29,49 +29,48 @@
             
                {{-- Search button for finding residents. --}}
             <div class="card-header">
-                <h3 class="float-left">Residents</h3>
-                <form action="/search/residents" method="GET">
-                    <input type="text" class="form-control float-right" style="width:200px" aria-label="Text input with dropdown button" name="s" value="{{ Request::query('s') }}" placeholder="Search residents">
-                </form>
+                <h1>Residents</h1>        
             </div>
 
-            <div class="card-body" style="padding:3%;" >
-
+            <div class="card-body" >
                 <div class="row">
-                        <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Name</th>                                        
-                                        <th>Email</th>
-                                        <th>Mobile</th>
-                                        <th>Province</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($resident as $row)
-                                    <tr>
-                                        <th>{{ $rRow++ }}</th>
-                                        <td>{{ $row->firstName }} {{ $row->lastName }}</td>                                        
-                                        <td>{{ $row->emailAddress }}</td>
-                                        <td>{{ $row->mobileNumber }}</td>                                        
-                                        <td>{{ $row->province }}</td>
-                                        <td><a href="/residents/{{$row->id}}">MORE</a></td>            
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                </div>     
-            </div>
-
-            <div class="card-footer">
-                <h3 class="text-center">Results found: {{count($resident)}}</h3>
+                <div class="col-md-5">
+                    <form class="float-left" action="/search/residents" method="GET">
+                        <input type="text" class="form-control float-right" style="width:200px" aria-label="Text input with dropdown button" name="s" value="{{ Request::query('s') }}" placeholder="Search residents">
+                    </form>    
+                    &nbsp&nbsp<a class="btn btn-danger" href="{{ route('residents.index') }}">Clear search</a>
+                <br><br>
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>      
+                                                          
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php $rowNo = 1; ?>
+                    @foreach ($resident as $row)
+                        <tr>
+                            <th>{{ $rowNo++ }}</th>
+                            <td><a href="/residents/{{$row->id}}">{{ $row->firstName }} {{ $row->lastName }}</a></td>     
+                              
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>  
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ route('residents.create') }}" class="btn btn-primary">CREATE NEW RESIDENT</a>
+                </div> 
+                
+                 <div class="col-md-3">
+                    <a href="{{ route('residents.create') }}" class="btn btn-primary">ADD ROOM TO EXISTING RESIDENT</a>
+                </div> 
             </div>
         </div>      
     </div>
-
-
 @endsection
 
-  
+
+

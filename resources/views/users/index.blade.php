@@ -29,69 +29,109 @@
     <div class="col-md-10">
         @include('includes.notifications')
         <div class="card">
-                <div class="card-header">
-                        <h3 class="float-left">Users</h3>
-                        <form action="/search/users" method="GET">
-                            <input type="text" class="form-control float-right" style="width:200px" aria-label="Text input with dropdown button" name="s" value="{{ Request::query('s') }}" placeholder="Search users">
-                        </form>
-                    </div>
-            <div class="card-body" style="padding:3%;">
-               
-                <div class="row">
-                        <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Name</th>
-                                        <th>Status</th>        
-                                        <th>Position</th>                                
-                                        <th>Email</th>
-                                        <th>Mobile Number</th>
-                                        
-                                        <th colspan="2" class="text-center">Modify</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($users as $row)
-                                    <tr>
-                                        <th>{{ $rRow++ }}</th>
-                                        <td>{{ $row->firstName }} {{ $row->lastName }}</td>     
-                                        <td>
-                                            @if(empty($row->email_verified_at))
-                                                <p class="btn-danger text-center">Not Verified</p>
-                                            @else
-                                                <p class="btn-success text-center">Verified</p>
-                                            @endif
-                                        </td> 
-                                        <td>{{ $row->position }}</td>                                  
-                                        <td>{{ $row->email }}</td>
-                                        <td>{{ $row->mobileNumber }}</td>                                        
-                                        
-                                        <td><a href="" class="btn btn-warning">Edit</a></td>
-                                        <td><a href="" class="btn btn-danger">Delete</a></td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                </div>                         
-            
-                
+            <div class="card-header">
+                <h3 class="float-left">Users</h3>
+                <form action="/search/users" method="GET">
+                    <input type="text" class="form-control float-right" style="width:200px" aria-label="Text input with dropdown button" name="s" value="{{ Request::query('s') }}" placeholder="Search users">
+                </form>
+            </div>
+            <div class="card-body table-responsive" style="padding:3%;">
+                <table class="table" id="datatable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Status</th>        
+                            <th>Position</th>                                
+                            <th>Email</th>
+                            <th>Mobile Number</th>
+                            <th class="text-center" >
+                                <a href="#" class="create-modal btn btn-success btn-sm">ADD</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+            </table>                        
         </div>
-        
         <div class="card-footer">
            
         </div>
+    </div>
+</div>        
 
+        {{-- Form create post --}}
+
+    <div id="create" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    
+                    <h4 class="modal-title"></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group row add">
+                            <label class="control-label col-sm-3" for="firstName">First Name:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" required>
+                                    <p class="error text-center alert alert-danger d-none"></p>
+                            </div>
+                        </div>
+
+                         <div class="form-group row">
+                            <label class="control-label col-sm-3" for="lastName">Last Name:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" required>
+                                    <p class="error text-center alert alert-danger d-none"></p>
+                            </div>
+                        </div>
+
+                         <div class="form-group row">
+                            <label class="control-label col-sm-3" for="position">Position:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="position" id="position" placeholder="Position" required>
+                                    <p class="error text-center alert alert-danger d-none"></p>
+                            </div>
+                        </div>
+
+                         <div class="form-group row">
+                            <label class="control-label col-sm-3" for="email">Email:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Email" required>
+                                    <p class="error text-center alert alert-danger d-none"></p>
+                            </div>
+                        </div>
+
+                         <div class="form-group row">
+                            <label class="control-label col-sm-3" for="mobileNumber">Mobile Number:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="mobileNumber" id="mobileNumber" placeholder="Mobile Number" required>
+                                    <p class="error text-center alert alert-danger d-none"></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary" onclick="saveUser()" id="save" type="button">
+                        Save 
+                    </button>
+                    <button class="btn btn-warning" data-dismiss="modal" type="button">
+                       Close 
+                    </button>
+                </div>
+            </div>
         </div>
-    </div>      
 
-    
-           
-            
-        
+
+    </div>
+
+
 </div>
-
 @endsection
+
 
   

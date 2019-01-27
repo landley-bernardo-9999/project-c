@@ -14,11 +14,7 @@
                     <button class="close" type="button" data-dismiss="modal" >&times;</button>
                 </div>
                 <form method="POST" action="/rooms">
-
-                    {{-- Additional security feature laravel provides. --}}
-
-                    {{ csrf_field() }}
-
+                    @csrf
                 <div class="modal-body">
                      
                     {{-- Room number input.     --}}

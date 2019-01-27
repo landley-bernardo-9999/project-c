@@ -49,6 +49,7 @@ Route::group(['middleware' => 'verified'], function(){
         'inventory' => 'InventoryController',
         'users' => 'UserController',
     ]);
+
 });
 
 Route::get('/search/rooms{s?}', 'RoomController@index')->where('s', '[\w\d]+');

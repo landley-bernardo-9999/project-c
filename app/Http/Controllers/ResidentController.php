@@ -28,22 +28,18 @@ class ResidentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
-  
-        
+    {        
         $s = $request->query('s');
         
-        $resident = DB::table('residents')
-           ->where('firstName', 'like', "%$s%")
-           ->orWhere('lastName', 'like', "%$s%")
-           ->orWhere('middleName', 'like', "%$s%")
-           ->orWhere('emailAddress', 'like', "%$s%")
-           ->orWhere('mobileNumber', 'like', "%$s%")
-           ->get();
+        $resident = DB::table('residents')            
+            ->where('firstName', 'like', "%$s%")
+            ->orWhere('lastName', 'like', "%$s%")
+            ->orWhere('middleName', 'like', "%$s%")
+            ->orWhere('emailAddress', 'like', "%$s%")
+            ->orWhere('mobileNumber', 'like', "%$s%")
+            ->latest()->paginate(5);   
 
-        $rRow = 1;
-
-        return view ('residents.index', compact('resident', 'rRow'));
+        return view ('residents.index', compact('resident'));
     }
 
     /**
@@ -53,7 +49,9 @@ class ResidentController extends Controller
      */
     public function create()
     {
-        //
+        $rooms = DB::table('rooms')->where('status','vacant')->get();
+
+        return view('residents.create', compact('rooms'));
     }
 
     /**
@@ -125,7 +123,7 @@ class ResidentController extends Controller
 
             $resident->save();
 
-            return redirect('/residents/'.$resident->id)->with('success',$request->firstName.' '.$request->lastName .' has been registered as a resident. You may now add transaction.');
+            return redirect('/transactions/create')->with('success','Resident has been added!');
     }
 
     /**

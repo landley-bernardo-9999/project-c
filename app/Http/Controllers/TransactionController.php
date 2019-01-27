@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Transaction;
+use App\Resident;
+use App\Room;
+use DB;
 
 class TransactionController extends Controller
 {
@@ -33,8 +36,13 @@ class TransactionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $residents = Resident::all();
+
+        $rooms = DB::table('rooms')->where('status', 'vacant')->get();
+        
+
+        return view('transactions.create', compact('residents', 'rooms'));
     }
 
     /**
@@ -58,7 +66,7 @@ class TransactionController extends Controller
 
         Transaction::create($validate);
 
-        return redirect('/rooms/'.$request->room_id)->with('success','Transaction has been created!');
+        return redirect('/residents/'.$request->resident_id)->with('success','Transaction is successful!');
     }
 
     /**
