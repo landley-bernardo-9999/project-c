@@ -123,6 +123,10 @@ class ResidentController extends Controller
 
             $resident->save();
 
+              // $data = $request->all();
+
+        // Resident::create($data);
+
             return redirect('/transactions/create')->with('success','Resident has been added!');
     }
 

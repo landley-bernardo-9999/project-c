@@ -20,28 +20,7 @@
 
 {{-- Content of the room section. --}}
 <div class="col-md-10">
-    @include('includes.notifications')
-    <a href="#" class="btn nav-link edit-resident text-left float-left"><i class="fas fa-edit"></i>&nbspEDIT</a>
-            
-     <form method="POST" action="/residents/{{ $resident->id }}">
-    @method('delete')
-    @csrf
-        <button id="FormDeleteTime" class=" float-right nav-link button btn btn-danger text-left"><i class="fas fa-trash-alt"></i>&nbspDELETE</button>
-    </form>          
-             
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle btn float-right" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-plus-circle"></i>&nbspADD</a>
-                <div class="dropdown-menu">
-                    <a href="#" class=" dropdown-item add-transaction text-left">Transaction</a>
-                    <a href="#" class=" dropdown-item add-repair text-left">Repair</a>
-                    <a href="#" class=" dropdown-item add-violation text-left">Violation</a>
-                   
-                    <a href="#" class=" dropdown-item add-billing text-left">Billing</a>
-                    
-                </div>
-        </li>
-    </ul>
+    @include('includes.notifications')                   
 
     <div class="card">
         <div class="container-fluid" style="padding:3%;">
@@ -96,9 +75,16 @@
                             <img width="100%; height; 100%" src="/storage/img/residents/{{$resident->img}}" alt="">
                         </div>
                     </div>
+                    <a href="#" class="btn nav-link edit-resident float-left"><i class="fas fa-edit"></i>&nbspEDIT</a>
+                    <form method="POST" action="/residents/{{ $resident->id }}">
+                        @method('delete')
+                        @csrf
+                        <a href="#" class="btn nav-link float-right"><i class="fas fa-trash-alt"></i>&nbspDELETE</a>
+                    </form>      
+                    
                 </div>
             </div>
-                <br>
+
                         {{-- List of residents --}}
 
                         <div class="row">
@@ -369,132 +355,7 @@
             </div>
         </div>
     </div>
-
-    {{-- Modal for adding resident's transaction. --}}
-
-
-
-<div id="add-repair" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content" style="width:1320px; margin-left:-80%">
-
-                <div class="modal-header">
-                    <h4 class="add-repair-title float-left"></h4>
-                    <button class="close" type="button" data-dismiss="modal" >&times;</button>
-                </div>
-
-                <form method="POST" action="/repairs" >
-
-                    {{-- Additional security feature laravel provides. --}}
-
-                    @csrf
-
-                <div class="modal-body">
-
-                    <div class="form-group row" >
-                        <label for="dateReported" class=" col-form-label text-md-right" style="margin-left:3%">Date Reported:<span style="color:red">&nbsp*</span></label>
-                            <div class="col-md-2">
-                            <input name="dateReported" id="dateReported" type="date" class="form-control" value="{{ date('Y-m-d') }}" required>
-                        </div>    
-                        
-                        <label for="name" class=" col-form-label text-md-right">Name<span style="color:red">&nbsp*</span></label>
-                            <div class="col-md-2">
-                            <input name="name" id="name" type="text" class="form-control" value="{{ $resident->firstName }}">
-                        </div>
-
-                        <label for="dateStarted" class=" col-form-label text-md-right">Date Started:<span style="color:red">&nbsp*</span></label>
-                            <div class="col-md-2">
-                            <input name="dateStarted" id="dateStarted" type="date" class="form-control" value="{{ old('dateStarted') }}">
-                        </div>
-
-                        <label for="dateFinished" class="col-form-label text-md-right">Date Finished:<span style="color:red">&nbsp*</span></label>
-                            <div class="col-md-2">
-                            <input name="dateFinished" id="dateFinished" type="date" class="form-control" value="{{ old('dateFinished') }}" >
-                        </div>
-
-                    </div>
-
-                     <div class="form-group row" >
-                        <label for="desc" class=" col-form-label text-md-right" style="margin-left:3%">Description:<span style="color:red">&nbsp*</span></label>
-                            <div class="col-md-2">
-                            <select name="desc" id="desc" class="form-control" required>
-                                <option value="{{ old('desc') }}" selected>{{ old('desc') }}</option>
-                                <option value="carpentry">Carpentry</option>
-                                <option value="electrical">Electrical</option>
-                                <option value="plumbing">Plumbing</option>
-                                <option value="installation">Installation</option>
-                                <option value="masonry">Masonry</option>
-                                <option value="painting">Painting</option>
-                                <option value="cleaning">Cleaning</option>
-                                <option value="security">Security</option>
-                                <option value="internet">Internet</option>
-                                <option value="request">Request</option>
-                                <option value="doorWindow">Door/Window</option>
-                                <option value="general">General</option>
-                            </select>
-                        </div>     
-
-                        <label for="endorsedTo" class=" col-form-label text-md-right">Endorsed To:<span style="color:red">&nbsp*</span></label>
-                            <div class="col-md-2">
-                                <select name="endorsedTo" id="endorsedTo" class="form-control" >
-                                    <option value="{{ old('endorsedTo') }}" selected>{{ old('endorsedTo') }}</option>
-                                    @foreach ($personnel as $row)
-                                        <option value="{{ $row->id }}">{{ $row->firstName }} {{ $row->lastName }}</option>
-                                    @endforeach
-                                </select>
-                        </div>
-
-                        <label for="totalCost" class="col-form-label text-md-right">Total Cost:<span style="color:red">&nbsp*</span></label>
-                            <div class="col-md-2">
-                            <input name="totalCost" id="totalCost" type="number" class="form-control" value="{{ old('totalCost') }}" >
-                        </div>
-
-                        <label for="status" class="col-form-label text-md-right">Status:<span style="color:red">&nbsp*</span></label>
-                            <div class="col-md-2">
-                            <select name="status" id="status" class="form-control" required>
-                                <option value="{{ old('status') }}" selected>{{ old('status') }}</option>
-                                <option value="pending">Pending</option>
-                                <option value="onGoing">On Going</option>
-                                <option value="closed">Closed</option>
-                            </select>
-                        </div>
-
-                        
-                    </div>
-
-                     <div class="form-group row" >
-                        <label for="rating" class=" col-form-label text-md-right" style="margin-left:3%">Rating:<span style="color:red">&nbsp*</span></label>
-                            <div class="col-md-2">
-                             <select name="rating" id="rating" class="form-control">
-                                <option value="{{ old('rating') }}" selected>{{ old('rating') }}</option>
-                                <option value="lessSatisfactory">Less Satisfactory</option>
-                                <option value="somewhatSatisfactory">Somewhat Satisfactory</option>
-                                <option value="satisfactory">Satisfactory</option>
-                                <option value="aboveSatisfactory">Above Satisfactory</option>
-                             </select>
-                        </div> 
-                        
-                         <div class="col-md-2" style="visibility:hidden">
-                            <input name="room_id" id="room_id" type="number" class="form-control" value="{{ $resident->room_id }}" >
-                        </div> 
-
-                         <div class="col-md-2" style="visibility:hidden">
-                            <input name="resident_id" id="resident_id" type="number" class="form-control" value="{{ $resident->id }}" >
-                        </div> 
-                    </div>
-                    </div>
-                <div class="modal-footer">
-                    <button class="btn btn-danger" data-dismiss="modal" type="button"><i class="fas fa-times"></i>&nbspCANCEL</button>              
-                    <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>&nbspADD</button>    
-                </div>
-
-                </form> 
-            </div>
-        </div>
-    </div>
-
-    {{-- Form for adding violation of the resident. --}}
-
+    
     <div id="add-violation" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content" style="width:1320px; margin-left:-80%">

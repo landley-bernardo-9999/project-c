@@ -7,6 +7,7 @@ use App\Repair;
 use DB;
 use App\Resident;
 use App\Personnel;
+use App\Room;
 
 class RepairController extends Controller
 {
@@ -29,21 +30,18 @@ class RepairController extends Controller
     {
         $s = $request->query('s');
 
-        $repairRow = 1;
-
         $personnel = DB::table('personnels')->get();
 
-        $repair = DB::table('repairs')
+        $repairs = DB::table('repairs')
            ->join('rooms', 'repairs.room_id', '=', 'rooms.id')
            ->join('personnels', 'repairs.endorsedTo', 'personnels.id')
-           ->select('rooms.*','repairs.*', 'repairs.id as repairId', 'personnels.*')
-           ->where('repairs.status', 'like', "%$s%")
+           ->select('rooms.*','repairs.*', 'repairs.id as repairId', 'personnels.*', 'repairs.status as repairStatus')
            ->orWhere('rooms.roomNo', 'like', "%$s%")
            ->orWhere('repairs.name', 'like', "%$s%")
-           ->orderBy('repairs.created_at', 'desc')
-           ->get();
+            
+           ->paginate(5);
 
-           return view('repairs.index', compact('repair', 's', 'repairRow', 'personnel'));
+           return view('repairs.index', compact('repairs', 'personnel'));
     }
 
     /**
@@ -53,7 +51,11 @@ class RepairController extends Controller
      */
     public function create()
     {
-        //
+        $rooms = DB::table('rooms')->orderBy('building', 'asc')->get();
+
+        $personnels = Personnel::all();
+
+        return view('repairs.create', compact('rooms', 'personnels'));
     }
 
     /**
@@ -64,23 +66,11 @@ class RepairController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = request()->validate([
-            'name' => [],
-            'dateReported' => [],
-            'dateStarted' => [],
-            'dateFinished' => [],
-            'desc' => [],
-            'endorsedTo' => ['required'],
-            'totalCost' => ['required'],
-            'status' => [],
-            'rating' => [],
-            'room_id' => [],
-            'resident_id' => [],
-        ]);
+       $data = $request->all();
 
-        Repair::create($validate);
+        $repair = Repair::create($data);
 
-        return redirect('/rooms/'.$request->room_id)->with('success','Repair has been added to the room');
+        return redirect('/repairs/'.$repair->id)->with('success','Added Successfully!');
     }
 
     /**
@@ -91,7 +81,9 @@ class RepairController extends Controller
      */
     public function show($id)
     {
-        //    
+        $repairs = Repair::findOrFail($id);
+
+        return view('repairs.show', compact('repairs'));
     }
 
     /**
@@ -102,7 +94,13 @@ class RepairController extends Controller
      */
     public function edit($id)
     {
-        //
+        $repairs = Repair::findOrFail($id);
+
+        $rooms = DB::table('rooms')->orderBy('building', 'asc')->get();
+
+        $personnels = Personnel::all();
+
+        return view('repairs.edit', compact('repairs', 'rooms', 'personnels'));
     }
 
     /**
@@ -114,25 +112,11 @@ class RepairController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $repair = Repair::findOrFail($id);
+      $data = $request->all();
 
-        $this->validate($request,[
-            'totalCost' => ['required'],
-        ]);
+      Repair::findOrFail($id)->update($data);
 
-        $repair->name = request('name');
-        $repair->dateReported = request('dateReported');
-        $repair->dateStarted = request('dateStarted');
-        $repair->dateFinished = request('dateFinished');
-        $repair->desc = request('desc');
-        $repair->endorsedTo = request('endorsedTo');
-        $repair->totalCost = request('totalCost');
-        $repair->status = request('status');
-        $repair->rating = request('rating');
-
-        $repair->save();
-
-        return redirect('/repairs/')->with('success','Repair has been updated!');
+      return redirect('/repairs/'.$id)->with('success','Updated Successfully!');
     }
 
     /**

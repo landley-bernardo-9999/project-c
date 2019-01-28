@@ -167,9 +167,6 @@ class RoomController extends Controller
 
         Room::findOrFail($id)->update($attributes);
 
-        Room::find($id)->update();
-
-
         return redirect('/rooms/'.$id)->with('success','Room '.$request->roomNo.' has been updated!');
         
     }

@@ -266,10 +266,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>Date Reported</th>
-                                <th>Name</th>
+                                <th>Reported By</th>
                                 <th>Description</th>
-                                <th>Endorsed To</th>
-                                <th>Total Cost</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -280,8 +278,6 @@
                                 <td>{{ $row->dateReported }}</td>
                                 <td>{{ $row->name }}</td>
                                 <td>{{ $row->desc }}</td>
-                                <td>{{ $row->endorsedTo }}</td>
-                                <td>{{ $row->totalCost }}</td>
                                 <td>{{ $row->status }}</td>
                                </tr>
                             @endforeach

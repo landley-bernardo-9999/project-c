@@ -23,13 +23,13 @@
 
 {{-- Content of the resident section. --}}
 
-    <div class="col-md-10">
+    <div class="col-md-10" >
         @include('includes.notifications')
-        <div class="card">
+        <div class="card" style="height:550px">
             
                {{-- Search button for finding residents. --}}
             <div class="card-header">
-                <h1>Residents</h1>        
+                <h3>Residents</h3>        
             </div>
 
             <div class="card-body" >
@@ -52,7 +52,7 @@
                     <?php $rowNo = 1; ?>
                     @foreach ($resident as $row)
                         <tr>
-                            <th>{{ $rowNo++ }}</th>
+                            <th>{{ $rowNo++ }}.</th>
                             <td><a href="/residents/{{$row->id}}">{{ $row->firstName }} {{ $row->lastName }}</a></td>     
                               
                         </tr>
@@ -60,15 +60,14 @@
                     </tbody>
                 </table>  
                 </div>
-                <div class="col-md-3">
-                    <a href="{{ route('residents.create') }}" class="btn btn-primary">CREATE NEW RESIDENT</a>
-                </div> 
-                
-                 <div class="col-md-3">
-                    <a href="{{ route('residents.create') }}" class="btn btn-primary">ADD ROOM TO EXISTING RESIDENT</a>
-                </div> 
+               
             </div>
-        </div>      
+        </div>   
+        <div class="card-footer">
+                <a href="/residents/create" class="btn btn-primary">CREATE NEW RESIDENT</a>
+                <a href="/transactions/create" class="btn btn-primary">ADD ROOM TO EXISTING RESIDENT</a>
+        </div>
+    </div>
     </div>
 @endsection
 
